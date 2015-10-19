@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -e
+
+export PATH=env/bin:${PATH}
+export DATABASE_URL=mysql://root:@127.0.0.1/bwedb
+export DEBUG=true
+export DJANGO_SETTINGS_MODULE=project.settings
+export EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
+
+
+flake8 project --ignore=E128,E501 --exclude=migrations,settings

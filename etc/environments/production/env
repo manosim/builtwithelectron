@@ -1,0 +1,4 @@
+export DEBUG=false
+export DATABASE_URL=false
+export EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
+export SECRET_KEY=''
