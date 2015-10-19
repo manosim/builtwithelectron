@@ -4,10 +4,13 @@
   "description": "Where awesome electron apps meet",
   "main": "index.js",
   "scripts": {
+    "make-dirs": "mkdir -p static/dist/ && mkdir -p static/dist/js static/dist/css",
     "build-less": "lessc --silent static/src/less/style.less static/dist/css/style.css",
-    "build": "npm run build-less",
+    "build-js": "browserify -t babelify static/src/js/app.js -o static/dist/js/app.js",
+    "build": "npm run make-dirs && npm run build-less & npm run build-js",
     "watch-less": "watch 'npm run build-less' static/src/less/",
-    "watch": "npm run build && npm run watch-less",
+    "watch-js": "watchify -t babelify static/src/js/app.js -o static/dist/js/app.js -v",
+    "watch": "npm run build && npm run watch-less & npm run watch-js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -28,7 +31,14 @@
   "homepage": "https://github.com/ekonstantinidis/builtwithelectron#readme",
   "dependencies": {
     "bootstrap": "=3.3.5",
+    "react": "^0.14.0",
+    "react-dom": "^0.14.0"
+  },
+  "devDependencies": {
+    "babelify": "=6.3.0",
+    "browserify": "^11.2.0",
     "less": "=2.5.3",
-    "watch": "=0.16.0"
+    "watch": "=0.16.0",
+    "watchify": "=3.4.0"
   }
 }
