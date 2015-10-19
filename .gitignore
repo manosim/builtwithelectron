@@ -2,3 +2,5 @@
 *.pyc
 
 env/
+node_modules/
+static/dist/

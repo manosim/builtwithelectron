@@ -1,0 +1,34 @@
+{
+  "name": "builtwithelectron",
+  "version": "0.0.1",
+  "description": "Where awesome electron apps meet",
+  "main": "index.js",
+  "scripts": {
+    "build-less": "lessc --silent static/src/less/style.less static/dist/css/style.css",
+    "build": "npm run build-less",
+    "watch-less": "watch 'npm run build-less' static/src/less/",
+    "watch": "npm run build && npm run watch-less",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ekonstantinidis/builtwithelectron.git"
+  },
+  "keywords": [
+    "electron",
+    "apps",
+    "directory",
+    "built"
+  ],
+  "author": "Emmanouil Konstantinidis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ekonstantinidis/builtwithelectron/issues"
+  },
+  "homepage": "https://github.com/ekonstantinidis/builtwithelectron#readme",
+  "dependencies": {
+    "bootstrap": "=3.3.5",
+    "less": "=2.5.3",
+    "watch": "=0.16.0"
+  }
+}
