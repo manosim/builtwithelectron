@@ -31,12 +31,13 @@
   "homepage": "https://github.com/ekonstantinidis/builtwithelectron#readme",
   "dependencies": {
     "bootstrap": "=3.3.5",
-    "react": "^0.14.0",
-    "react-dom": "^0.14.0"
+    "react": "=0.14.0",
+    "react-bootstrap": "=0.27.2",
+    "react-dom": "=0.14.0"
   },
   "devDependencies": {
     "babelify": "=6.3.0",
-    "browserify": "^11.2.0",
+    "browserify": "=11.2.0",
     "less": "=2.5.3",
     "watch": "=0.16.0",
     "watchify": "=3.4.0"
