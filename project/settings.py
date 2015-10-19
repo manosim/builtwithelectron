@@ -14,11 +14,12 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 import dj_database_url
 import pymysql
+from path import path
 
 pymysql.install_as_MySQLdb()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+PROJECT_DIR = path(__file__).dirname().parent
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -83,7 +84,20 @@ DATABASES = {
 }
 
 
+# Default authentication user model
+
+AUTH_USER_MODEL = 'accounts.User'
+
+
+# Templates
+
+TEMPLATE_DIRS = [
+    os.path.join(PROJECT_DIR, 'templates'),
+]
+
+
 # Email settings
+
 EMAIL_BACKEND = os.environ['EMAIL_BACKEND']
 
 
@@ -104,4 +118,8 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
+STATIC_ROOT = PROJECT_DIR / 'collected-static'
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    PROJECT_DIR / 'static',
+)
