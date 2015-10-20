@@ -1,9 +1,8 @@
 'use strict';
 
-var React = require('react');
 var ReactDOM = require('react-dom');
-var LoginModal = require('./components/accounts/login-modal');
+// var ExampleComponent = require('./components/example');
 
-window.setupLoginModal = function () {
-  ReactDOM.render(<LoginModal />, document.getElementById('login-modal'));
-};
+// window.exampleFunction = function () {
+//   ReactDOM.render(<ExampleComponent />, document.getElementById('example-modal'));
+// };

@@ -44,7 +44,7 @@
               <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-              <span id="login-modal"></span>
+              {% if not user.is_authenticated %}<li><a href="#">Login with GitHub</a></li>{% endif %}
             </ul>
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
@@ -65,14 +65,6 @@
 
     <!-- React  -->
     <script type="text/javascript" src="{% static "js/app.js" %}"></script>
-
-    {% if not user.is_authenticated %}
-      <script type="text/javascript">
-        $( document ).ready(function() {
-          window.setupLoginModal();
-        });
-      </script>
-    {% endif %}
 
   </body>
 </html>
