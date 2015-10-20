@@ -1,3 +1,4 @@
+import json
 import requests
 from django.conf import settings
 from django.http import Http404
@@ -26,5 +27,12 @@ class OAuthCallbackView(View):
         if response_user.status_code != 200:
             raise Http404("Oops! Something went wrong!")
 
-        import json
+        response_emails = requests.get("https://api.github.com/user/emails", headers={
+            "Authorization": ("token %s" % payload['access_token'])
+        })
+
+        if response_emails.status_code != 200:
+            raise Http404("Oops! Something went wrong!")
+
         print(json.dumps(response_user.json(), indent=4, sort_keys=True))
+        print(json.dumps(response_emails.json(), indent=4, sort_keys=True))
