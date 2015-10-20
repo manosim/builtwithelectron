@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Apps
+    'project.accounts',
     'project.directory'
 )
 
@@ -92,7 +93,7 @@ DATABASES = {
 
 # Default authentication user model
 
-# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 
 # Email settings
