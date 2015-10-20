@@ -42,6 +42,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # Apps
+    'project.directory'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -60,7 +63,9 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(BASE_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -72,6 +77,7 @@ TEMPLATES = [
         },
     },
 ]
+
 
 WSGI_APPLICATION = 'project.wsgi.application'
 
@@ -86,14 +92,7 @@ DATABASES = {
 
 # Default authentication user model
 
-AUTH_USER_MODEL = 'accounts.User'
-
-
-# Templates
-
-TEMPLATE_DIRS = [
-    os.path.join(PROJECT_DIR, 'templates'),
-]
+# AUTH_USER_MODEL = 'accounts.User'
 
 
 # Email settings
@@ -121,5 +120,5 @@ USE_TZ = True
 STATIC_ROOT = PROJECT_DIR / 'collected-static'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    PROJECT_DIR / 'static',
+    os.path.join(PROJECT_DIR, 'static', 'dist'),
 )
