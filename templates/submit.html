@@ -1,18 +1,26 @@
 {% extends "base.html" %}
+{% block body_class %}submit-page{% endblock %}
 
 {% block content %}
 
   <h3>Submit your electron application</h3>
 
-  <div id="submit-form"></div>
-  
+  {% if user.is_authenticated %}
+    <div id="submit-form"></div>
+  {% else %}
+    <a class="btn btn-primary btn-lg login-button" href="https://github.com/login/oauth/authorize?client_id={{ CLIENT_ID }}&scope=user:email&redirect_uri={{ REDIRECT_URI }}"><i class="fa fa-github"></i> Login with GitHub</a>
+  {% endif %}
+
 {% endblock %}
 
-
 {% block javascript %}
-<script type="text/javascript">
-  $( document ).ready(function() {
-    window.setupSubmitForm();
-  });
-</script>
+
+  {% if user.is_authenticated %}
+  <script type="text/javascript">
+    $( document ).ready(function() {
+      window.setupSubmitForm();
+    });
+  </script>
+  {% endif %}
+
 {% endblock %}
