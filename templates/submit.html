@@ -3,6 +3,16 @@
 {% block content %}
 
   <h3>Submit your electron application</h3>
-  
 
+  <div id="submit-form"></div>
+  
+{% endblock %}
+
+
+{% block javascript %}
+<script type="text/javascript">
+  $( document ).ready(function() {
+    window.setupSubmitForm();
+  });
+</script>
 {% endblock %}
