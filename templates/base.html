@@ -55,6 +55,15 @@
       </div><!-- /.container-fluid -->
     </nav>
 
+    {% url 'directory:home' as home_url %}
+    {% if request.get_full_path != home_url %}
+    <h3 class="page-title">
+      <div class="container">
+        {% block pagetitle %}{% endblock %}
+      </div>
+    </h3>
+    {% endif %}
+
     <div class="container">
       {% block content %} {% endblock %}
 
