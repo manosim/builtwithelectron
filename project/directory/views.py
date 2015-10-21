@@ -1,4 +1,4 @@
-from datetime import datetime
+from django.conf import settings
 from django.views.generic.base import TemplateView
 
 
@@ -8,5 +8,6 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(HomePageView, self).get_context_data(**kwargs)
-        context['now'] = datetime.now
+        context['CLIENT_ID'] = settings.GITHUB_CLIENT_ID
+        context['REDIRECT_URI'] = settings.GITHUB_REDIRECT_URI
         return context

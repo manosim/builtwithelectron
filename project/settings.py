@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # Apps
+    'project.accounts',
     'project.directory'
 )
 
@@ -92,7 +93,7 @@ DATABASES = {
 
 # Default authentication user model
 
-# AUTH_USER_MODEL = 'accounts.User'
+AUTH_USER_MODEL = 'accounts.User'
 
 
 # Email settings
@@ -122,3 +123,9 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static', 'dist'),
 )
+
+# GitHub OAuth authentication
+
+GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
+GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
+GITHUB_REDIRECT_URI = os.environ['GITHUB_REDIRECT_URI']

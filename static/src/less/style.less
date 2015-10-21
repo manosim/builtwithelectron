@@ -1,23 +1,67 @@
 @import "../../../node_modules/bootstrap/less/bootstrap.less";
+@import "../../../node_modules/font-awesome/less/font-awesome.less";
 
 /* @group Colors */
 
 @ThemePrimary: #24adfa;
+
+@White: #FFF;
+@Gray: #555;
 
 /* @end Colors */
 
 
 /* @group Bootstrap Overrides */
 
+@navbar-default-bg: lighten(@ThemePrimary, 10%);
+@navbar-default-link-color: @White;
+@navbar-border-radius: 0;
 
+@navbar-default-link-hover-bg: darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-active-bg: darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-active-color: @Gray;
+
+@navbar-default-toggle-icon-bar-bg: darken(@ThemePrimary, 10%);
+@navbar-default-toggle-border-color: darken(@ThemePrimary, 10%);
+@navbar-default-toggle-hover-bg: @ThemePrimary;
 
 /* @end Bootstrap Overrides */
 
 
 /* @group Misc */
 
+// Border Radius (Same Corners)
+.BorderRadius(@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius:    @radius;
+    border-radius:         @radius;
+
+    -moz-background-clip:    padding;
+    -webkit-background-clip: padding-box;
+    background-clip:         padding-box;
+}
 
 /* @end Misc */
+
+
+/* @group Navbar */
+
+.navbar {
+  border: 0;
+
+  .avatar {
+    .BorderRadius(9px);
+    display: inline-block;
+    max-width: 18px;
+    margin-right: 5px;
+  }
+
+  .fa {
+    font-size: 18px;
+  }
+}
+
+/* @end Navbar */
 
 
 /* @group Footer */
