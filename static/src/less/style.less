@@ -13,15 +13,17 @@
 
 /* @group Bootstrap Overrides */
 
-@navbar-border-radius: 0;
+@navbar-default-bg: lighten(@ThemePrimary, 10%);
 @navbar-default-link-color: @White;
+@navbar-border-radius: 0;
 
 @navbar-default-link-hover-bg: darken(@navbar-default-bg, 6.5%);
 @navbar-default-link-active-bg: darken(@navbar-default-bg, 6.5%);
 @navbar-default-link-active-color: @Gray;
 
-
-@navbar-default-bg: lighten(@ThemePrimary, 10%);
+@navbar-default-toggle-icon-bar-bg: darken(@ThemePrimary, 10%);
+@navbar-default-toggle-border-color: darken(@ThemePrimary, 10%);
+@navbar-default-toggle-hover-bg: @ThemePrimary;
 
 /* @end Bootstrap Overrides */
 
