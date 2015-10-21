@@ -6,6 +6,9 @@ from project.accounts.models import User
 
 class Tag(models.Model):
 
+    class Meta:
+        verbose_name_plural = "Tags"
+
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created = models.DateTimeField(auto_now_add=True, db_index=True)
     modified = models.DateTimeField(auto_now=True)
@@ -24,6 +27,9 @@ def upload_to(instance, filename):
 
 
 class Entry(models.Model):
+
+    class Meta:
+        verbose_name_plural = "Entries"
 
     UPLOAD_PATH = 'covers'
     MAX_LOGO_WIDTH = 500
