@@ -60,5 +60,5 @@ class Entry(models.Model):
 
     def thumbnail_cover(self):
         return self._get_cover_link(self.cover)
-    thumbnail_cover.short_description = 'Cover'
+    thumbnail_cover.short_description = 'Cover Thumbnail'
     thumbnail_cover.allow_tags = True

@@ -8,7 +8,7 @@ class EntriesAdmin(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('name', 'short_description',)}),
         ('Personal info', {'fields': ('author',)}),
-        ('Permissions', {'fields': ('thumbnail_cover', 'website_url', 'repo_url', 'description',)}),
+        ('Permissions', {'fields': ('cover', 'thumbnail_cover', 'website_url', 'repo_url', 'description',)}),
     )
 
     readonly_fields = ('thumbnail_cover',)
