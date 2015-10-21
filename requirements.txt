@@ -6,3 +6,4 @@ flake8==2.4.1
 pyflakes==0.8.1
 path.py==8.1.2
 requests==2.8.1
+Pillow==3.0.0

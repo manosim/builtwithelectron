@@ -124,6 +124,13 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static', 'dist'),
 )
 
+
+# Media
+
+MEDIA_ROOT = PROJECT_DIR / 'writable-storage'
+MEDIA_URL = '/uploads/'
+
+
 # GitHub OAuth authentication
 
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
