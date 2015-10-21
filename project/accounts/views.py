@@ -1,5 +1,6 @@
 import requests
 from django.conf import settings
+from django.contrib.auth import login
 from django.http import Http404
 from django.views.generic.base import RedirectView
 from project.accounts.models import User
@@ -53,6 +54,8 @@ class OAuthCallbackView(RedirectView):
             defaults={'email': email_address})
 
         # Okay, login the user
+        user.backend = settings.AUTHENTICATION_BACKENDS[0]
+        login(self.request, user)
 
         # Finally redirect the user to the homepage view
         return super(OAuthCallbackView, self).get_redirect_url(*args, **kwargs)
