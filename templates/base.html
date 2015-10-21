@@ -44,7 +44,7 @@
           </ul>
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
-            <li><a href="#"><i class="fa fa-github"></i> Logged in as {{ user.username }}</a></li>
+            <li><a href="#"><img src="{{ user.avatar_url }}" class="avatar" /> {{ user.username }}</a></li>
             <li><a href="{% url 'accounts:logout' %}"><i class="fa fa-sign-out"></i></a></li>
             {% endif %}
             {% if not user.is_authenticated %}

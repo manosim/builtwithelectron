@@ -30,11 +30,38 @@
 
 /* @group Misc */
 
-.navbar {
-  border: 0;
+// Border Radius (Same Corners)
+.BorderRadius(@radius: 5px) {
+    -webkit-border-radius: @radius;
+    -moz-border-radius:    @radius;
+    border-radius:         @radius;
+
+    -moz-background-clip:    padding;
+    -webkit-background-clip: padding-box;
+    background-clip:         padding-box;
 }
 
 /* @end Misc */
+
+
+/* @group Navbar */
+
+.navbar {
+  border: 0;
+
+  .avatar {
+    .BorderRadius(9px);
+    display: inline-block;
+    max-width: 18px;
+    margin-right: 5px;
+  }
+
+  .fa {
+    font-size: 18px;
+  }
+}
+
+/* @end Navbar */
 
 
 /* @group Footer */
