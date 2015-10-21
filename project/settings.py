@@ -36,6 +36,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    # Custom Administration Theme
+    'flat',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
