@@ -21,7 +21,7 @@ class Tag(models.Model):
 
 def upload_to(instance, filename):
     """Return a unique path for the cover upload"""
-    random_string = uuid.uuid4
+    random_string = uuid.uuid4().hex
     filename = "%s-%s" % (random_string, filename)
     return os.path.join(Entry.UPLOAD_PATH, filename)
 
@@ -51,3 +51,14 @@ class Entry(models.Model):
 
     def __str__(self):
         return self.name
+
+    def _get_cover_link(self, url):
+        if not url:
+            return None
+
+        return u'<a href="%s" target="_blank"><img width="100px" src="%s" /></a>' % (url.url, url.url)
+
+    def thumbnail_cover(self):
+        return self._get_cover_link(self.cover)
+    thumbnail_cover.short_description = 'Cover'
+    thumbnail_cover.allow_tags = True
