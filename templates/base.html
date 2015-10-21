@@ -48,7 +48,7 @@
             <li><a href="{% url 'accounts:logout' %}"><i class="fa fa-sign-out"></i></a></li>
             {% endif %}
             {% if not user.is_authenticated %}
-            <li><a href="https://github.com/login/oauth/authorize?client_id={{ CLIENT_ID }}&scope=user:email&redirect_uri={{ REDIRECT_URI }}"><i class="fa fa-github"></i> Login with GitHub</a></li>
+            <li><a href="{{ OAUTH_URL }}"><i class="fa fa-github"></i> Login with GitHub</a></li>
             {% endif %}
           </ul>
         </div><!-- /.navbar-collapse -->
