@@ -13,11 +13,12 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='User',
             fields=[
-                ('id', models.AutoField(auto_created=True, verbose_name='ID', primary_key=True, serialize=False)),
-                ('password', models.CharField(verbose_name='password', max_length=128)),
+                ('id', models.AutoField(serialize=False, primary_key=True, auto_created=True, verbose_name='ID')),
+                ('password', models.CharField(max_length=128, verbose_name='password')),
                 ('last_login', models.DateTimeField(null=True, verbose_name='last login', blank=True)),
-                ('username', models.CharField(unique=True, db_index=True, max_length=25)),
-                ('email', models.EmailField(verbose_name='email address', unique=True, max_length=255)),
+                ('username', models.CharField(max_length=25, unique=True, db_index=True)),
+                ('email', models.EmailField(max_length=255, unique=True, verbose_name='email address')),
+                ('avatar_url', models.URLField()),
                 ('is_active', models.BooleanField(default=True)),
                 ('is_admin', models.BooleanField(default=False)),
             ],

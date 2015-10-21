@@ -44,14 +44,15 @@ class OAuthCallbackView(RedirectView):
         for email in payload_emails:
             if email['primary'] and email['verified']:
                 username = payload_user['login']
+                avatar_url = payload_user['avatar_url']
                 email_address = email['email']
 
-        if not username or not email_address:
+        if not username or not email_address or not avatar_url:
             raise Http404("Oops! We couldn't get your details!")
 
         # Now get or create the user
         user, created = User.objects.get_or_create(username=username,
-            defaults={'email': email_address})
+            defaults={'email': email_address, 'avatar_url': avatar_url})
 
         # Okay, login the user
         user.backend = settings.AUTHENTICATION_BACKENDS[0]
