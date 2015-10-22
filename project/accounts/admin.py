@@ -53,10 +53,7 @@ class UserAdmin(UserAdmin):
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.
     add_fieldsets = (
-        (None, {
-            'classes': ('wide',),
-            'fields': ('username', 'email', 'avatar_url', 'is_active', 'is_admin')}
-        ),
+        (None, {'classes': ('wide',), 'fields': ('username', 'email', 'avatar_url', 'is_active', 'is_admin')}),
     )
     search_fields = ('username', 'email',)
     ordering = ('username', 'email',)
