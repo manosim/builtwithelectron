@@ -3,7 +3,7 @@ from project.directory.models import Entry, Tag
 
 
 class EntriesAdmin(admin.ModelAdmin):
-    list_display = ('name', 'short_description', 'author', 'get_tags', 'cover', 'website_url', 'repo_url', 'has_description',)
+    list_display = ('thumbnail_cover', 'name', 'short_description', 'author', 'get_tags', 'website_url', 'repo_url', 'has_description',)
 
     fieldsets = (
         ('Required Information', {'fields': ('name', 'short_description', 'author', 'website_url', )}),
