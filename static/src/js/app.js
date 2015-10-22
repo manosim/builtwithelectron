@@ -1,8 +1,9 @@
 'use strict';
 
+var React = require('react');
 var ReactDOM = require('react-dom');
-// var ExampleComponent = require('./components/example');
+var SubmitForm = require('./components/submit-form');
 
-// window.exampleFunction = function () {
-//   ReactDOM.render(<ExampleComponent />, document.getElementById('example-modal'));
-// };
+window.setupSubmitForm = function () {
+  ReactDOM.render(<SubmitForm />, document.getElementById('submit-form'));
+};

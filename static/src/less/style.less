@@ -48,6 +48,7 @@
 
 .navbar {
   border: 0;
+  margin-bottom: 0;
 
   .avatar {
     .BorderRadius(9px);
@@ -61,15 +62,54 @@
   }
 }
 
+.page-title {
+  background-color: darken(@ThemePrimary, 10%);
+  color: @White;
+  margin-top: 0;
+  padding: 20px 0;
+}
+
 /* @end Navbar */
+
+
+/* @group Homepage */
+
+.homepage {
+
+  .navbar {
+    margin-bottom: 20px;
+  }
+}
+
+/* @end Homepage */
+
+
+/* @group Submit Form */
+
+.submit-page {
+
+  .login-button {
+    display: block;
+    margin: 20px auto;
+    max-width: 300px;
+  }
+}
+
+/* @end Submit Form */
 
 
 /* @group Footer */
 
 .footer {
-  padding-top: 19px;
-  color: #777;
-  border-top: 1px solid @ThemePrimary;
+  padding: 15px 0;
+  margin-top: 40px;
+  background-color: @ThemePrimary;
+  color: @White;
+
+  div[class^="col-md-"] {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }
 
 /* @end Footer */

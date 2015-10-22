@@ -76,3 +76,14 @@ class User(AbstractBaseUser):
         "Is the user a member of staff?"
         # Simplest possible answer: All admins are staff
         return self.is_admin
+
+    def _get_avatar_link(self, url):
+        if not url:
+            return None
+
+        return u'<a href="%s" target="_blank"><img width="100px" src="%s" /></a>' % (url, url)
+
+    def thumbnail_avatar(self):
+        return self._get_avatar_link(self.avatar_url)
+    thumbnail_avatar.short_description = 'Avatar'
+    thumbnail_avatar.allow_tags = True

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block body_class %}submit-page{% endblock %}
+{% block pagetitle %}Submit your electron application{% endblock %}
+
+{% block content %}
+
+  {% if user.is_authenticated %}
+    <div id="submit-form"></div>
+  {% else %}
+    <a class="btn btn-primary btn-lg login-button" href="{{ OAUTH_URL }}"><i class="fa fa-github"></i> Login with GitHub</a>
+  {% endif %}
+
+{% endblock %}
+
+{% block javascript %}
+
+  {% if user.is_authenticated %}
+  <script type="text/javascript">
+    $( document ).ready(function() {
+      window.setupSubmitForm();
+    });
+  </script>
+  {% endif %}
+
+{% endblock %}

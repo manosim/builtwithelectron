@@ -36,6 +36,9 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
+    # Custom Administration Theme
+    'flat',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -123,6 +126,13 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static', 'dist'),
 )
+
+
+# Media
+
+MEDIA_ROOT = PROJECT_DIR / 'writable-storage'
+MEDIA_URL = '/uploads/'
+
 
 # GitHub OAuth authentication
 
