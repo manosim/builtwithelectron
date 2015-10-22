@@ -16,9 +16,14 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 
+api_urls = [
+    url(r'^directory/', view=include('project.directory.urls_api', namespace='directory')),
+]
+
 urlpatterns = [
 
     url(r'^', view=include('project.directory.urls', namespace='directory')),
+    url('api/', include(api_urls, namespace='api')),
     url(r'^accounts/', view=include('project.accounts.urls', namespace='accounts')),
     url(r'^admin/', include(admin.site.urls)),
 
