@@ -17,7 +17,8 @@
   {% if user.is_authenticated %}
   <script type="text/javascript">
     $( document ).ready(function() {
-      window.setupSubmitForm();
+      var csrfToken = '{{ csrf_token }}';
+      window.setupSubmitForm(csrfToken);
     });
   </script>
   {% endif %}
