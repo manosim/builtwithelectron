@@ -42,7 +42,7 @@ class Entry(models.Model):
     name = models.CharField(max_length=255, unique=True)
     short_description = models.CharField(max_length=255)
     author = models.ForeignKey(User, related_name="entries")
-    tags = models.ManyToManyField(Tag, related_name="tags")
+    tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
 
     cover = models.ImageField(upload_to=upload_to, null=True, blank=True)
     website_url = models.URLField()

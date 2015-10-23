@@ -46,6 +46,9 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # External Libraries
+    'rest_framework',
+
     # Apps
     'project.accounts',
     'project.directory'
@@ -116,6 +119,20 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
+
+
+# Rest Framework
+
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.AllowAny',
+    )
+}
 
 
 # Static files (CSS, JavaScript, Images)

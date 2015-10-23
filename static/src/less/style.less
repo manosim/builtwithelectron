@@ -5,6 +5,8 @@
 
 @ThemePrimary: #24adfa;
 
+@BodyBg: #f7f7fa;
+
 @White: #FFF;
 @Gray: #555;
 
@@ -12,6 +14,9 @@
 
 
 /* @group Bootstrap Overrides */
+
+@brand-success: #7dd05b;
+@brand-warning: #ad3636;
 
 @navbar-default-bg: lighten(@ThemePrimary, 10%);
 @navbar-default-link-color: @White;
@@ -25,10 +30,14 @@
 @navbar-default-toggle-border-color: darken(@ThemePrimary, 10%);
 @navbar-default-toggle-hover-bg: @ThemePrimary;
 
+@border-radius-base: 0;
+@border-radius-large: 0;
+@input-border-radius-large: 0;
+
 /* @end Bootstrap Overrides */
 
 
-/* @group Misc */
+/* @group Mixins */
 
 // Border Radius (Same Corners)
 .BorderRadius(@radius: 5px) {
@@ -39,6 +48,19 @@
     -moz-background-clip:    padding;
     -webkit-background-clip: padding-box;
     background-clip:         padding-box;
+}
+
+/* @end Mixins */
+
+
+/* @group Misc */
+
+body {
+  background-color: @BodyBg;
+}
+
+.alert {
+  border: 0;
 }
 
 /* @end Misc */
@@ -67,6 +89,7 @@
   color: @White;
   margin-top: 0;
   padding: 20px 0;
+  margin-bottom: 20px;
 }
 
 /* @end Navbar */
@@ -88,10 +111,69 @@
 
 .submit-page {
 
+  .required {
+    color: @brand-warning;
+  }
+
   .login-button {
     display: block;
     margin: 20px auto;
     max-width: 300px;
+  }
+
+  .form-control {
+    border: 0;
+    border-bottom: 1px solid darken(@BodyBg, 50%);
+    background: darken(@BodyBg, 5%);;
+    .box-shadow(none);
+  }
+
+
+  .has-error {
+    .form-control {
+      border-color: @brand-warning;
+    }
+  }
+
+  .dropzone {
+    background-color: darken(@BodyBg, 5%);
+    border-bottom: 1px solid darken(@BodyBg, 50%);
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    text-align: center;
+    color: @ThemePrimary;
+    width: 100%;
+
+    &.active {
+      background-color: darken(@BodyBg, 20%);
+    }
+
+    h4 {
+      padding: 5px 010px 0;
+      color: @Gray;
+    }
+
+    .btn {
+      margin-bottom: 15px;
+    }
+
+    .fa {
+      font-size: 60px;
+      color: @brand-success;
+    }
+
+    .filename {
+      font-size: 25px;
+      color: @Gray;
+    }
+  }
+
+  .alert {
+    margin-top: 20px;
+  }
+
+  .btn-lg {
+    margin-top: 30px;
   }
 }
 

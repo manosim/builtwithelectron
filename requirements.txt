@@ -1,6 +1,7 @@
 Django==1.8.5
 PyMySQL==0.6.7
 dj-database-url==0.3.0
+djangorestframework==3.2.4
 django-flat-theme==1.1.1
 flake8==2.4.1
 pyflakes==0.8.1
