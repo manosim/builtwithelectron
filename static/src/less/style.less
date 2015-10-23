@@ -5,6 +5,8 @@
 
 @ThemePrimary: #24adfa;
 
+@BodyBg: #f7f7fa;
+
 @White: #FFF;
 @Gray: #555;
 
@@ -25,10 +27,14 @@
 @navbar-default-toggle-border-color: darken(@ThemePrimary, 10%);
 @navbar-default-toggle-hover-bg: @ThemePrimary;
 
+@border-radius-base: 0;
+@border-radius-large: 0;
+@input-border-radius-large: 0;
+
 /* @end Bootstrap Overrides */
 
 
-/* @group Misc */
+/* @group Mixins */
 
 // Border Radius (Same Corners)
 .BorderRadius(@radius: 5px) {
@@ -39,6 +45,15 @@
     -moz-background-clip:    padding;
     -webkit-background-clip: padding-box;
     background-clip:         padding-box;
+}
+
+/* @end Mixins */
+
+
+/* @group Misc */
+
+body {
+  background-color: @BodyBg;
 }
 
 /* @end Misc */
@@ -96,20 +111,24 @@
   }
 
   .dropzone {
-    padding: 10px 20px;
-    margin-bottom: 10px;
+    background-color: darken(@BodyBg, 5%);
+    padding: 15px 20px;
+    margin: 30px 0px;
     text-align: center;
     color: @ThemePrimary;
-    border: 1px dotted darken(@ThemePrimary, 10%);
     width: 100%;
 
     &.active {
-      background-color: @ThemePrimary;
-      color: @White;
+      background-color: darken(@BodyBg, 20%);
     }
 
-    .message {
-      padding: 5px 0 10px;
+    h4 {
+      padding: 10px 0;
+      color: @Gray;
+    }
+
+    .btn {
+      margin-bottom: 15px;
     }
   }
 }

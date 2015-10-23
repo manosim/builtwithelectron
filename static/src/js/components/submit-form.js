@@ -34,30 +34,24 @@ var SubmitForm = React.createClass({
     });
   },
 
-  handleImageChange: function (e) {
-    var file = e.target.files[0];
+  onDrop: function (files) {
     var data = this.state.data;
-    data['cover'] = file;
-
+    data.cover = files[0];
     this.setState({
       data: data
     });
   },
 
-  // onDrop: function (files) {
-  //   var data = this.state.data;
-  //   data.cover = files[0];
-  //   this.setState({
-  //     data: data
-  //   });
-  //   console.log('Received file: ', this.state.data.cover);
-  // },
+  onOpenClick: function () {
+    this.refs.dropzone.open();
+  },
 
   submitForm: function (e) {
     e.preventDefault();
     var self = this;
 
     this.setState({
+      success: false,
       loading: true
     });
 
@@ -80,36 +74,34 @@ var SubmitForm = React.createClass({
   },
 
   render: function () {
-    // <Dropzone className='dropzone' onDrop={this.onDrop} multiple={false}>
-    //   <div className='message'>Drop your <strong>awesome</strong> image here</div>
-    //   <a className='btn btn-primary'>Upload your image</a>
-    //   {this.state.data.cover ? <img className='img-responsive' src={this.state.data.cover.preview} /> : null}
-    // </Dropzone>
-
     return (
       <div className='submit-form'>
         {this.state.success ? <h1>SUBMITTED SPORT :)</h1> : null}
         <form className='form'>
-          <div className='form-group'>
+          <div className={this.state.errors['name'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='name'>Application Name</label>
             <input type='text' id='name' className='form-control input-lg' value={this.state.data.name} onChange={this.handleChange.bind(this, 'name')} />
           </div>
-          <div className='form-group'>
+          <div className={this.state.errors['short_description'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='shortDescription'>Short Description</label>
             <input type='text' id='shortDescription' className='form-control input-lg' value={this.state.data.shortDescription} onChange={this.handleChange.bind(this, 'shortDescription')} />
           </div>
-          <div className='form-group'>
+          <div className={this.state.errors['website_url'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='websiteUrl'>Website Url</label>
             <input type='text' id='websiteUrl' className='form-control input-lg' value={this.state.data.websiteUrl} onChange={this.handleChange.bind(this, 'websiteUrl')} />
           </div>
-          <div className='form-group'>
+          <div className={this.state.errors['repo_url'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='repoUrl'>Repository Url</label>
-            <input type='text' name='repoUrl' className='form-control input-lg' value={this.state.data.repoUrl} onChange={this.handleChange.bind(this, 'repoUrl')} />
+            <input type='text' id='repoUrl' className='form-control input-lg' value={this.state.data.repoUrl} onChange={this.handleChange.bind(this, 'repoUrl')} />
           </div>
 
-          <input type="file" name="somename" size="chars" onChange={this.handleImageChange} />
+          <Dropzone ref='dropzone' className='dropzone' onDrop={this.onDrop} disableClick={true} multiple={false} activeClassName='active'>
+            <h4 className='text-center'>drop your awesome image here</h4>
+            <a className='btn btn-primary' onClick={this.onOpenClick}>Upload your image</a>
+            {this.state.data.cover ? <img className='img-responsive' src={this.state.data.cover.preview} /> : null}
+          </Dropzone>
 
-          <div className='form-group'>
+          <div className={this.state.errors['description'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='description'>Description</label>
             <textarea className='form-control input-lg' id='description' rows='4' value={this.state.data.description} onChange={this.handleChange.bind(this, 'description')}></textarea>
           </div>
