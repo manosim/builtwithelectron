@@ -94,6 +94,24 @@
     margin: 20px auto;
     max-width: 300px;
   }
+
+  .dropzone {
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: @ThemePrimary;
+    border: 1px dotted darken(@ThemePrimary, 10%);
+    width: 100%;
+
+    &.active {
+      background-color: @ThemePrimary;
+      color: @White;
+    }
+
+    .message {
+      padding: 5px 0 10px;
+    }
+  }
 }
 
 /* @end Submit Form */
