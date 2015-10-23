@@ -3,11 +3,23 @@ Where awesome electron apps meet
 
 ### Prerequisites
 
- - MySQL Database: bwedb
+ - MySQL Database: `bwedb`
  - Python 3 (`brew install python3`)
+ - Django
+ - Django Rest Framework
+ - React
 
 
 ### Setup
 
     pyvenv env
-    env/bin/pip install -r requirements.txt
+    source env/bin/activate
+    source etc/environments/development/env
+    pip install -r requirements.txt
+    npm install
+
+
+### Development
+
+    npm run watch
+    scripts/runserver dev
