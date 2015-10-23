@@ -27,8 +27,11 @@ var SubmitForm = React.createClass({
 
   handleChange: function (key, event) {
     var state = {};
-    state.data[key] = event.target.value;
-    this.setState(state);
+    var data = this.state.data;
+    data[key] = event.target.value;
+    this.setState({
+      data: data
+    });
   },
 
   handleImageChange: function (e) {

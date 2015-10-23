@@ -15,6 +15,6 @@ class SubmitEntryView(generics.CreateAPIView):
         print("=======")
         print(request.data['name'])
         print(dir(request))
-        print(request.data['cover'])
+        print(("========================= %s") % (request.data['cover']))
         print("=======")
         return self.create(request, *args, **kwargs)
