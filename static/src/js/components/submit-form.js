@@ -82,15 +82,15 @@ var SubmitForm = React.createClass({
       <div className='submit-form'>
         <form className='form'>
           <div className={this.state.errors['name'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='name'>Application Name</label>
+            <label htmlFor='name'>Application Name <span className='required'>*</span></label>
             <input type='text' id='name' className='form-control input-lg' value={this.state.data.name} onChange={this.handleChange.bind(this, 'name')} />
           </div>
           <div className={this.state.errors['short_description'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='shortDescription'>Short Description</label>
+            <label htmlFor='shortDescription'>Short Description <span className='required'>*</span></label>
             <input type='text' id='shortDescription' className='form-control input-lg' value={this.state.data.shortDescription} onChange={this.handleChange.bind(this, 'shortDescription')} />
           </div>
           <div className={this.state.errors['website_url'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='websiteUrl'>Website Url</label>
+            <label htmlFor='websiteUrl'>Website Url <span className='required'>*</span></label>
             <input type='text' id='websiteUrl' className='form-control input-lg' value={this.state.data.websiteUrl} onChange={this.handleChange.bind(this, 'websiteUrl')} />
           </div>
           <div className={this.state.errors['repo_url'] ? 'form-group has-error' : 'form-group'}>
@@ -98,6 +98,7 @@ var SubmitForm = React.createClass({
             <input type='text' id='repoUrl' className='form-control input-lg' value={this.state.data.repoUrl} onChange={this.handleChange.bind(this, 'repoUrl')} />
           </div>
 
+          <label>Photo/Screenshot</label>
           <Dropzone ref='dropzone' className='dropzone' onDrop={this.onDrop} disableClick={true} multiple={false} activeClassName='active'>
             {this.state.data.cover ? (
               <div>

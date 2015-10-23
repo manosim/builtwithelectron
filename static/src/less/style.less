@@ -16,6 +16,7 @@
 /* @group Bootstrap Overrides */
 
 @brand-success: #7dd05b;
+@brand-warning: #ad3636;
 
 @navbar-default-bg: lighten(@ThemePrimary, 10%);
 @navbar-default-link-color: @White;
@@ -110,6 +111,10 @@ body {
 
 .submit-page {
 
+  .required {
+    color: @brand-warning;
+  }
+
   .login-button {
     display: block;
     margin: 20px auto;
@@ -127,7 +132,7 @@ body {
     background-color: darken(@BodyBg, 5%);
     border-bottom: 1px solid darken(@BodyBg, 50%);
     padding: 15px 20px;
-    margin: 30px 0px;
+    margin-bottom: 15px;
     text-align: center;
     color: @ThemePrimary;
     width: 100%;
@@ -137,7 +142,7 @@ body {
     }
 
     h4 {
-      padding: 10px 0;
+      padding: 5px 010px 0;
       color: @Gray;
     }
 
