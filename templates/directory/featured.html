@@ -1,0 +1,16 @@
+{% if featured %}
+<div class="container-fluid featured">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 text-right">
+
+        {{ featured.name }}
+        {{ featured.short_description }}
+        {{ featured.website_url }}
+        {{ featured.repo_url }}
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}

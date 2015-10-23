@@ -3,12 +3,13 @@
 {% block pagetitle %}Submit your electron application{% endblock %}
 
 {% block content %}
-
+  <div class="container">
   {% if user.is_authenticated %}
     <div id="submit-form"></div>
   {% else %}
     <a class="btn btn-primary btn-lg login-button" href="{{ OAUTH_URL }}"><i class="fa fa-github"></i> Login with GitHub</a>
   {% endif %}
+  </div>
 
 {% endblock %}
 

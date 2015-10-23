@@ -45,7 +45,7 @@ class EntriesAdmin(admin.ModelAdmin):
     list_filter = (IsApprovedFilter, HasCoverFilter,)
 
     fieldsets = (
-        ('Required Information', {'fields': ('name', 'short_description', 'author', 'website_url', 'is_approved', )}),
+        ('Required Information', {'fields': ('name', 'short_description', 'author', 'website_url', 'is_approved', 'is_featured', )}),
         ('Additional Information', {'fields': ('cover', 'thumbnail_cover', 'tags', 'repo_url', 'description',)}),
     )
 

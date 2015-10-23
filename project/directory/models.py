@@ -48,7 +48,9 @@ class Entry(models.Model):
     website_url = models.URLField()
     repo_url = models.URLField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
+
     is_approved = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
