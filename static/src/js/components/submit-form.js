@@ -35,19 +35,13 @@ var SubmitForm = React.createClass({
   },
 
   handleImageChange: function (e) {
-    var self = this;
-    var reader = new FileReader();
     var file = e.target.files[0];
+    var data = this.state.data;
+    data['cover'] = file;
 
-    reader.onload = function(upload) {
-      var data = self.state.data;
-      data.cover = upload.target.result;
-      self.setState({
-        data: data
-      });
-    }
-
-    reader.readAsDataURL(file);
+    this.setState({
+      data: data
+    });
   },
 
   // onDrop: function (files) {
