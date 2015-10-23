@@ -21,7 +21,8 @@ var SubmitForm = React.createClass({
       },
       success: false,
       errors: false,
-      loading: false
+      loading: false,
+      submitDisabled: false
     };
   },
 
@@ -52,7 +53,8 @@ var SubmitForm = React.createClass({
 
     this.setState({
       success: false,
-      loading: true
+      loading: true,
+      submitDisabled: true
     });
 
     apiRequests
@@ -62,12 +64,14 @@ var SubmitForm = React.createClass({
           self.setState({
             success: true,
             errors: [],
-            loading: false
+            loading: false,
+            submitDisabled: false
           });
         } else {
           self.setState({
             errors: response.body,
-            loading: false
+            loading: false,
+            submitDisabled: false
           });
         }
       });
@@ -76,7 +80,6 @@ var SubmitForm = React.createClass({
   render: function () {
     return (
       <div className='submit-form'>
-        {this.state.success ? <h1>SUBMITTED SPORT :)</h1> : null}
         <form className='form'>
           <div className={this.state.errors['name'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='name'>Application Name</label>
@@ -106,6 +109,10 @@ var SubmitForm = React.createClass({
             <textarea className='form-control input-lg' id='description' rows='4' value={this.state.data.description} onChange={this.handleChange.bind(this, 'description')}></textarea>
           </div>
           <div>{JSON.stringify(this.state.errors)}</div>
+
+          {this.state.success ? (
+            <div className='alert alert-success'>Submiited successfully! You will receive an email once it gets approved.</div>
+          ): null}
           <button className='btn btn-primary btn-lg btn-block' onClick={this.submitForm}>Submit Entry</button>
         </form>
       </div>
