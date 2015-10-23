@@ -7,13 +7,18 @@ var apiRequests = {
       .set('Accept', 'application/json');
   },
 
-  post: function (url, params, csrfToken, coverPath) {
+  post: function (url, data, csrfToken) {
+    console.log(data.cover);
     return request
       .post(url)
-      .send(params)
-      .attach('cover', coverPath)
       .set('X-CSRFToken', csrfToken)
-      .set('Accept', 'application/json');
+      // .type('multipart/form-data')
+      .field('name', data.name)
+      .field('short_description', data.shortDescription)
+      .field('website_url', data.websiteUrl)
+      .field('repo_url', data.repoUrl)
+      .field('description', data.description)
+      .attach('cover', data.cover);
   }
 };
 

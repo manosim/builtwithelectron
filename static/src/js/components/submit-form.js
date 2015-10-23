@@ -31,14 +31,30 @@ var SubmitForm = React.createClass({
     this.setState(state);
   },
 
-  onDrop: function (files) {
-    var data = this.state.data;
-    data.cover = files[0].preview;
-    this.setState({
-      data: data
-    });
-    console.log('Received file: ', this.state.data.cover);
+  handleImageChange: function (e) {
+    var self = this;
+    var reader = new FileReader();
+    var file = e.target.files[0];
+
+    reader.onload = function(upload) {
+      var data = self.state.data;
+      data.cover = upload.target.result;
+      self.setState({
+        data: data
+      });
+    }
+
+    reader.readAsDataURL(file);
   },
+
+  // onDrop: function (files) {
+  //   var data = this.state.data;
+  //   data.cover = files[0];
+  //   this.setState({
+  //     data: data
+  //   });
+  //   console.log('Received file: ', this.state.data.cover);
+  // },
 
   submitForm: function (e) {
     e.preventDefault();
@@ -49,14 +65,7 @@ var SubmitForm = React.createClass({
     });
 
     apiRequests
-      .post('http://0.0.0.0:8000/api/directory/submit/', {
-        'name': self.state.data.name,
-        'short_description': self.state.data.shortDescription,
-        'website_url': self.state.data.websiteUrl,
-        'repo_url': self.state.data.repoUrl,
-        'description': self.state.data.description,
-        'tags': self.state.data.tags
-      }, this.props.csrfToken, this.state.data.cover)
+      .post('http://0.0.0.0:8000/api/directory/submit/', this.state.data, this.props.csrfToken)
       .end(function (err, response) {
         if (response && response.ok) {
           self.setState({
@@ -74,35 +83,37 @@ var SubmitForm = React.createClass({
   },
 
   render: function () {
+    // <Dropzone className='dropzone' onDrop={this.onDrop} multiple={false}>
+    //   <div className='message'>Drop your <strong>awesome</strong> image here</div>
+    //   <a className='btn btn-primary'>Upload your image</a>
+    //   {this.state.data.cover ? <img className='img-responsive' src={this.state.data.cover.preview} /> : null}
+    // </Dropzone>
+
     return (
       <div className='submit-form'>
         {this.state.success ? <h1>SUBMITTED SPORT :)</h1> : null}
         <form className='form'>
           <div className='form-group'>
-            <label for='name'>Application Name</label>
+            <label htmlFor='name'>Application Name</label>
             <input type='text' id='name' className='form-control input-lg' value={this.state.data.name} onChange={this.handleChange.bind(this, 'name')} />
           </div>
           <div className='form-group'>
-            <label for='shortDescription'>Short Description</label>
+            <label htmlFor='shortDescription'>Short Description</label>
             <input type='text' id='shortDescription' className='form-control input-lg' value={this.state.data.shortDescription} onChange={this.handleChange.bind(this, 'shortDescription')} />
           </div>
           <div className='form-group'>
-            <label for='websiteUrl'>Website Url</label>
+            <label htmlFor='websiteUrl'>Website Url</label>
             <input type='text' id='websiteUrl' className='form-control input-lg' value={this.state.data.websiteUrl} onChange={this.handleChange.bind(this, 'websiteUrl')} />
           </div>
           <div className='form-group'>
-            <label for='repoUrl'>Repository Url</label>
+            <label htmlFor='repoUrl'>Repository Url</label>
             <input type='text' name='repoUrl' className='form-control input-lg' value={this.state.data.repoUrl} onChange={this.handleChange.bind(this, 'repoUrl')} />
           </div>
 
-          <Dropzone className='dropzone' onDrop={this.onDrop} multiple={false}>
-            <div className='message'>Drop your <strong>awesome</strong> image here</div>
-            <a className='btn btn-primary'>Upload your image</a>
-            {this.state.data.cover ? <img className='img-responsive' src={this.state.data.cover} /> : null}
-          </Dropzone>
+          <input type="file" name="somename" size="chars" onChange={this.handleImageChange} />
 
           <div className='form-group'>
-            <label>Description</label>
+            <label htmlFor='description'>Description</label>
             <textarea className='form-control input-lg' id='description' rows='4' value={this.state.data.description} onChange={this.handleChange.bind(this, 'description')}></textarea>
           </div>
           <div>{JSON.stringify(this.state.errors)}</div>

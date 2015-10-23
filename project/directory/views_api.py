@@ -10,3 +10,11 @@ class SubmitEntryView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(author=self.request.user)
+
+    def post(self, request, *args, **kwargs):
+        print("=======")
+        print(request.data['name'])
+        print(dir(request))
+        print(request.data['cover'])
+        print("=======")
+        return self.create(request, *args, **kwargs)
