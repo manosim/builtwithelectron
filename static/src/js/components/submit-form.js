@@ -99,9 +99,16 @@ var SubmitForm = React.createClass({
           </div>
 
           <Dropzone ref='dropzone' className='dropzone' onDrop={this.onDrop} disableClick={true} multiple={false} activeClassName='active'>
-            <h4 className='text-center'>drop your awesome image here</h4>
-            <a className='btn btn-primary' onClick={this.onOpenClick}>Upload your image</a>
-            {this.state.data.cover ? <img className='img-responsive' src={this.state.data.cover.preview} /> : null}
+            {this.state.data.cover ? (
+              <div>
+                <i className='fa fa-check-circle' />
+                <div className='filename'>{this.state.data.cover.name}</div>
+              </div>) : (
+              <div>
+                <h4 className='text-center'>drop your awesome image here</h4>
+                <a className='btn btn-primary' onClick={this.onOpenClick}>Upload your image</a>
+              </div>
+            )}
           </Dropzone>
 
           <div className={this.state.errors['description'] ? 'form-group has-error' : 'form-group'}>
