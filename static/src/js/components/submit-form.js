@@ -116,13 +116,15 @@ var SubmitForm = React.createClass({
             <label htmlFor='description'>Description</label>
             <textarea className='form-control input-lg' id='description' rows='4' value={this.state.data.description} onChange={this.handleChange.bind(this, 'description')}></textarea>
           </div>
-          <div>{JSON.stringify(this.state.errors)}</div>
 
           {this.state.success ? (
             <div className='alert alert-success'>Submiited successfully! You will receive an email once it gets approved.</div>
           ): null}
 
-          <button className='btn btn-primary btn-lg btn-block' onClick={this.submitForm}>Submit Entry</button>
+          {_.isEmpty(this.state.errors) ? null : (
+            <div className='alert alert-danger'>Oops! Please complete all the required fields and submit your applications.</div>
+          )}
+          <button className='btn btn-primary btn-lg btn-block' disabled={this.state.submitDisabled} onClick={this.submitForm}>Submit Entry</button>
         </form>
       </div>
     );
