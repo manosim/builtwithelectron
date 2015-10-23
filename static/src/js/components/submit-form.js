@@ -82,15 +82,15 @@ var SubmitForm = React.createClass({
       <div className='submit-form'>
         <form className='form'>
           <div className={this.state.errors['name'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='name'>Application Name <span className='required'>*</span></label>
+            <label htmlFor='name' className='control-label'>Application Name <span className='required'>*</span></label>
             <input type='text' id='name' className='form-control input-lg' value={this.state.data.name} onChange={this.handleChange.bind(this, 'name')} />
           </div>
           <div className={this.state.errors['short_description'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='shortDescription'>Short Description <span className='required'>*</span></label>
+            <label htmlFor='shortDescription' className='control-label'>Short Description <span className='required'>*</span></label>
             <input type='text' id='shortDescription' className='form-control input-lg' value={this.state.data.shortDescription} onChange={this.handleChange.bind(this, 'shortDescription')} />
           </div>
           <div className={this.state.errors['website_url'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='websiteUrl'>Website Url <span className='required'>*</span></label>
+            <label htmlFor='websiteUrl' className='control-label'>Website Url <span className='required'>*</span></label>
             <input type='text' id='websiteUrl' className='form-control input-lg' value={this.state.data.websiteUrl} onChange={this.handleChange.bind(this, 'websiteUrl')} />
           </div>
           <div className={this.state.errors['repo_url'] ? 'form-group has-error' : 'form-group'}>
@@ -121,6 +121,7 @@ var SubmitForm = React.createClass({
           {this.state.success ? (
             <div className='alert alert-success'>Submiited successfully! You will receive an email once it gets approved.</div>
           ): null}
+
           <button className='btn btn-primary btn-lg btn-block' onClick={this.submitForm}>Submit Entry</button>
         </form>
       </div>
