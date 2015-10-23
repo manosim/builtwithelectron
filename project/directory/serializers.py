@@ -6,4 +6,4 @@ class SubmitEntrySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Entry
-        fields = ('name', 'short_description', 'website_url', 'repo_url', 'tags', 'cover', )
+        fields = ('name', 'short_description', 'website_url', 'repo_url', 'tags', 'cover', 'description')
