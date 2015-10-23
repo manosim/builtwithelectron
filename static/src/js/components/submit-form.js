@@ -1,13 +1,21 @@
+var _ = require('underscore');
 var React = require('react');
 var apiRequests = require('../utils/api-requests');
 
 var SubmitForm = React.createClass({
 
   getInitialState: function () {
+    var date = new Date();
+    var now = date.getTime();
+
     return {
-      name: '',
-      shortDescription: '',
-      websiteUrl: ''
+      name: 'Test ' + now,
+      shortDescription: 'Example',
+      websiteUrl: 'http://www.example.com/',
+      tags: [],
+      success: false,
+      errors: false,
+      loading: false
     };
   },
 
@@ -21,20 +29,29 @@ var SubmitForm = React.createClass({
     e.preventDefault();
     var self = this;
 
+    this.setState({
+      loading: true
+    });
+
     apiRequests
       .post('http://0.0.0.0:8000/api/directory/submit/', {
         'name': self.state.name,
         'short_description': self.state.shortDescription,
-        'website_url': self.state.websiteUrl
+        'website_url': self.state.websiteUrl,
+        'tags': self.state.tags
       }, this.props.csrfToken)
       .end(function (err, response) {
         if (response && response.ok) {
-          // Success - Do Something.
-          alert('YES YES!');
+          self.setState({
+            success: true,
+            errors: [],
+            loading: false
+          });
         } else {
-          // Error - Show messages.
-          // Show appropriate message
-          alert(err);
+          self.setState({
+            errors: response.body,
+            loading: false
+          });
         }
       });
   },
@@ -43,10 +60,12 @@ var SubmitForm = React.createClass({
     return (
       <div className='submit-form'>
         <h3>Submition form goes here</h3>
+        {this.state.success ? <h1>SUBMITTED SPORT :)</h1> : null}
         <form className='form'>
-          <input type='text' className='form-control' name='name' onChange={this.handleChange.bind(this, 'name')} />
-          <input type='text' className='form-control' name='short_description' onChange={this.handleChange.bind(this, 'shortDescription')} />
-          <input type='text' className='form-control' name='website_url' onChange={this.handleChange.bind(this, 'websiteUrl')} />
+          <input type='text' className='form-control' value={this.state.name} onChange={this.handleChange.bind(this, 'name')} />
+          <input type='text' className='form-control' value={this.state.shortDescription} onChange={this.handleChange.bind(this, 'shortDescription')} />
+          <input type='text' className='form-control' value={this.state.websiteUrl} onChange={this.handleChange.bind(this, 'websiteUrl')} />
+          <div>{JSON.stringify(this.state.errors)}</div>
           <button className='btn btn-primary btn-block' onClick={this.submitForm}>Submit Entry</button>
         </form>
       </div>

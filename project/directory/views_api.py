@@ -7,3 +7,6 @@ class SubmitEntryView(generics.CreateAPIView):
 
     serializer_class = SubmitEntrySerializer
     permission_classes = (IsAuthenticated,)
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
