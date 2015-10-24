@@ -22,6 +22,14 @@
         <p class="lead">{{ featured.short_description }}</p>
         <p class="lead description">{{ featured.description }}</p>
 
+        {% if featured.tags %}
+        <div class="tags">
+        {% for tag in featured.tags.all %}
+          <span class="tag">{{tag.name}}</span>
+        {% endfor %}
+        </div>
+        {% endif %}
+
         <a href="#" class="btn btn-lg btn-default" target="=_blank">Read More</a>
 
       </div>
