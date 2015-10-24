@@ -31,6 +31,7 @@ def upload_to(instance, filename):
 class Entry(models.Model):
 
     class Meta:
+        ordering = ['-created']
         verbose_name_plural = "Entries"
 
     UPLOAD_PATH = 'covers'
