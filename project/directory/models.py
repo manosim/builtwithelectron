@@ -65,3 +65,27 @@ class Entry(models.Model):
         return self._get_cover_link(self.cover)
     thumbnail_cover.short_description = 'Cover Thumbnail'
     thumbnail_cover.allow_tags = True
+
+    def send_user_approval_email(self):
+        """ Notify the user that the submission got approved """
+        # send_mail(
+        #     'email/admin_notification_user_approval.tpl',
+        #     {
+        #         'user': self,
+        #         'site_url': settings.SITE_URL
+        #     }, settings.DEFAULT_FROM_EMAIL, settings.ADMIN_EMAILS
+        # )
+
+    def save(self, *args, **kwargs):
+        """ If `is_approved` changed and is True, email the user """
+        try:
+            prev_state = Entry.objects.get(id=self.id).is_approved
+            new_state = self.is_approved
+
+            if (prev_state != new_state) and new_state:
+                self.send_user_approval_email()
+
+        except self.DoesNotExist:
+            pass
+
+        super(Entry, self).save(*args, **kwargs)
