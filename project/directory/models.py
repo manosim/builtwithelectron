@@ -49,6 +49,9 @@ class Entry(models.Model):
     repo_url = models.URLField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
+    is_approved = models.BooleanField(default=False)
+    is_featured = models.BooleanField(default=False)
+
     def __str__(self):
         return self.name
 
@@ -56,7 +59,7 @@ class Entry(models.Model):
         if not url:
             return None
 
-        return u'<a href="%s" target="_blank"><img width="100px" src="%s" /></a>' % (url.url, url.url)
+        return u'<img width="80px" src="%s" />' % (url.url)
 
     def thumbnail_cover(self):
         return self._get_cover_link(self.cover)

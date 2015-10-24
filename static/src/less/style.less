@@ -1,5 +1,6 @@
 @import "../../../node_modules/bootstrap/less/bootstrap.less";
 @import "../../../node_modules/font-awesome/less/font-awesome.less";
+@import "../../../node_modules/react-select/less/select.less";
 
 /* @group Colors */
 
@@ -37,6 +38,21 @@
 /* @end Bootstrap Overrides */
 
 
+/* @group React-Select2 Overrides */
+
+@select-input-bg: darken(@BodyBg, 5%);
+@select-input-height: 45px;
+@select-input-border-radius: 0;
+@select-input-border-width: 0;
+@select-item-border-color: none;
+
+@select-item-bg: darken(@BodyBg, 20%);
+@select-item-color: @Gray;
+@select-item-gutter: 12px;
+
+/* @end React-Select2 Overrides */
+
+
 /* @group Mixins */
 
 // Border Radius (Same Corners)
@@ -57,6 +73,10 @@
 
 body {
   background-color: @BodyBg;
+}
+
+.btn {
+  border: 0;
 }
 
 .alert {
@@ -111,6 +131,12 @@ body {
 
 .submit-page {
 
+  .submit-form {
+    max-width: 560px;
+    display: block;
+    margin: 10px auto;
+  }
+
   .required {
     color: @brand-warning;
   }
@@ -128,13 +154,33 @@ body {
     .box-shadow(none);
   }
 
-
   .has-error {
     .form-control {
       border-color: @brand-warning;
     }
   }
 
+  .Select {
+    margin-bottom: 15px;
+    border-bottom: 1px solid darken(@BodyBg, 50%);
+
+    .Select-menu-outer {
+      border: 0;
+      border-bottom: 1px solid darken(@BodyBg, 50%);
+      box-shadow: 0;
+
+      .Select-option {
+
+      	&.is-focused {
+      		background-color: darken(@BodyBg, 20%);
+      	}
+      }
+    }
+
+    &.is-focused:not(.is-open) > .Select-control {
+    	box-shadow: none;
+    }
+  }
   .dropzone {
     background-color: darken(@BodyBg, 5%);
     border-bottom: 1px solid darken(@BodyBg, 50%);
@@ -180,11 +226,78 @@ body {
 /* @end Submit Form */
 
 
+/* @group Featured / Template Tag */
+
+.featured {
+  background-color: darken(@ThemePrimary, 10%);
+  color: @White;
+  padding: 50px 0 0;
+  margin-top: -20px;
+  margin-bottom: 20px;
+
+  .section-title {
+    margin-top: 10px;
+    color: lighten(@ThemePrimary, 10%);
+    text-align: right;
+    font-style: italic;
+  }
+
+  .cover {
+    margin: 20px 0;
+  }
+
+  .details {
+    padding: 0 20px 10px;
+
+    h1 {
+      margin-top: 0;
+    }
+
+    .links {
+      margin: 20px 10px 20px 5px;
+
+      .fa {
+        margin: 0 5px;
+        font-size: 0.8em;
+        color: @White;
+      }
+    }
+
+    .description {
+      font-size: 16px;
+    }
+  }
+}
+
+/* @end Featured / Template Tag */
+
+
+/* @group Stats / Template Tag */
+
+.stats {
+  background-color: darken(@ThemePrimary, 10%);
+  color: @White;
+  padding: 5px 0;
+  margin-top: 40px;
+  margin-bottom: 0;
+
+  h4 {
+    font-weight: 200;
+
+    .count {
+      font-style: italic;
+    }
+  }
+}
+
+/* @end Stats / Template Tag */
+
+
 /* @group Footer */
 
 .footer {
   padding: 15px 0;
-  margin-top: 40px;
+  margin-top: 0;
   background-color: @ThemePrimary;
   color: @White;
 

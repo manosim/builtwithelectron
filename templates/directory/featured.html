@@ -1,0 +1,32 @@
+{% load staticfiles %}
+
+{% if featured %}
+<div class="container-fluid featured">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        {% if featured.cover %}
+        <img src="uploads/{{ featured.cover }}" alt={{ featured.name }} class="img-responsive cover " />
+        {% endif %}
+      </div>
+      <div class="col-md-8 details">
+
+        <h1>
+          {{ featured.name }}
+          <span class="links">
+            <a href="{{ featured.website_url }}" target="+_blank"><i class="fa fa-link"></i></a>
+            {% if featured.repo_url %}<a href="{{ featured.repo_url }}" target="+_blank"><i class="fa fa-github"></i></a>{% endif %}
+          </span>
+        </h1>
+
+        <p class="lead">{{ featured.short_description }}</p>
+        <p class="lead description">{{ featured.description }}</p>
+
+        <a href="#" class="btn btn-lg btn-default" target="=_blank">Read More</a>
+
+      </div>
+    </div>
+    <h2 class="section-title">featured</h2>
+  </div>
+</div>
+{% endif %}

@@ -1,5 +1,6 @@
 var _ = require('underscore');
 var React = require('react');
+var Select = require('react-select');
 var Dropzone = require('react-dropzone');
 var apiRequests = require('../utils/api-requests');
 
@@ -19,11 +20,27 @@ var SubmitForm = React.createClass({
         cover: null,
         tags: []
       },
+      tags: [],
+      selectedTags: [],
       success: false,
       errors: false,
       loading: false,
       submitDisabled: false
     };
+  },
+
+  componentWillMount: function() {
+    var flattenTags = [];
+    var tagsJson = JSON.parse(this.props.tags);
+     _.map(tagsJson, function (tag) {
+      flattenTags.push({
+        value: tag.pk,
+        label: tag.fields.name
+      });
+    });
+    this.setState({
+      tags: flattenTags
+    });
   },
 
   handleChange: function (key, event) {
@@ -45,6 +62,30 @@ var SubmitForm = React.createClass({
 
   onOpenClick: function () {
     this.refs.dropzone.open();
+  },
+
+  tagRenderer: function (option) {
+    return <span key={option.pk}>{option.label}</span>
+  },
+
+  tagValue: function (option) {
+		return <strong>{option.label}</strong>;
+	},
+
+  tagsSelected: function (val, selectedOptions) {
+    var selectedTags = [];
+
+    _.each(selectedOptions, function (tag) {
+      selectedTags.push(tag.value);
+    });
+
+    var data = this.state.data;
+    data.tags = selectedTags;
+
+    this.setState({
+      data: data,
+      selectedTags: selectedOptions
+    });
   },
 
   submitForm: function (e) {
@@ -97,6 +138,17 @@ var SubmitForm = React.createClass({
             <label htmlFor='repoUrl'>Repository Url</label>
             <input type='text' id='repoUrl' className='form-control input-lg' value={this.state.data.repoUrl} onChange={this.handleChange.bind(this, 'repoUrl')} />
           </div>
+
+          <label>Tags</label>
+          <Select
+            name="form-field-name"
+            value={this.state.selectedTags}
+            options={this.state.tags}
+            onChange={this.tagsSelected}
+            optionRenderer={this.tagRenderer}
+            valueRenderer={this.tagValue}
+            multi={true}
+            placeholder='Enter your tags' />
 
           <label>Photo/Screenshot</label>
           <Dropzone ref='dropzone' className='dropzone' onDrop={this.onDrop} disableClick={true} multiple={false} activeClassName='active'>

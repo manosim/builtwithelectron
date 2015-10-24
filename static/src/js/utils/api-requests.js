@@ -16,6 +16,7 @@ var apiRequests = {
       .field('website_url', data.websiteUrl)
       .field('repo_url', data.repoUrl)
       .field('description', data.description)
+      .field('tags', data.tags)
       .attach('cover', data.cover, 'cover.png');
   }
 };

@@ -36,6 +36,7 @@
     "react": "=0.14.0",
     "react-dom": "=0.14.0",
     "react-dropzone": "=2.2.3",
+    "react-select": "=0.8.2",
     "superagent": "=1.4.0",
     "underscore": "=1.8.3"
   },
