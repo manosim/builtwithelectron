@@ -21,6 +21,7 @@ var SubmitForm = React.createClass({
         tags: []
       },
       tags: [],
+      selectedTags: [],
       success: false,
       errors: false,
       loading: false,
@@ -71,16 +72,18 @@ var SubmitForm = React.createClass({
 		return <strong>{option.label}</strong>;
 	},
 
-  tagsSelected: function (val, list) {
-    var selectedTags = this.state.data.tags;
-    _.map(list, function (tag) {
+  tagsSelected: function (val, selectedOptions) {
+    var selectedTags = [];
+
+    _.map(selectedOptions, function (tag) {
       selectedTags.push(tag.value);
     });
 
     var data = this.state.data;
     data.tags = selectedTags;
     this.setState({
-      data: data
+      data: data,
+      selectedTags: selectedOptions
     });
   },
 
@@ -138,6 +141,7 @@ var SubmitForm = React.createClass({
           <label>Tags</label>
           <Select
             name="form-field-name"
+            value={this.state.selectedTags}
             options={this.state.tags}
             onChange={this.tagsSelected}
             optionRenderer={this.tagRenderer}
