@@ -41,9 +41,14 @@
 /* @group React-Select2 Overrides */
 
 @select-input-bg: darken(@BodyBg, 5%);
+@select-input-height: 45px;
 @select-input-border-radius: 0;
 @select-input-border-width: 0;
 @select-item-border-color: none;
+
+@select-item-bg: darken(@BodyBg, 20%);
+@select-item-color: @Gray;
+@select-item-gutter: 12px;
 
 /* @end React-Select2 Overrides */
 
@@ -171,6 +176,10 @@ body {
       	}
       }
     }
+
+    &.is-focused:not(.is-open) > .Select-control {
+    	box-shadow: none;
+    }
   }
   .dropzone {
     background-color: darken(@BodyBg, 5%);
@@ -248,9 +257,9 @@ body {
       margin: 20px 10px 20px 5px;
 
       .fa {
-        font-size: 0.9em;
-        color: @White;
         margin: 0 5px;
+        font-size: 0.8em;
+        color: @White;
       }
     }
 

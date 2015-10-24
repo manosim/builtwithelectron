@@ -81,7 +81,7 @@ var SubmitForm = React.createClass({
 
     var data = this.state.data;
     data.tags = selectedTags;
-    
+
     this.setState({
       data: data,
       selectedTags: selectedOptions
@@ -147,7 +147,8 @@ var SubmitForm = React.createClass({
             onChange={this.tagsSelected}
             optionRenderer={this.tagRenderer}
             valueRenderer={this.tagValue}
-            multi={true} />
+            multi={true}
+            placeholder='Enter your tags' />
 
           <label>Photo/Screenshot</label>
           <Dropzone ref='dropzone' className='dropzone' onDrop={this.onDrop} disableClick={true} multiple={false} activeClassName='active'>

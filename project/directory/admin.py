@@ -58,8 +58,7 @@ class IsFeaturedFilter(admin.SimpleListFilter):
 
 
 class EntriesAdmin(admin.ModelAdmin):
-    list_display = ('thumbnail_cover', 'name', 'short_description', 'author', 'get_tags', 'website_url', 'repo_url', 'has_description',)
-    # list_display = ('name', 'thumbnail_cover', 'short_description', 'author', 'get_tags', 'website_url', 'repo_url', 'has_description',)
+    list_display = ('thumbnail_cover', 'name', 'short_description', 'author', 'get_tags', 'website_url', 'repo_url', 'created',)
     list_filter = (IsApprovedFilter, HasCoverFilter, IsFeaturedFilter,)
 
     fieldsets = (
@@ -73,11 +72,6 @@ class EntriesAdmin(admin.ModelAdmin):
     def get_tags(self, obj):
         return "\n".join([p.name for p in obj.tags.all()])
     get_tags.short_description = 'Tags'
-
-    def has_description(self, obj):
-        return obj.description != ""
-    has_description.short_description = 'Desc.'
-    has_description.boolean = True
 
 
 class TagsAdmin(admin.ModelAdmin):
