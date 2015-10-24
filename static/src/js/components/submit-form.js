@@ -75,12 +75,13 @@ var SubmitForm = React.createClass({
   tagsSelected: function (val, selectedOptions) {
     var selectedTags = [];
 
-    _.map(selectedOptions, function (tag) {
+    _.each(selectedOptions, function (tag) {
       selectedTags.push(tag.value);
     });
 
     var data = this.state.data;
     data.tags = selectedTags;
+    
     this.setState({
       data: data,
       selectedTags: selectedOptions
