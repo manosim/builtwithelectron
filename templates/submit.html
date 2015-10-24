@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load jsonify %}
 {% block body_class %}submit-page{% endblock %}
 {% block pagetitle %}Submit your electron application{% endblock %}
 
@@ -19,7 +20,7 @@
   <script type="text/javascript">
     $( document ).ready(function() {
       var csrfToken = '{{ csrf_token }}';
-      window.setupSubmitForm(csrfToken);
+      window.setupSubmitForm(csrfToken, '{{ tags|safe }}');
     });
   </script>
   {% endif %}
