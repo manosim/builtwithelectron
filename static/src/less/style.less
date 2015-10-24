@@ -263,8 +263,28 @@ body {
       }
     }
 
-    .description {
-      font-size: 16px;
+    .lead {
+      margin-bottom: 10px;
+
+      &.description {
+        font-size: 16px;
+      }
+    }
+
+    .tags {
+      margin: 15px 0 20px;
+
+      .tag {
+        padding: 5px 8px;
+        margin: 0 10px 0 0;
+        background-color: @ThemePrimary;
+        color: @White;
+
+        &:hover {
+          background-color: darken(@BodyBg, 20%);
+          color: @Gray;
+        }
+      }
     }
   }
 }
