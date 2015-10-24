@@ -9,7 +9,5 @@ class SubmitEntryView(generics.CreateAPIView):
     permission_classes = (IsAuthenticated,)
 
     def perform_create(self, serializer):
-        tags = []
-        if self.request.data['tags']:
-            tags = self.request.data['tags'].split(",")
+        tags = self.request.data['tags'].split(",") if self.request.data['tags'] else []
         serializer.save(author=self.request.user, tags=tags)
