@@ -38,6 +38,16 @@
 /* @end Bootstrap Overrides */
 
 
+/* @group React-Select2 Overrides */
+
+@select-input-bg: darken(@BodyBg, 5%);
+@select-input-border-radius: 0;
+@select-input-border-width: 0;
+@select-item-border-color: none;
+
+/* @end React-Select2 Overrides */
+
+
 /* @group Mixins */
 
 // Border Radius (Same Corners)
@@ -139,13 +149,29 @@ body {
     .box-shadow(none);
   }
 
-
   .has-error {
     .form-control {
       border-color: @brand-warning;
     }
   }
 
+  .Select {
+    margin-bottom: 15px;
+    border-bottom: 1px solid darken(@BodyBg, 50%);
+
+    .Select-menu-outer {
+      border: 0;
+      border-bottom: 1px solid darken(@BodyBg, 50%);
+      box-shadow: 0;
+
+      .Select-option {
+
+      	&.is-focused {
+      		background-color: darken(@BodyBg, 20%);
+      	}
+      }
+    }
+  }
   .dropzone {
     background-color: darken(@BodyBg, 5%);
     border-bottom: 1px solid darken(@BodyBg, 50%);
