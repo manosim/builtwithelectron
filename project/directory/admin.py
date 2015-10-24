@@ -39,10 +39,28 @@ class IsApprovedFilter(admin.SimpleListFilter):
         return queryset
 
 
+class IsFeaturedFilter(admin.SimpleListFilter):
+    title = _('Is Featured')
+    parameter_name = 'featured'
+
+    def lookups(self, request, model_admin):
+        return (
+            ('1', 'Yes'),
+            ('0', 'No'),
+        )
+
+    def queryset(self, request, queryset):
+        if self.value() == '0':
+            return queryset.filter(is_featured=False)
+        elif self.value() == '1':
+            return queryset.filter(is_featured=True)
+        return queryset
+
+
 class EntriesAdmin(admin.ModelAdmin):
     list_display = ('thumbnail_cover', 'name', 'short_description', 'author', 'get_tags', 'website_url', 'repo_url', 'has_description',)
     # list_display = ('name', 'thumbnail_cover', 'short_description', 'author', 'get_tags', 'website_url', 'repo_url', 'has_description',)
-    list_filter = (IsApprovedFilter, HasCoverFilter,)
+    list_filter = (IsApprovedFilter, HasCoverFilter, IsFeaturedFilter,)
 
     fieldsets = (
         ('Required Information', {'fields': ('name', 'short_description', 'author', 'website_url', 'is_approved', 'is_featured', )}),
