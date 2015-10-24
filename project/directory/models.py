@@ -1,6 +1,8 @@
 import os
 import uuid
 from django.db import models
+from django.conf import settings
+from mail_templated import send_mail
 from project.accounts.models import User
 
 
@@ -68,13 +70,14 @@ class Entry(models.Model):
 
     def send_user_approval_email(self):
         """ Notify the user that the submission got approved """
-        # send_mail(
-        #     'email/admin_notification_user_approval.tpl',
-        #     {
-        #         'user': self,
-        #         'site_url': settings.SITE_URL
-        #     }, settings.DEFAULT_FROM_EMAIL, settings.ADMIN_EMAILS
-        # )
+        send_mail(
+            'emails/submission_approval.tpl',
+            {
+                'user': self.author,
+                'entry': self,
+                'site_url': settings.SITE_URL
+            }, settings.DEFAULT_FROM_EMAIL, [self.author.email]
+        )
 
     def save(self, *args, **kwargs):
         """ If `is_approved` changed and is True, email the user """

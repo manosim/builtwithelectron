@@ -48,6 +48,7 @@ INSTALLED_APPS = (
 
     # External Libraries
     'rest_framework',
+    'mail_templated',
 
     # Apps
     'project.accounts',
@@ -105,7 +106,8 @@ AUTH_USER_MODEL = 'accounts.User'
 # Email settings
 
 EMAIL_BACKEND = os.environ['EMAIL_BACKEND']
-
+DEFAULT_FROM_EMAIL = "Built with Electron <hello@builtwithelectron.com>"
+SITE_URL = os.environ['SITE_URL']
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
