@@ -66,6 +66,21 @@
     background-clip:         padding-box;
 }
 
+.TagMixin(@margin, @padding) {
+  .tag {
+    padding: @padding;
+    margin: @margin;
+    background-color: @ThemePrimary;
+    color: @White;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: darken(@BodyBg, 20%);
+      color: @Gray;
+    }
+  }
+}
+
 /* @end Mixins */
 
 
@@ -121,6 +136,44 @@ body {
 
   .navbar {
     margin-bottom: 20px;
+  }
+
+  .latest {
+
+    .cover {
+      max-height: 200px;
+      margin: 0 auto;
+    }
+
+    .details {
+      h3 {
+        margin-top: 0;
+        margin-bottom: 5px;
+
+        .links {
+          margin: 20px 10px 20px 5px;
+
+          .fa {
+            margin: 0 5px;
+            font-size: 0.8em;
+          }
+        }
+      }
+
+      .date {
+        font-size: 0.8em;
+      }
+
+      .lead {
+        font-size: 18px;
+        margin: 10px 0;
+      }
+
+      .tags {
+        .TagMixin(15px 0 20px, 5px 8px);
+        margin: ;
+      }
+    }
   }
 }
 
@@ -243,7 +296,8 @@ body {
   }
 
   .cover {
-    margin: 20px 0;
+    max-height: 250px;
+    margin: 20px auto;
   }
 
   .details {
@@ -272,19 +326,7 @@ body {
     }
 
     .tags {
-      margin: 15px 0 20px;
-
-      .tag {
-        padding: 5px 8px;
-        margin: 0 10px 0 0;
-        background-color: @ThemePrimary;
-        color: @White;
-
-        &:hover {
-          background-color: darken(@BodyBg, 20%);
-          color: @Gray;
-        }
-      }
+      .TagMixin(15px 0 20px, 5px 8px);
     }
   }
 }

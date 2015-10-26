@@ -9,12 +9,51 @@
     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
     <h2>Latest applications made with electron</h2>
-    {% for entry in latest %}
-      <h3>{{ entry.name }}</h3>
-      <div class="details">
-        {{ entry.created }}
-      </div>
-    {% endfor %}
+
+    {% if latest %}
+    <div class="row latest">
+      {% for entry in latest %}
+        <div class="col-md-6">
+
+          <div class="row">
+
+
+            <div class="col-md-5">
+              {% if entry.cover %}
+              <img src="uploads/{{ entry.cover }}" alt="{{ entry.name }}" class="img-responsive cover " />
+              {% endif %}
+            </div>
+            <div class="col-md-7 details">
+              <h3>
+                {{ entry.name }}
+                <span class="links">
+                  <a href="{{ entry.website_url }}" target="_blank"><i class="fa fa-link"></i></a>
+                  {% if entry.repo_url %}<a href="{{ entry.repo_url }}" target="_blank"><i class="fa fa-github"></i></a>{% endif %}
+                </span>
+              </h3>
+
+              <div class="date">{{ entry.created | date:"M/d" }}</div>
+
+              <p class="lead">{{ entry.short_description }}</p>
+
+              {% if entry.tags %}
+              <div class="tags">
+              {% for tag in entry.tags.all %}
+                <span class="tag"># {{tag.name}}</span>
+              {% endfor %}
+              </div>
+              {% endif %}
+            </div>
+
+
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+    {% else %}
+      <h1>There are no applications yet. Check back soon :)</h1>
+    {% endif %}
 
   </div>
 
