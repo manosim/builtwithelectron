@@ -6,6 +6,10 @@
 
 <div class="container">
 
+  {% if object.cover %}
+  <img src="../../uploads/{{ object.cover }}" alt="{{ object.name }}" title="{{ object.name }}" class="img-responsive cover" />
+  {% endif %}
+
   <h1>{{ object.name }}</h1>
   <p>{{ object.description }}</p>
 
