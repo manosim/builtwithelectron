@@ -27,8 +27,7 @@
 @navbar-default-link-active-bg: darken(@navbar-default-bg, 6.5%);
 @navbar-default-link-active-color: @Gray;
 
-@navbar-default-toggle-icon-bar-bg: darken(@ThemePrimary, 10%);
-@navbar-default-toggle-border-color: darken(@ThemePrimary, 10%);
+@navbar-default-toggle-icon-bar-bg: @White;
 @navbar-default-toggle-hover-bg: @ThemePrimary;
 
 @border-radius-base: 0;
@@ -118,6 +117,10 @@ body {
   .fa {
     font-size: 18px;
   }
+}
+
+.navbar-toggle {
+  border: 0;
 }
 
 .page-title {
@@ -348,6 +351,55 @@ body {
 }
 
 /* @end Featured / Template Tag */
+
+
+/* @group Autogenerator */
+
+.autogenerator {
+  background-color: @ThemePrimary;
+  color: @White;
+  padding: 15px;
+  margin: 0 auto 20px;
+  position: relative;
+
+  .loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(107, 131, 176, 0.98);
+    text-align: center;
+
+    h3 {
+      line-height: 40px;
+      padding: 0 15px;
+
+      .fa {
+        display: block;
+        font-size: 35px;
+      }
+    }
+  }
+
+  h4 {
+    margin: 0 0 15px 0;
+  }
+
+  .form {
+    .form-group {
+      .form-control {
+        border-bottom: 0;
+      }
+    }
+
+    .btn {
+      margin-top: 0;
+    }
+  }
+}
+
+/* @end Autogenerator */
 
 
 /* @group Stats / Template Tag */
