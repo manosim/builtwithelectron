@@ -164,6 +164,10 @@ var SubmitForm = React.createClass({
             )}
           </Dropzone>
 
+          {this.state.errors.cover ? (
+            <div className='alert alert-danger'>{this.state.errors.cover[0]}</div>
+          ) : null}
+
           <div className={this.state.errors['description'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='description'>Description</label>
             <textarea className='form-control input-lg' id='description' rows='4' value={this.state.data.description} onChange={this.handleChange.bind(this, 'description')}></textarea>

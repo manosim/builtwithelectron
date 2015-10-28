@@ -1,6 +1,8 @@
 import os
 import uuid
 from django.db import models
+from django.conf import settings
+from mail_templated import send_mail
 from project.accounts.models import User
 
 
@@ -29,6 +31,7 @@ def upload_to(instance, filename):
 class Entry(models.Model):
 
     class Meta:
+        ordering = ['-created']
         verbose_name_plural = "Entries"
 
     UPLOAD_PATH = 'covers'
@@ -65,3 +68,28 @@ class Entry(models.Model):
         return self._get_cover_link(self.cover)
     thumbnail_cover.short_description = 'Cover Thumbnail'
     thumbnail_cover.allow_tags = True
+
+    def send_user_approval_email(self):
+        """ Notify the user that the submission got approved """
+        send_mail(
+            'emails/submission_approval.tpl',
+            {
+                'user': self.author,
+                'entry': self,
+                'site_url': settings.SITE_URL
+            }, settings.DEFAULT_FROM_EMAIL, [self.author.email]
+        )
+
+    def save(self, *args, **kwargs):
+        """ If `is_approved` changed and is True, email the user """
+        try:
+            prev_state = Entry.objects.get(id=self.id).is_approved
+            new_state = self.is_approved
+
+            if (prev_state != new_state) and new_state:
+                self.send_user_approval_email()
+
+        except self.DoesNotExist:
+            pass
+
+        super(Entry, self).save(*args, **kwargs)

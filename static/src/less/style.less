@@ -66,6 +66,22 @@
     background-clip:         padding-box;
 }
 
+.TagMixin(@margin, @padding) {
+  .tag {
+    padding: @padding;
+    margin: @margin;
+    background-color: @ThemePrimary;
+    color: @White;
+    display: inline-block;
+    white-space: nowrap;
+
+    &:hover {
+      background-color: darken(@BodyBg, 20%);
+      color: @Gray;
+    }
+  }
+}
+
 /* @end Mixins */
 
 
@@ -121,6 +137,58 @@ body {
 
   .navbar {
     margin-bottom: 20px;
+  }
+
+  .latest {
+
+    > .row {
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
+    .cover {
+      max-width: 150px;
+      max-height: 150px;
+      margin: 0 auto;
+    }
+
+    .details {
+      h3 {
+        margin: 5px 0;
+        position: relative;
+
+        .date {
+          font-size: 0.6em;
+          position: absolute;
+          right: 0;
+          bottom: 0;
+        }
+      }
+
+      .lead {
+        font-size: 18px;
+        margin: 10px 0;
+
+        &.description {
+          font-size: 16px;
+        }
+      }
+
+      .tags {
+        margin: 5px 0;
+        .TagMixin(0 3px 3px 0, 2px 5px);
+        // .TagMixin(@margin, @padding)
+      }
+    }
+
+    .links {
+      padding: 0 5px;
+
+      .fa {
+        margin: 0 5px;
+        float: right;
+      }
+    }
   }
 }
 
@@ -243,7 +311,8 @@ body {
   }
 
   .cover {
-    margin: 20px 0;
+    max-height: 250px;
+    margin: 20px auto;
   }
 
   .details {
@@ -263,8 +332,17 @@ body {
       }
     }
 
-    .description {
-      font-size: 16px;
+    .lead {
+      margin-bottom: 10px;
+
+      &.description {
+        font-size: 16px;
+      }
+    }
+
+    .tags {
+      margin: 15px 0;
+      .TagMixin(0 5px 10px 0, 5px 8px);
     }
   }
 }

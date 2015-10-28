@@ -12,7 +12,8 @@
     "watch-less": "watch 'npm run build-less' static/src/less/",
     "watch-js": "watchify -t babelify static/src/js/app.js -o static/dist/js/app.js -v",
     "watch": "npm run build && npm run watch-less & npm run watch-js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run watch & open -a '/Applications/Google Chrome.app' 'http://0.0.0.0:8000'"
   },
   "repository": {
     "type": "git",
@@ -35,7 +36,7 @@
     "font-awesome": "=4.4.0",
     "react": "=0.14.0",
     "react-dom": "=0.14.0",
-    "react-dropzone": "=2.2.3",
+    "react-dropzone": "=3.0.0",
     "react-select": "=0.8.2",
     "superagent": "=1.4.0",
     "underscore": "=1.8.3"

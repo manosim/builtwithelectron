@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-4">
         {% if featured.cover %}
-        <img src="uploads/{{ featured.cover }}" alt={{ featured.name }} class="img-responsive cover " />
+        <img src="uploads/{{ featured.cover }}" alt="{{ featured.name }}" class="img-responsive cover" />
         {% endif %}
       </div>
       <div class="col-md-8 details">
@@ -21,6 +21,14 @@
 
         <p class="lead">{{ featured.short_description }}</p>
         <p class="lead description">{{ featured.description }}</p>
+
+        {% if featured.tags %}
+        <div class="tags">
+        {% for tag in featured.tags.all %}
+          <div class="tag"># {{tag.name}}</div>
+        {% endfor %}
+        </div>
+        {% endif %}
 
         <a href="#" class="btn btn-lg btn-default" target="=_blank">Read More</a>
 

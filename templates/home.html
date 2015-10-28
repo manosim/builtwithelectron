@@ -5,8 +5,59 @@
   {% featured %}
 
   <div class="container">
-    <h3>Title</h3>
+    <h3>A few words</h3>
     <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+    <h2>Latest applications made with electron</h2>
+
+    {% if latest %}
+    <div class="latest">
+      {% for entry in latest %}
+          <div class="row">
+
+
+            {% if entry.cover %}
+            <div class="col-md-3">
+              {% if entry.cover %}
+              <img src="uploads/{{ entry.cover }}" alt="{{ entry.name }}" title="{{ entry.name }}" class="img-responsive cover " />
+              {% endif %}
+            </div>
+            {% endif %}
+
+            <div class="{% if entry.cover %}col-md-6{% else %}col-md-9{% endif %} details">
+              <h3>{{ entry.name }}<span class="date">{{ entry.created | date:"M/d" }}</span></h3>
+
+              <p class="lead">{{ entry.short_description }}</p>
+              <p class="lead description">{{ entry.description|truncatechars:"125" }}</p>
+
+              {% if entry.tags %}
+              <div class="tags">
+              {% for tag in entry.tags.all|slice:":5" %}
+                <div class="tag"># {{tag.name}}</div>
+              {% endfor %}
+                {% if entry.tags.all.count > 5 %}
+                <div class="tag" title="More tags...">...</div>
+                {% endif %}
+              </div>
+              {% endif %}
+            </div>
+
+            <div class="col-md-3">
+              <ul class="nav nav-pills nav-stacked links">
+                <li><a href="{{ entry.website_url }}" target="_blank">Website <i class="fa fa-link" title="Website"></i></a></li>
+                {% if entry.repo_url %}<li><a href="{{ entry.repo_url }}" target="_blank">Repository <i class="fa fa-github" title="Github"></i></a></li>{% endif %}
+                <li class="active"><a href="#">Read More</a></li>
+              </ul>
+            </div>
+
+
+          </div>
+        {% endfor %}
+    </div>
+    {% else %}
+      <h1>There are no applications yet. Check back soon :)</h1>
+    {% endif %}
+
   </div>
 
 {% endblock %}
