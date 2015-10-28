@@ -10,7 +10,7 @@ class HomePageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         latest = Entry.objects.all()[:8]  # FIXME: Get only approved entries
-        # latest = Entry.objects.filter(is_approved=True)[:8]
+        # latest = Entry.objects.filter(is_approved=True, is_featured=False)[:8]
 
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['OAUTH_URL'] = get_oauth_url()

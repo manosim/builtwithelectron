@@ -11,7 +11,8 @@
     <h2>Latest applications made with electron</h2>
 
     {% if latest %}
-    <div class="row latest">
+    <div class="latest">
+      <div class="row">
       {% for entry in latest %}
         <div class="col-md-6">
 
@@ -49,6 +50,10 @@
           </div>
 
         </div>
+      {% if forloop.counter|divisibleby:2 %}
+      </div>
+      <div class="row">
+      {% endif %}
       {% endfor %}
     </div>
     {% else %}
