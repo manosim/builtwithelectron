@@ -357,9 +357,30 @@ body {
   color: @White;
   padding: 15px;
   margin: 0 auto 20px;
+  position: relative;
+
+  .loading {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: rgba(107, 131, 176, 0.98);
+    text-align: center;
+
+    h3 {
+      line-height: 50px;
+      padding: 30px 15px;
+
+      .fa {
+        display: block;
+        font-size: 35px;
+      }
+    }
+  }
 
   h3 {
-    margin: 10px 0 15px 0;
+    margin: 0 0 15px 0;
   }
 
   .form {
