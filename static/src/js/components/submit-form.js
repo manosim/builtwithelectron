@@ -10,16 +10,13 @@ var Autogenerator = require('./autogenerator');
 var SubmitForm = React.createClass({
 
   getInitialState: function () {
-    var date = new Date();
-    var now = date.getTime();
-
     return {
       data: {
-        name: 'Test ' + now,
-        shortDescription: 'Example',
-        websiteUrl: 'http://www.example.com/',
-        repoUrl: 'http://www.anotherexample.com/repo',
-        description: 'Full description here..',
+        name: '',
+        shortDescription: '',
+        websiteUrl: '',
+        repoUrl: '',
+        description: '',
         cover: null,
         tags: []
       },
