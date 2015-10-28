@@ -24,12 +24,10 @@ var SubmitForm = React.createClass({
   },
 
   onSubmit: function () {
-		console.log('Making the request...');
     var self = this;
     var slug = this.state.url.split('.com/')[1];
     var owner = slug.split('/')[0];
     var repo = slug.split('/')[1];
-    console.log(owner, '/', repo);
 
     this.setState({
       loading: true,

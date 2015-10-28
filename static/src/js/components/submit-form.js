@@ -132,6 +132,18 @@ var SubmitForm = React.createClass({
     });
   },
 
+  renderFieldErrors: function (field) {
+    if (this.state.errors[field]) {
+      return (
+        <div className='help-block'>
+          {_.map(this.state.errors[field], function (obj, key) {
+            return <div key={key}>{obj}</div>;
+          })}
+        </div>
+      );
+    }
+  },
+
   render: function () {
     return (
       <div className='submit-form'>
@@ -141,18 +153,22 @@ var SubmitForm = React.createClass({
           <div className={this.state.errors['name'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='name' className='control-label'>Application Name <span className='required'>*</span></label>
             <input type='text' id='name' className='form-control input-lg' value={this.state.data.name} onChange={this.handleChange.bind(this, 'name')} />
+            {this.renderFieldErrors('name')}
           </div>
           <div className={this.state.errors['short_description'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='shortDescription' className='control-label'>Short Description <span className='required'>*</span></label>
             <input type='text' id='shortDescription' className='form-control input-lg' value={this.state.data.shortDescription} onChange={this.handleChange.bind(this, 'shortDescription')} />
+            {this.renderFieldErrors('short_description')}
           </div>
           <div className={this.state.errors['website_url'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='websiteUrl' className='control-label'>Website Url <span className='required'>*</span></label>
             <input type='text' id='websiteUrl' className='form-control input-lg' value={this.state.data.websiteUrl} onChange={this.handleChange.bind(this, 'websiteUrl')} />
+            {this.renderFieldErrors('website_url')}
           </div>
           <div className={this.state.errors['repo_url'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='repoUrl'>Repository Url</label>
             <input type='text' id='repoUrl' className='form-control input-lg' value={this.state.data.repoUrl} onChange={this.handleChange.bind(this, 'repoUrl')} />
+            {this.renderFieldErrors('repo_url')}
           </div>
 
           <label>Tags</label>
@@ -187,6 +203,7 @@ var SubmitForm = React.createClass({
           <div className={this.state.errors['description'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='description'>Description</label>
             <textarea className='form-control input-lg' id='description' rows='4' value={this.state.data.description} onChange={this.handleChange.bind(this, 'description')}></textarea>
+            {this.renderFieldErrors('description')}
           </div>
 
           {this.state.success ? (
