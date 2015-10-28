@@ -61,7 +61,7 @@ var SubmitForm = React.createClass({
   render: function () {
     return (
       <div className='autogenerator'>
-        <h3>Generate from GitHub Repository</h3>
+        <h4>Generate from GitHub Repository</h4>
         <Loading className="loading" shouldShow={this.state.loading}>
           <h3>Grabbing your repository details from <i className='fa fa-github' /></h3>
         </Loading>
