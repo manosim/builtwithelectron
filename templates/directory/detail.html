@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block body_class %}detail-page{% endblock %}
+{% block pagetitle %}{{ object.name }}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <h1>{{ object.name }}</h1>
+  <p>{{ object.description }}</p>
+
+</div>
+
+{% endblock %}
