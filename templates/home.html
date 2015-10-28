@@ -12,53 +12,47 @@
 
     {% if latest %}
     <div class="latest">
-      <div class="row">
       {% for entry in latest %}
-        <div class="col-md-6">
-
           <div class="row">
 
 
-            <div class="col-md-5">
+            {% if entry.cover %}
+            <div class="col-md-3">
               {% if entry.cover %}
               <img src="uploads/{{ entry.cover }}" alt="{{ entry.name }}" title="{{ entry.name }}" class="img-responsive cover " />
               {% endif %}
             </div>
-            <div class="col-md-7 details">
-              <h3>
-                {{ entry.name }}
-                <span class="links">
-                  <a href="{{ entry.website_url }}" target="_blank"><i class="fa fa-link"></i></a>
-                  {% if entry.repo_url %}<a href="{{ entry.repo_url }}" target="_blank"><i class="fa fa-github"></i></a>{% endif %}
-                </span>
-              </h3>
+            {% endif %}
 
-              <div class="date">{{ entry.created | date:"M/d" }}</div>
+            <div class="{% if entry.cover %}col-md-6{% else %}col-md-9{% endif %} details">
+              <h3>{{ entry.name }}<span class="date">{{ entry.created | date:"M/d" }}</span></h3>
 
               <p class="lead">{{ entry.short_description }}</p>
+              <p class="lead description">{{ entry.description|truncatechars:"125" }}</p>
 
               {% if entry.tags %}
               <div class="tags">
-              {% for tag in entry.tags.all|slice:":2" %}
+              {% for tag in entry.tags.all|slice:":5" %}
                 <div class="tag"># {{tag.name}}</div>
               {% endfor %}
-                {% if entry.tags.all.count > 2 %}
+                {% if entry.tags.all.count > 5 %}
                 <div class="tag" title="More tags...">...</div>
                 {% endif %}
               </div>
               {% endif %}
             </div>
 
+            <div class="col-md-3">
+              <ul class="nav nav-pills nav-stacked links">
+                <li><a href="{{ entry.website_url }}" target="_blank">Website <i class="fa fa-link" title="Website"></i></a></li>
+                {% if entry.repo_url %}<li><a href="{{ entry.repo_url }}" target="_blank">Repository <i class="fa fa-github" title="Github"></i></a></li>{% endif %}
+                <li class="active"><a href="#">Read More</a></li>
+              </ul>
+            </div>
+
 
           </div>
-
-        </div>
-        {% if forloop.counter|divisibleby:2 %}
-        </div>
-        <div class="row">
-        {% endif %}
         {% endfor %}
-      </div>
     </div>
     {% else %}
       <h1>There are no applications yet. Check back soon :)</h1>
