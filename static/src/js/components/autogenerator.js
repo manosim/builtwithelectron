@@ -41,13 +41,13 @@ var SubmitForm = React.createClass({
       .end(function (err, response) {
         if (response && response.ok) {
           setTimeout(function() {
-          self.setState({
-            errors: false,
-            loading: false,
-            submitDisabled: false
-          });
-          self.props.gotDetails(response.body);
-        }, 75000);
+            self.setState({
+              errors: false,
+              loading: false,
+              submitDisabled: false
+            });
+            self.props.gotDetails(response.body);
+          }, 1000);
         } else {
           self.setState({
             errors: true,
