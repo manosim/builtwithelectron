@@ -39,7 +39,8 @@
     "react-dropzone": "=3.0.0",
     "react-select": "=0.8.2",
     "superagent": "=1.4.0",
-    "underscore": "=1.8.3"
+    "underscore": "=1.8.3",
+    "underscore.string": "=3.2.2"
   },
   "devDependencies": {
     "babelify": "=6.3.0",

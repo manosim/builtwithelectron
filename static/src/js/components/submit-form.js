@@ -1,8 +1,11 @@
 var _ = require('underscore');
+var capitalize = require("underscore.string/capitalize");
 var React = require('react');
 var Select = require('react-select');
 var Dropzone = require('react-dropzone');
 var apiRequests = require('../utils/api-requests');
+
+var Autogenerator = require('./autogenerator');
 
 var SubmitForm = React.createClass({
 
@@ -118,9 +121,22 @@ var SubmitForm = React.createClass({
       });
   },
 
+  populateForm: function (args) {
+    var data = this.state.data;
+    data.name = capitalize(args.name);
+    data.shortDescription = args.description;
+    data.websiteUrl = args.homepage;
+    data.repoUrl = args.html_url;
+    this.setState({
+      data: data
+    });
+  },
+
   render: function () {
     return (
       <div className='submit-form'>
+        <Autogenerator gotDetails={this.populateForm} />
+
         <form className='form'>
           <div className={this.state.errors['name'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='name' className='control-label'>Application Name <span className='required'>*</span></label>
