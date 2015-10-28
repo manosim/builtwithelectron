@@ -72,6 +72,7 @@
     margin: @margin;
     background-color: @ThemePrimary;
     color: @White;
+    display: inline-block;
     white-space: nowrap;
 
     &:hover {
@@ -140,15 +141,20 @@ body {
 
   .latest {
 
+    > .row {
+      margin-top: 25px;
+      margin-bottom: 25px;
+    }
+
     .cover {
+      max-width: 150px;
       max-height: 200px;
       margin: 0 auto;
     }
 
     .details {
       h3 {
-        margin-top: 0;
-        margin-bottom: 5px;
+        margin: 5px 0;
 
         .links {
           margin: 20px 10px 20px 5px;
@@ -171,7 +177,8 @@ body {
 
       .tags {
         margin: 5px 0;
-        .TagMixin(15px 0 20px, 5px 8px);
+        .TagMixin(0 3px 2px 0, 2px 5px);
+        // .TagMixin(@margin, @padding)
       }
     }
   }
@@ -327,7 +334,7 @@ body {
 
     .tags {
       margin: 15px 0;
-      .TagMixin(15px 0 20px, 5px 8px);
+      .TagMixin(0 5px 10px 0, 5px 8px);
     }
   }
 }
