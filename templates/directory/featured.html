@@ -14,8 +14,8 @@
         <h1>
           {{ featured.name }}
           <span class="links">
-            <a href="{{ featured.website_url }}" target="+_blank"><i class="fa fa-link"></i></a>
-            {% if featured.repo_url %}<a href="{{ featured.repo_url }}" target="+_blank"><i class="fa fa-github"></i></a>{% endif %}
+            <a href="{{ featured.website_url }}" target="_blank"><i class="fa fa-link"></i></a>
+            {% if featured.repo_url %}<a href="{{ featured.repo_url }}" target="_blank"><i class="fa fa-github"></i></a>{% endif %}
           </span>
         </h1>
 
@@ -30,7 +30,7 @@
         </div>
         {% endif %}
 
-        <a href="#" class="btn btn-lg btn-default" target="=_blank">Read More</a>
+        <a href="{% url 'directory:detail' featured.id %}" class="btn btn-lg btn-default">Read More</a>
 
       </div>
     </div>
