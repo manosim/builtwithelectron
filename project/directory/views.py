@@ -36,9 +36,10 @@ class SubmitEntryView(TemplateView):
 class EntryDetailView(DetailView):
 
     model = Entry
+    slug_field = 'slug'
     template_name = "directory/detail.html"
 
     def get_context_data(self, **kwargs):
-            context = super(EntryDetailView, self).get_context_data(**kwargs)
-            # context['now'] = timezone.now()
-            return context
+        context = super(EntryDetailView, self).get_context_data(**kwargs)
+        # context['now'] = timezone.now()
+        return context

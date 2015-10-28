@@ -46,7 +46,7 @@
               <ul class="nav nav-pills nav-stacked links">
                 <li><a href="{{ entry.website_url }}" target="_blank">Website <i class="fa fa-link" title="Website"></i></a></li>
                 {% if entry.repo_url %}<li><a href="{{ entry.repo_url }}" target="_blank">Repository <i class="fa fa-github" title="Github"></i></a></li>{% endif %}
-                <li class="active"><a href="{% url 'directory:detail' entry.id %}">Read More</a></li>
+                <li class="active"><a href="{% url 'directory:detail' entry.slug %}">Read More</a></li>
               </ul>
             </div>
 

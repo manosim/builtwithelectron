@@ -5,5 +5,5 @@ urlpatterns = patterns('',
 
     url(r'^$', HomePageView.as_view(), name="home"),
     url(r'^submit/$', SubmitEntryView.as_view(), name="submit"),
-    url(r'^entries/(?P<pk>[^/]+)/$', EntryDetailView.as_view(), name='detail'),
+    url(r'^entries/(?P<slug>[\w-]+)/$', EntryDetailView.as_view(), name='detail'),
 )
