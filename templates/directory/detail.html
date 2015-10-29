@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block body_class %}detail-page{% endblock %}
-{% block pagetitle %}{{ object.name }}{% endblock %}
+{% block pagetitle %}{{ object.name }}: {{object.short_description}}{% endblock %}
 
 {% block content %}
 
@@ -11,7 +11,7 @@
   {% endif %}
 
   <h1>{{ object.name }}</h1>
-  <p>{{ object.description }}</p>
+  <p class="lead">{{ object.description }}</p>
 
 </div>
 
