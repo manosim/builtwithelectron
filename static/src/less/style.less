@@ -206,6 +206,32 @@ body {
     margin: 10px auto;
     max-height: 250px;
   }
+
+  h1 {
+    padding: 10px 0;
+    border-bottom: 1px solid @ThemePrimary;
+
+    .links {
+      float: right;
+
+      .fa {
+        margin: 0 0 10px 0;
+      }
+    }
+  }
+
+  .details {
+    text-align: right;
+  }
+
+  .tags {
+    .TagMixin(0 5px 0 0, 5px);
+    margin: 15px 0;
+
+    .tag {
+      font-size: 15px;
+    }
+  }
 }
 
 /* @end Entry Detail */
