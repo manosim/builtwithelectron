@@ -50,7 +50,7 @@ class Entry(models.Model):
     tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
 
     cover = models.ImageField(upload_to=upload_to, null=True, blank=True)
-    website_url = models.URLField()
+    website_url = models.URLField(null=True, blank=True)
     repo_url = models.URLField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
