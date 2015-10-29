@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block body_class %}profile-page{% endblock %}
+{% block pagetitle %}Profile{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <div class="profile">
+    <div class="avatar"><img src="{{ object.avatar_url}}" name="{{ object.name }}" /></div>
+    {{ object.username }}
+    {{ object.email }}
+    <p class="lead">{{ object.description }}</p>
+  </div>
+
+
+  <div class="entries">
+  {% if entries %}
+  {% for entry in entries %}
+    <h1>{{ entry.name }}</h1>
+  {% endfor %}
+  {% else %}
+    <h1>No entries. <a href="{% url 'directory:submit' %}">Submit</a> your first one?</h1>
+  {% endif %}
+  </div>
+
+</div>
+
+{% endblock %}
