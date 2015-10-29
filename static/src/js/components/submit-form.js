@@ -64,6 +64,14 @@ var SubmitForm = React.createClass({
     this.refs.dropzone.open();
   },
 
+  onClearCover: function () {
+    var data = this.state.data;
+    data['cover'] = null;
+    this.setState({
+      data: data
+    });
+  },
+
   tagRenderer: function (option) {
     return <span key={option.pk}>{option.label}</span>
   },
@@ -121,9 +129,9 @@ var SubmitForm = React.createClass({
   populateForm: function (args) {
     var data = this.state.data;
     data.name = capitalize(args.name);
-    data.shortDescription = args.description;
-    data.websiteUrl = args.homepage;
-    data.repoUrl = args.html_url;
+    data.shortDescription = args.description ? args.description : '';
+    data.websiteUrl = args.homepage ? args.homepage : '';
+    data.repoUrl = args.html_url ? args.html_url : '';
     this.setState({
       data: data
     });
@@ -158,7 +166,7 @@ var SubmitForm = React.createClass({
             {this.renderFieldErrors('short_description')}
           </div>
           <div className={this.state.errors['website_url'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='websiteUrl' className='control-label'>Website Url <span className='required'>*</span></label>
+            <label htmlFor='websiteUrl' className='control-label'>Website Url</label>
             <input type='text' id='websiteUrl' className='form-control input-lg' value={this.state.data.websiteUrl} onChange={this.handleChange.bind(this, 'websiteUrl')} />
             {this.renderFieldErrors('website_url')}
           </div>
@@ -185,6 +193,7 @@ var SubmitForm = React.createClass({
               <div>
                 <i className='fa fa-check-circle' />
                 <div className='filename'>{this.state.data.cover.name}</div>
+                <small className='clear' onClick={this.onClearCover}>Clear</small>
               </div>) : (
               <div>
                 <h4 className='text-center'>drop your awesome image here</h4>

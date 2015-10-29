@@ -7,13 +7,13 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('directory', '0003_entry_is_approved'),
+        ('directory', '0001_initial'),
     ]
 
     operations = [
-        migrations.AddField(
+        migrations.AlterField(
             model_name='entry',
-            name='is_featured',
-            field=models.BooleanField(default=False),
+            name='website_url',
+            field=models.URLField(null=True, blank=True),
         ),
     ]

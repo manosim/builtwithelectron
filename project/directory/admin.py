@@ -58,7 +58,7 @@ class IsFeaturedFilter(admin.SimpleListFilter):
 
 
 class EntriesAdmin(admin.ModelAdmin):
-    list_display = ('thumbnail_cover', 'name', 'short_description', 'author', 'get_tags', 'website_url', 'repo_url', 'created',)
+    list_display = ('thumbnail_cover', 'name', 'slug', 'short_description', 'author', 'repo_url', 'created',)
     list_filter = (IsApprovedFilter, HasCoverFilter, IsFeaturedFilter,)
 
     fieldsets = (

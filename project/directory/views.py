@@ -1,5 +1,6 @@
 from django.core import serializers
 from django.views.generic.base import TemplateView
+from django.views.generic.detail import DetailView
 from project.accounts.helpers import get_oauth_url
 from project.directory.models import Entry, Tag
 
@@ -20,7 +21,7 @@ class HomePageView(TemplateView):
 
 class SubmitEntryView(TemplateView):
 
-    template_name = "submit.html"
+    template_name = "directory/submit.html"
 
     def get_context_data(self, **kwargs):
         tags = Tag.objects.all()
@@ -29,4 +30,16 @@ class SubmitEntryView(TemplateView):
         context = super(SubmitEntryView, self).get_context_data(**kwargs)
         context['OAUTH_URL'] = get_oauth_url()
         context['tags'] = tags_json
+        return context
+
+
+class EntryDetailView(DetailView):
+
+    model = Entry
+    slug_field = 'slug'
+    template_name = "directory/detail.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(EntryDetailView, self).get_context_data(**kwargs)
+        # context['now'] = timezone.now()
         return context

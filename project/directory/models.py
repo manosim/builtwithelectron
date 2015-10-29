@@ -2,6 +2,7 @@ import os
 import uuid
 from django.db import models
 from django.conf import settings
+from django.utils.text import slugify
 from mail_templated import send_mail
 from project.accounts.models import User
 
@@ -43,12 +44,13 @@ class Entry(models.Model):
     modified = models.DateTimeField(auto_now=True)
 
     name = models.CharField(max_length=255, unique=True)
+    slug = models.SlugField(unique=True)
     short_description = models.CharField(max_length=255)
     author = models.ForeignKey(User, related_name="entries")
     tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
 
     cover = models.ImageField(upload_to=upload_to, null=True, blank=True)
-    website_url = models.URLField()
+    website_url = models.URLField(null=True, blank=True)
     repo_url = models.URLField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)
 
@@ -91,5 +93,9 @@ class Entry(models.Model):
 
         except self.DoesNotExist:
             pass
+
+        # Auto-populate the slugfield
+        if not self.slug:
+            self.slug = slugify(self.name)
 
         super(Entry, self).save(*args, **kwargs)
