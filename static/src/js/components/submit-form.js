@@ -64,6 +64,14 @@ var SubmitForm = React.createClass({
     this.refs.dropzone.open();
   },
 
+  onClearCover: function () {
+    var data = this.state.data;
+    data['cover'] = null;
+    this.setState({
+      data: data
+    });
+  },
+
   tagRenderer: function (option) {
     return <span key={option.pk}>{option.label}</span>
   },
@@ -185,6 +193,7 @@ var SubmitForm = React.createClass({
               <div>
                 <i className='fa fa-check-circle' />
                 <div className='filename'>{this.state.data.cover.name}</div>
+                <small className='clear' onClick={this.onClearCover}>Clear</small>
               </div>) : (
               <div>
                 <h4 className='text-center'>drop your awesome image here</h4>
