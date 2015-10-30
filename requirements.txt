@@ -1,6 +1,6 @@
 Django==1.8.5
-PyMySQL==0.6.7
 dj-database-url==0.3.0
+psycopg2==2.6.1
 djangorestframework==3.2.4
 django-mail-templated==0.2.2
 django-flat-theme==1.1.1

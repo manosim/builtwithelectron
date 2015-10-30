@@ -2,7 +2,9 @@
 @import "../../../node_modules/font-awesome/less/font-awesome.less";
 @import "../../../node_modules/react-select/less/select.less";
 
-/* @group Colors */
+/* @group Variables */
+
+@CustomWidth: 560px;
 
 @ThemePrimary: #24adfa;
 
@@ -11,7 +13,7 @@
 @White: #FFF;
 @Gray: #555;
 
-/* @end Colors */
+/* @end Variables */
 
 
 /* @group Bootstrap Overrides */
@@ -237,12 +239,26 @@ body {
 /* @end Entry Detail */
 
 
+/* @group Profile View */
+
+.profile-page {
+
+  .profile,
+  .entries {
+    max-width: @CustomWidth;
+    margin: 10px auto;
+  }
+}
+
+/* @end Profile View */
+
+
 /* @group Submit Form */
 
 .submit-page {
 
   .submit-form {
-    max-width: 560px;
+    max-width: @CustomWidth;
     display: block;
     margin: 10px auto;
   }

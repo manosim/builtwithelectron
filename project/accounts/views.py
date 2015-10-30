@@ -3,6 +3,8 @@ from django.conf import settings
 from django.contrib.auth import login
 from django.http import Http404
 from django.views.generic.base import RedirectView
+from django.views.generic.detail import DetailView
+from django.shortcuts import get_object_or_404
 from project.accounts.models import User
 
 
@@ -60,3 +62,17 @@ class OAuthCallbackView(RedirectView):
 
         # Finally redirect the user to the homepage view
         return super(OAuthCallbackView, self).get_redirect_url(*args, **kwargs)
+
+
+class ProfileView(DetailView):
+
+    template_name = "accounts/profile.html"
+
+    def get_object(self, queryset=None):
+        return get_object_or_404(User, username=self.request.user.username)
+
+    def get_context_data(self, **kwargs):
+        entries = self.request.user.entries.all()
+        context = super(ProfileView, self).get_context_data(**kwargs)
+        context['entries'] = entries
+        return context
