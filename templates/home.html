@@ -19,7 +19,7 @@
             {% if entry.cover %}
             <div class="col-md-3">
               {% if entry.cover %}
-              <img src="uploads/{{ entry.cover }}" alt="{{ entry.name }}" title="{{ entry.name }}" class="img-responsive cover " />
+              <img src="{{ MEDIA_URL }}{{ entry.cover }}" alt="{{ entry.name }}" title="{{ entry.name }}" class="img-responsive cover " />
               {% endif %}
             </div>
             {% endif %}
