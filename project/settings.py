@@ -106,7 +106,14 @@ AUTH_USER_MODEL = 'accounts.User'
 
 EMAIL_BACKEND = os.environ['EMAIL_BACKEND']
 DEFAULT_FROM_EMAIL = "Built with Electron <hello@builtwithelectron.com>"
+
+# Email SMTP Settings - Used only for SMTP
+
+EMAIL_HOST = 'localhost'
+EMAIL_PORT = 25
+
 SITE_URL = os.environ['SITE_URL']
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
