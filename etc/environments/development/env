@@ -4,5 +4,4 @@ export EMAIL_BACKEND=django.core.mail.backends.console.EmailBackend
 export SECRET_KEY='684daqix!#7+m-kxw+=1bo_yg&sx4eg42p#90xsKgoq3zg35u'
 export GITHUB_CLIENT_ID=efa7cf95d1f3ebc5a34e
 export GITHUB_CLIENT_SECRET=8b291ac896d1436002f7aae5b38afb2c18526a11
-export GITHUB_REDIRECT_URI=http://0.0.0.0:8000/accounts/oauth-callback
 export SITE_URL=http://0.0.0.0:8000

@@ -13,10 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
-import pymysql
 from path import path
-
-pymysql.install_as_MySQLdb()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = path(__file__).dirname().parent
@@ -159,4 +156,3 @@ MEDIA_URL = '/uploads/'
 
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
 GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
-GITHUB_REDIRECT_URI = os.environ['GITHUB_REDIRECT_URI']
