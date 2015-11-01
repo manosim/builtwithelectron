@@ -5,3 +5,6 @@ env/
 node_modules/
 static/dist/
 writable-storage/
+
+etc/environments/staging/env
+etc/environments/production/env
