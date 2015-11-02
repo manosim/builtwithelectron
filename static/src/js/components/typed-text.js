@@ -5,21 +5,26 @@ var malarkey = require('malarkey');
 var TypedText = React.createClass({
 
   componentDidMount: function() {
-    var elem = document.querySelector('.typed-text');
+    var elem = document.querySelector('.typed-text-content');
     var opts = {
       typeSpeed: 50,
       deleteSpeed: 50,
-      pauseDelay: 2000,
+      pauseDelay: 1000,
       loop: true,
       postfix: ''
     };
-    malarkey(elem, opts).type('Say hello')   .pause().delete()
-                        .type('Wave goodbye').pause().delete();
+    malarkey(elem, opts)
+      .type('Atom').pause().delete()
+      .type('Slack').pause().delete()
+      .type('GitHub Desktop').pause().delete()
+      .type('Visual Studio').pause().delete();
   },
 
   render: function () {
     return (
-      <div className='typed-text'></div>
+      <h2 className='typed-text'>
+        <span className='typed-text-content' /><span className='cursor'>|</span> is made with Electron.
+      </h2>
     );
   }
 });

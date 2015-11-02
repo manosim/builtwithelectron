@@ -144,6 +144,41 @@ body {
     margin-bottom: 20px;
   }
 
+  .typed-text {
+    padding: 10px 5px;
+    text-align: center;
+    margin-top: 10px;
+
+    .typed-text-content {
+      color: @ThemePrimary;
+    }
+
+    .cursor {
+      opacity: 1;
+      -webkit-animation: blink 0.9s infinite;
+      -moz-animation: blink 0.9s infinite;
+      animation: blink 0.9s infinite;
+      padding-left: 5px;
+      color: @Gray;
+
+      @keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-webkit-keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+      @-moz-keyframes blink {
+        0% { opacity: 1; }
+        50% { opacity: 0; }
+        100% { opacity: 1; }
+      }
+    }
+  }
+
   .latest {
 
     > .row {
