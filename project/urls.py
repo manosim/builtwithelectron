@@ -18,6 +18,7 @@ from django.conf.urls import include, url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from project.common.views import RobotsView
 
 api_urls = [
     url(r'^directory/', view=include('project.directory.urls_api', namespace='directory')),
@@ -25,11 +26,14 @@ api_urls = [
 
 urlpatterns = [
 
-    url(r'^', view=include('project.directory.urls', namespace='directory')),
     url('api/', include(api_urls, namespace='api')),
+
+    url(r'^', view=include('project.directory.urls', namespace='directory')),
     url(r'^accounts/', view=include('project.accounts.urls', namespace='accounts')),
     url(r'^admin/', include(admin.site.urls)),
 
+    # Robots
+    url(regex=r'^robots.txt$', view=RobotsView.as_view()),
 ]
 
 urlpatterns += staticfiles_urlpatterns()

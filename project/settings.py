@@ -49,6 +49,7 @@ INSTALLED_APPS = (
 
     # Apps
     'project.accounts',
+    'project.common',
     'project.directory'
 )
 
