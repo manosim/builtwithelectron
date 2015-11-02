@@ -5,6 +5,8 @@
   {% featured %}
 
   <div class="container">
+    <div id="typed-text"></div>
+
     <h3>A few words</h3>
     <p class="lead">Bringing togeher <strong>awesome</strong> applications made with <a href="http://electron.atom.io/" target="_blank">Electron</a>. Open-Source or not, feel free to submit your apps! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
@@ -59,5 +61,15 @@
     {% endif %}
 
   </div>
+
+{% endblock %}
+
+{% block javascript %}
+
+  <script type="text/javascript">
+    $( document ).ready(function() {
+      window.setupTypedText();
+    });
+  </script>
 
 {% endblock %}
