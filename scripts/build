@@ -4,9 +4,8 @@ set -e
 
 if [ "$1" == "dev" ] || [ "$1" == "staging" ] || [ "$1" == "production" ]; then
     pyvenv env
-    source env/bin/activate
 
-    pip install -r requirements.txt
+    env/bin/pip install -r requirements.txt
 
     npm install
     npm run build
