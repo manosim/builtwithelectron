@@ -294,6 +294,36 @@ body {
     max-width: @CustomWidth;
     margin: 10px auto;
   }
+
+  .profile {
+
+    .avatar {
+      .BorderRadius(50%);
+      border: 5px solid @ThemePrimary;
+      max-width: 200px;
+      display: block;
+      margin: 10px auto 20px;
+    }
+
+    .username,
+    .email {
+      font-size: 20px;
+      text-align: center;
+      padding: 5px 10px;
+      margin: 10px 0;
+      word-wrap: break-word;
+
+      span {
+        font-size: 16px;
+        color: @ThemePrimary;
+      }
+    }
+
+    .github {
+      max-width: 300px;
+      margin: 5px auto;
+    }
+  }
 }
 
 /* @end Profile View */

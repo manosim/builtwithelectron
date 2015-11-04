@@ -77,6 +77,9 @@ class User(AbstractBaseUser):
         # Simplest possible answer: All admins are staff
         return self.is_admin
 
+    def get_github_url(self):
+        return ("http://www.github.com/%s" % self.username)
+
     def _get_avatar_link(self, url):
         if not url:
             return None
