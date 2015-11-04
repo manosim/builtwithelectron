@@ -6,12 +6,15 @@ if [ "$1" == "dev" ] || [ "$1" == "staging" ] || [ "$1" == "production" ]; then
     pyvenv env
     source env/bin/activate
 
-    if [ "$1" == "dev" ]; then
-        source etc/environments/development/env
-    elif [ "$1" == "staging" ]; then
-        source etc/environments/staging/env
+    pip install -r requirements.txt
+
+    npm install
+    npm run build
+
+    if [ "$1" == "staging" ]; then
+        env/bin/honcho --app-root etc/environments/staging run env/bin/python manage.py collectstatic --noinput
     elif [ "$1" == "production" ]; then
-        source etc/environments/production/env
+        env/bin/honcho --app-root etc/environments/production run env/bin/python manage.py collectstatic --noinput
     fi
 
 else
@@ -20,13 +23,4 @@ else
     echo -e "Please try again using 'dev' or 'staging' or 'production'."
     echo ""
     exit
-fi
-
-pip install -r requirements.txt
-
-npm install
-npm run build
-
-if [ "$1" == "staging" ] || [ "$1" == "production" ]; then
-    python manage.py collectstatic --noinput
 fi

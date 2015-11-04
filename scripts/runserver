@@ -3,16 +3,14 @@
 set -e
 
 if [ "$1" == "dev" ] || [ "$1" == "staging" ] || [ "$1" == "production" ]; then
-    source env/bin/activate
     if [ "$1" == "dev" ]; then
-        source etc/environments/development/env
+        env/bin/honcho --app-root etc/environments/development start
     elif [ "$1" == "staging" ]; then
-        source etc/environments/staging/env
+        env/bin/honcho --app-root etc/environments/staging start
     elif [ "$1" == "production" ]; then
-        source etc/environments/production/env
+        env/bin/honcho --app-root etc/environments/production start
     fi
 
-    python manage.py runserver 0.0.0.0:8000
 else
     echo ""
     echo -e "WARNING!\033[0;31m You did not pass an environment. \033[0m";

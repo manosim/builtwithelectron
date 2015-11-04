@@ -1,7 +1,0 @@
-export DEBUG=true
-export DATABASE_URL=postgres://user:password@localhost/bwedb
-export EMAIL_BACKEND=django.core.mail.backends.smtp.EmailBackend
-export SECRET_KEY='684daqix!#7+m-kxw+=1bo_yg&sx4eg42p#90xsKgoq3zg35u'
-export GITHUB_CLIENT_ID=ed61a16b3b1df2c6ac05
-export GITHUB_CLIENT_SECRET=ea25146eaa904c5989d225c10e8b1ba41884333a
-export SITE_URL=http://staging.builtwithelectron.com
