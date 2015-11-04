@@ -15,7 +15,6 @@
       {% for entry in latest %}
           <div class="row">
 
-
             {% if entry.cover %}
             <div class="col-md-3">
               {% if entry.cover %}
@@ -24,8 +23,15 @@
             </div>
             {% endif %}
 
-            <div class="{% if entry.cover %}col-md-6{% else %}col-md-9{% endif %} details">
-              <h3>{{ entry.name }}<span class="date">{{ entry.created | date:"M/d" }}</span></h3>
+            <div class="{% if entry.cover %}col-md-7{% else %}col-md-10{% endif %} details">
+              <h3>
+                {{ entry.name }}
+                <span class="links">
+                  <a href="{{ entry.website_url }}" target="_blank"><i class="fa fa-link" title="Website"></i></a>
+                  {% if entry.repo_url %}<a href="{{ entry.repo_url }}" target="_blank"><i class="fa fa-github" title="Github"></i></a>{% endif %}
+                </span>
+                <span class="date">{{ entry.created | date:"M/d" }}</span>
+              </h3>
 
               <p class="lead">{{ entry.short_description }}</p>
               <p class="lead description">{{ entry.description|truncatechars:"125" }}</p>
@@ -42,12 +48,8 @@
               {% endif %}
             </div>
 
-            <div class="col-md-3">
-              <ul class="nav nav-pills nav-stacked links">
-                <li><a href="{{ entry.website_url }}" target="_blank">Website <i class="fa fa-link" title="Website"></i></a></li>
-                {% if entry.repo_url %}<li><a href="{{ entry.repo_url }}" target="_blank">Repository <i class="fa fa-github" title="Github"></i></a></li>{% endif %}
-                <li class="active"><a href="{% url 'directory:detail' entry.slug %}">Read More</a></li>
-              </ul>
+            <div class="col-md-2">
+              <a class="btn btn-primary more" href="{% url 'directory:detail' entry.slug %}">Read<br />More</a>
             </div>
 
 
