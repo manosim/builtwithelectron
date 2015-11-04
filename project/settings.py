@@ -110,8 +110,12 @@ DEFAULT_FROM_EMAIL = "Built with Electron <hello@builtwithelectron.com>"
 
 # Email SMTP Settings - Used only for SMTP
 
-EMAIL_HOST = 'localhost'
-EMAIL_PORT = 25
+EMAIL_HOST = os.environ.get('EMAIL_HOST', None)
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', None)
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', None)
+EMAIL_PORT = os.environ.get('EMAIL_PORT', None)
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', None)
+
 
 SITE_URL = os.environ['SITE_URL']
 
