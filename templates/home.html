@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load featured %}
+{% load entry_row %}
 
 {% block content %}
   {% featured %}
@@ -13,48 +14,8 @@
     {% if latest %}
     <div class="latest">
       {% for entry in latest %}
-          <div class="row">
-
-            {% if entry.cover %}
-            <div class="col-md-3">
-              {% if entry.cover %}
-              <img src="{{ MEDIA_URL }}{{ entry.cover }}" alt="{{ entry.name }}" title="{{ entry.name }}" class="img-responsive cover " />
-              {% endif %}
-            </div>
-            {% endif %}
-
-            <div class="{% if entry.cover %}col-md-7{% else %}col-md-10{% endif %} details">
-              <h3>
-                {{ entry.name }}
-                <span class="links">
-                  <a href="{{ entry.website_url }}" target="_blank"><i class="fa fa-link" title="Website"></i></a>
-                  {% if entry.repo_url %}<a href="{{ entry.repo_url }}" target="_blank"><i class="fa fa-github" title="Github"></i></a>{% endif %}
-                </span>
-                <span class="date">{{ entry.created | date:"M/d" }}</span>
-              </h3>
-
-              <p class="lead">{{ entry.short_description }}</p>
-              <p class="lead description">{{ entry.description|truncatechars:"125" }}</p>
-
-              {% if entry.tags %}
-              <div class="tags">
-              {% for tag in entry.tags.all|slice:":5" %}
-                <div class="tag"># {{tag.name}}</div>
-              {% endfor %}
-                {% if entry.tags.all.count > 5 %}
-                <div class="tag" title="More tags...">...</div>
-                {% endif %}
-              </div>
-              {% endif %}
-            </div>
-
-            <div class="col-md-2">
-              <a class="btn btn-primary more" href="{% url 'directory:detail' entry.slug %}">Read<br />More</a>
-            </div>
-
-
-          </div>
-        {% endfor %}
+        {% entry_row entry %}
+      {% endfor %}
     </div>
     {% else %}
       <h1>There are no applications yet. Check back soon :)</h1>
