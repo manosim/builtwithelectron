@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load entry_row %}
+
+{% block body_class %}submit-page{% endblock %}
+{% block title %}Tag: {{ tag_name }} - {% endblock %}
+{% block pagetitle %}Entries with the #{{ tag_name }} tag{% endblock %}
+
+{% block content %}
+
+  <div class="container">
+  {% for entry in object_list %}
+    {% entry_row entry %}
+  {% endfor %}
+  </div>
+
+{% endblock %}

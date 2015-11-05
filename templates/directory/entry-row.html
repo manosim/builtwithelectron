@@ -26,7 +26,7 @@
     {% if entry.tags %}
     <div class="tags">
     {% for tag in entry.tags.all|slice:":5" %}
-      <div class="tag"># {{tag.name}}</div>
+      <a class="tag" href="{% url 'directory:tag-entries' tag.name %}"># {{tag.name}}</a>
     {% endfor %}
       {% if entry.tags.all.count > 5 %}
       <div class="tag" title="More tags...">...</div>

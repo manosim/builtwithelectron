@@ -1,5 +1,6 @@
 from django.core import serializers
 from django.views.generic.base import TemplateView
+from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from project.accounts.helpers import get_oauth_url
 from project.directory.models import Entry, Tag
@@ -42,4 +43,21 @@ class EntryDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super(EntryDetailView, self).get_context_data(**kwargs)
         # context['now'] = timezone.now()
+        return context
+
+
+class TagEntriesListView(ListView):
+
+    model = Entry
+    template_name = "directory/tag-entries.html"
+    paginate_by = 5
+
+    def get_queryset(self):
+        slug = self.kwargs['slug']
+        queryset = Entry.objects.filter(tags__name=slug)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super(TagEntriesListView, self).get_context_data(**kwargs)
+        context['tag_name'] = self.kwargs['slug']
         return context
