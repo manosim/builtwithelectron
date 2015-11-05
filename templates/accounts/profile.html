@@ -1,36 +1,29 @@
 {% extends "base.html" %}
+{% load entry_row %}
+
 {% block body_class %}profile-page{% endblock %}
 {% block title %}Profile - {% endblock %}
 {% block pagetitle %}Profile{% endblock %}
 
 {% block content %}
-
-<div class="container">
-
-  <div class="profile">
-    <img class="img-responsive avatar" src="{{ object.avatar_url}}" name="{{ object.name }}" />
-    <div class="username"><span>Username:</span> {{ object.username }}</div>
-    <div class="email"><span>Email:</span> {{ object.email }}</div>
-    <a class="btn btn-primary btn-lg btn-block github" target="_blank" href="{{ object.get_github_url }}"><i class="fa fa-github"></i> GitHub Profile</a>
+  <div class="container profile">
+      <img class="img-responsive avatar" src="{{ object.avatar_url}}" name="{{ object.name }}" />
+      <div class="username"><span>Username:</span> {{ object.username }}</div>
+      <div class="email"><span>Email:</span> {{ object.email }}</div>
+      <a class="btn btn-primary btn-lg btn-block github" target="_blank" href="{{ object.get_github_url }}"><i class="fa fa-github"></i> GitHub Profile</a>
   </div>
 
+  <h3 class="page-title">
+    <div class="container">User's Submissions <span class="count">{{ entries_total }} {% if entries_total == 1 %}Entry{% else %}Entries{% endif %}</span></div>
+  </h3>
 
-  <div class="entries">
-    <h2>User's Submissions</h2>
+  <div class="container entries">
     {% if entries %}
-
-    {% for entry in entries %}
-      <h3>{{ entry.name }}</h3>
-      <p class="lead">{{ entry.short_description }}</p>
-      <p class="lead description">{{ entry.description }}</p>
-      {% if not forloop.last %}<hr />{% endif %}
-    {% endfor %}
-
+      {% for entry in entries %}
+        {% entry_row entry %}
+      {% endfor %}
     {% else %}
       <h3>No entries. <a href="{% url 'directory:submit' %}">Submit</a> your first one?</h3>
     {% endif %}
   </div>
-
-</div>
-
 {% endblock %}

@@ -9,4 +9,7 @@ def stats():
     entries_count = Entry.objects.filter(is_approved=True).count()
     tags_count = Tag.objects.all().count()
 
-    return {'entries_count': entries_count, 'tags_count': tags_count}
+    return {
+        'entries_count': entries_count,
+        'tags_count': tags_count
+    }
