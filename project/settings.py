@@ -156,7 +156,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static', 'dist'),
 )
-
+STATICFILES_STORAGE = os.environ['STATICFILES_STORAGE']
 
 # Media
 

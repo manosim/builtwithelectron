@@ -11,3 +11,4 @@ path.py==8.1.2
 requests==2.8.1
 Pillow==3.0.0
 waitress==0.8.10
+whitenoise==2.0.4
