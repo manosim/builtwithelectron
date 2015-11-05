@@ -8,29 +8,22 @@
 {% block content %}
 
   <div class="container">
-  {% for entry in object_list %}
-    {% entry_row entry %}
-  {% endfor %}
+    {% for entry in object_list %}
+      {% entry_row entry %}
+    {% endfor %}
+
+    {% if object_list %}
+    <nav>
+      <ul class="pager">
+        <li class="previous {% if not page_obj.has_previous %}disabled{% endif%}">
+          <a href="{% if page_obj.has_previous %}{{ request.path }}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}"><span aria-hidden="true">&larr;</span> Older</a>
+        </li>
+        <li class="next {% if not page_obj.has_next %}disabled{% endif%}">
+          <a href="{% if page_obj.has_next %}{{ request.path }}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">Newer <span aria-hidden="true">&rarr;</span></a>
+        </li>
+      </ul>
+    </nav>
+    {% endif %}
+
   </div>
-
-  <nav>
-    <ul class="pagination">
-      <li class="{% if not page_obj.has_previous %}disabled{% endif%}">
-        <a href="{% if page_obj.has_previous %}{{ request.path }}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}" aria-label="Previous">
-          <span aria-hidden="true">&laquo;</span>
-        </a>
-      </li>
-
-      {% for page_number in paginator.page_range %}
-        <li class="{% if page_number == page_obj.number %}active{% endif %}"><a href="{{ request.path }}?page={{page_number}}">{{page_number}}</a></li>
-      {% endfor %}
-
-      <li class="{% if not page_obj.has_next %}disabled{% endif%}">
-        <a href="{% if page_obj.has_next %}{{ request.path }}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}" aria-label="Next">
-          <span aria-hidden="true">&raquo;</span>
-        </a>
-      </li>
-    </ul>
-  </nav>
-
 {% endblock %}
