@@ -24,7 +24,7 @@
   {% if object.tags %}
   <div class="tags">
   {% for tag in object.tags.all %}
-    <div class="tag"># {{tag.name}}</div>
+    <a class="tag" href="{% url 'directory:tag-entries' tag.name %}"># {{tag.name}}</a>
   {% endfor %}
   </div>
   {% endif %}
