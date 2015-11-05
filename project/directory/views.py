@@ -10,7 +10,7 @@ class HomePageView(ListView):
 
     model = Entry
     template_name = "home.html"
-    paginate_by = 1
+    paginate_by = 10
 
     def get_queryset(self):
         latest = Entry.objects.all().order_by('-created')  # FIXME: Get only approved entries

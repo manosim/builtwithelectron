@@ -151,10 +151,10 @@ REST_FRAMEWORK = {
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
-STATIC_ROOT = PROJECT_DIR / 'collected-static'
+STATIC_ROOT = os.path.join(BASE_DIR, 'collected-static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
-    os.path.join(PROJECT_DIR, 'static', 'dist'),
+    os.path.join(BASE_DIR, 'static', 'dist'),
 )
 STATICFILES_STORAGE = os.environ['STATICFILES_STORAGE']
 
