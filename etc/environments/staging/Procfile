@@ -1,1 +1,1 @@
-web: PYTHONUNBUFFERED=true env/bin/python manage.py runserver 0.0.0.0:8000
+web: PYTHONUNBUFFERED=true env/bin/waitress-serve --port $PORT project.wsgi:application
