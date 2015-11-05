@@ -11,14 +11,27 @@
 
     <h2>Latest applications made with electron</h2>
 
-    {% if latest %}
+    {% if object_list %}
     <div class="latest">
-      {% for entry in latest %}
+      {% for entry in object_list %}
         {% entry_row entry %}
       {% endfor %}
     </div>
     {% else %}
       <h1>There are no applications yet. Check back soon :)</h1>
+    {% endif %}
+
+    {% if object_list %}
+    <nav>
+      <ul class="pager">
+        <li class="previous {% if not page_obj.has_previous %}disabled{% endif%}">
+          <a href="{% if page_obj.has_previous %}{{ request.path }}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}"><span aria-hidden="true">&larr;</span> Newer</a>
+        </li>
+        <li class="next {% if not page_obj.has_next %}disabled{% endif%}">
+          <a href="{% if page_obj.has_next %}{{ request.path }}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">Older <span aria-hidden="true">&rarr;</span></a>
+        </li>
+      </ul>
+    </nav>
     {% endif %}
 
   </div>

@@ -6,17 +6,20 @@ from project.accounts.helpers import get_oauth_url
 from project.directory.models import Entry, Tag
 
 
-class HomePageView(TemplateView):
+class HomePageView(ListView):
 
+    model = Entry
     template_name = "home.html"
+    paginate_by = 1
+
+    def get_queryset(self):
+        latest = Entry.objects.all().order_by('-created')  # FIXME: Get only approved entries
+        # latest = Entry.objects.filter(is_approved=True, is_featured=False)
+        return latest
 
     def get_context_data(self, **kwargs):
-        latest = Entry.objects.all()[:5]  # FIXME: Get only approved entries
-        # latest = Entry.objects.filter(is_approved=True, is_featured=False)[:5]
-
         context = super(HomePageView, self).get_context_data(**kwargs)
         context['OAUTH_URL'] = get_oauth_url()
-        context['latest'] = latest
         return context
 
 
@@ -50,7 +53,7 @@ class TagEntriesListView(ListView):
 
     model = Entry
     template_name = "directory/tag-entries.html"
-    paginate_by = 5
+    paginate_by = 10
 
     def get_queryset(self):
         slug = self.kwargs['slug']
