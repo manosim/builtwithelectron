@@ -1,0 +1,25 @@
+#!/bin/bash
+
+set -e
+
+if [ "$1" == "dev" ] || [ "$1" == "staging" ] || [ "$1" == "production" ]; then
+    pyvenv env
+
+    env/bin/pip install -r requirements.txt
+
+    npm install
+    npm run build
+
+    if [ "$1" == "staging" ]; then
+        env/bin/honcho --app-root etc/environments/staging run env/bin/python manage.py collectstatic --noinput
+    elif [ "$1" == "production" ]; then
+        env/bin/honcho --app-root etc/environments/production run env/bin/python manage.py collectstatic --noinput
+    fi
+
+else
+    echo ""
+    echo -e "WARNING!\033[0;31m You did not pass an environment. \033[0m";
+    echo -e "Please try again using 'dev' or 'staging' or 'production'."
+    echo ""
+    exit
+fi

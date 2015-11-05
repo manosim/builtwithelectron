@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block body_class %}submit-page{% endblock %}
+{% block title %}Submit - {% endblock %}
 {% block pagetitle %}Submit your electron application{% endblock %}
 
 {% block content %}
@@ -7,6 +8,7 @@
   {% if user.is_authenticated %}
     <div id="submit-form"></div>
   {% else %}
+    <h3 class="text-center">Hey! It looks like you have not logged in yet!</h3>
     <a class="btn btn-primary btn-lg login-button" href="{{ OAUTH_URL }}"><i class="fa fa-github"></i> Login with GitHub</a>
   {% endif %}
   </div>

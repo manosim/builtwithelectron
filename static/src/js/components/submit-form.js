@@ -107,7 +107,7 @@ var SubmitForm = React.createClass({
     });
 
     apiRequests
-      .post('http://0.0.0.0:8000/api/directory/submit/', this.state.data, this.props.csrfToken)
+      .post('/api/directory/submit/', this.state.data, this.props.csrfToken)
       .end(function (err, response) {
         if (response && response.ok) {
           self.setState({

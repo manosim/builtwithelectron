@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block body_class %}detail-page{% endblock %}
+{% block title %}{{ object.name }} - {% endblock %}
 {% block pagetitle %}{{ object.name }}: {{object.short_description}}{% endblock %}
 
 {% block content %}
@@ -7,7 +8,7 @@
 <div class="container">
 
   {% if object.cover %}
-  <img src="../../uploads/{{ object.cover }}" alt="{{ object.name }}" title="{{ object.name }}" class="img-responsive cover" />
+  <img src="{{ MEDIA_URL }}{{ object.cover }}" alt="{{ object.name }}" title="{{ object.name }}" class="img-responsive cover" />
   {% endif %}
 
   <h1>
@@ -28,7 +29,11 @@
   </div>
   {% endif %}
 
+  {% if object.description %}
   <p class="lead">{{ object.description }}</p>
+  {% else %}
+  <p class="lead">No further description available.</p>
+  {% endif %}
 
 </div>
 

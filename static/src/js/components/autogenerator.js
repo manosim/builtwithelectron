@@ -26,8 +26,11 @@ var SubmitForm = React.createClass({
   onSubmit: function () {
     var self = this;
     var slug = this.state.url.split('.com/')[1];
-    var owner = slug.split('/')[0];
-    var repo = slug.split('/')[1];
+    var regex = /^(http[s]?:\/\/)?(www\.)?github\.com\/([^\/]+)\/([^\/]+)[\/]?.*$/i;
+    var result = regex.exec(this.state.url);
+
+    var owner = result[3];
+    var repo = result[4];
 
     this.setState({
       loading: true,

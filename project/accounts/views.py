@@ -75,4 +75,5 @@ class ProfileView(DetailView):
         entries = self.request.user.entries.all()
         context = super(ProfileView, self).get_context_data(**kwargs)
         context['entries'] = entries
+        context['entries_total'] = entries.count()
         return context

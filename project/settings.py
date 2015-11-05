@@ -13,10 +13,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
-import pymysql
 from path import path
-
-pymysql.install_as_MySQLdb()
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_DIR = path(__file__).dirname().parent
@@ -30,7 +27,7 @@ SECRET_KEY = os.environ['SECRET_KEY']
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['builtwithelectron.com', 'staging.builtwithelectron.com']
 
 
 # Application definition
@@ -52,6 +49,7 @@ INSTALLED_APPS = (
 
     # Apps
     'project.accounts',
+    'project.common',
     'project.directory'
 )
 
@@ -78,6 +76,8 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.media',
+                'django.template.context_processors.static',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -107,7 +107,18 @@ AUTH_USER_MODEL = 'accounts.User'
 
 EMAIL_BACKEND = os.environ['EMAIL_BACKEND']
 DEFAULT_FROM_EMAIL = "Built with Electron <hello@builtwithelectron.com>"
+
+# Email SMTP Settings - Used only for SMTP
+
+EMAIL_HOST = os.environ.get('EMAIL_HOST', None)
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER', None)
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD', None)
+EMAIL_PORT = os.environ.get('EMAIL_PORT', None)
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', None)
+
+
 SITE_URL = os.environ['SITE_URL']
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -145,7 +156,7 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static', 'dist'),
 )
-
+STATICFILES_STORAGE = os.environ['STATICFILES_STORAGE']
 
 # Media
 
@@ -157,4 +168,3 @@ MEDIA_URL = '/uploads/'
 
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
 GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
-GITHUB_REDIRECT_URI = os.environ['GITHUB_REDIRECT_URI']

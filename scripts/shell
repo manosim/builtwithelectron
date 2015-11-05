@@ -4,11 +4,11 @@ set -e
 
 if [ "$1" == "dev" ] || [ "$1" == "staging" ] || [ "$1" == "production" ]; then
     if [ "$1" == "dev" ]; then
-        env/bin/honcho --app-root etc/environments/development start
+        env/bin/honcho --app-root etc/environments/development run env/bin/python manage.py shell
     elif [ "$1" == "staging" ]; then
-        env/bin/honcho --app-root etc/environments/staging start
+        env/bin/honcho --app-root etc/environments/staging run env/bin/python manage.py shell
     elif [ "$1" == "production" ]; then
-        env/bin/honcho --app-root etc/environments/production start
+        env/bin/honcho --app-root etc/environments/production run env/bin/python man age.py shell
     fi
 
 else
