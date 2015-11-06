@@ -239,15 +239,24 @@ body {
   }
 
   .more {
-    .BorderRadius(50%);
     display: block;
-    width: 100px;
-    height: 100px;
-    line-height: 24px;
     font-size: 18px;
-    margin: 20px auto 0;
-    padding: 25px 10px;
+    margin: 20px auto 20px;
+    padding: 8px 10px;
     text-align: center;
+
+    @media screen and (min-width: @screen-sm-max) {
+      .BorderRadius(50%);
+      width: 100px;
+      height: 100px;
+      line-height: 24px;
+      padding: 25px 10px;
+      margin: 20px auto 0;
+
+      span {
+        display: block;
+      }
+    }
   }
 }
 
