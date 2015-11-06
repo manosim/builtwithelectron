@@ -12,7 +12,7 @@
       {% entry_row entry %}
     {% endfor %}
 
-    {% if object_list %}
+    {% if page_obj.has_previous or page_obj.has_next %}
     <nav>
       <ul class="pager">
         <li class="previous {% if not page_obj.has_previous %}disabled{% endif%}">
