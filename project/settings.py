@@ -160,7 +160,7 @@ STATICFILES_STORAGE = os.environ['STATICFILES_STORAGE']
 
 # Media
 
-MEDIA_ROOT = PROJECT_DIR / 'writable-storage'
+MEDIA_ROOT = os.environ.get('MEDIA_ROOT', PROJECT_DIR / 'media')
 MEDIA_URL = '/uploads/'
 
 
