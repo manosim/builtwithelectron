@@ -5,7 +5,7 @@ var malarkey = require('malarkey');
 var TypedText = React.createClass({
 
   componentDidMount: function() {
-    var elem = document.querySelector('.typed-text-content');
+    var elem = document.querySelector('.typed');
     var opts = {
       typeSpeed: 50,
       deleteSpeed: 50,
@@ -23,7 +23,11 @@ var TypedText = React.createClass({
   render: function () {
     return (
       <h2 className='typed-text'>
-        <span className='typed-text-content' /><span className='cursor'>|</span> is made with Electron.
+        <div className='typed-text-content'>
+          <span className='typed' />
+          <span className='cursor'>|</span>
+        </div>
+        is made with Electron.
       </h2>
     );
   }

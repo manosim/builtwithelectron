@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "make-dirs": "mkdir -p static/dist/ && mkdir -p static/dist/js static/dist/css static/dist/fonts",
-    "copy-fonts": "cp -r node_modules/font-awesome/fonts static/dist",
+    "copy-fonts": "cp -r node_modules/bootstrap/fonts static/dist && cp -r node_modules/font-awesome/fonts static/dist",
     "build-less": "lessc --silent static/src/less/style.less static/dist/css/style.css",
     "build-js": "browserify -t babelify static/src/js/app.js -o static/dist/js/app.js",
     "build": "npm run make-dirs && npm run copy-fonts && npm run build-less & npm run build-js",

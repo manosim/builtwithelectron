@@ -8,17 +8,35 @@
   <div class="container">
     <div id="typed-text"></div>
     <p class="lead">Bringing togeher <strong>awesome</strong> applications made with <a href="http://electron.atom.io/" target="_blank">Electron</a>. Open-Source or not, feel free to submit your apps! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+  </div>
 
-    <h2>Latest applications made with electron</h2>
+  <h3 class="page-title">
+    <div class="container">Latest applications made with electron</div>
+  </h3>
 
-    {% if latest %}
+  <div class="container">
+
+    {% if object_list %}
     <div class="latest">
-      {% for entry in latest %}
+      {% for entry in object_list %}
         {% entry_row entry %}
       {% endfor %}
     </div>
     {% else %}
       <h1>There are no applications yet. Check back soon :)</h1>
+    {% endif %}
+
+    {% if page_obj.has_previous or page_obj.has_next %}
+    <nav>
+      <ul class="pager">
+        <li class="previous {% if not page_obj.has_previous %}disabled{% endif%}">
+          <a href="{% if page_obj.has_previous %}{{ request.path }}?page={{ page_obj.previous_page_number }}{% else %}#{% endif %}"><span aria-hidden="true">&larr;</span> Newer</a>
+        </li>
+        <li class="next {% if not page_obj.has_next %}disabled{% endif%}">
+          <a href="{% if page_obj.has_next %}{{ request.path }}?page={{ page_obj.next_page_number }}{% else %}#{% endif %}">Older <span aria-hidden="true">&rarr;</span></a>
+        </li>
+      </ul>
+    </nav>
     {% endif %}
 
   </div>

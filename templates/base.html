@@ -23,8 +23,7 @@
   <body class="{% block body_class %}homepage{% endblock %}">
     {% menu %}
 
-    {% url 'directory:home' as home_url %}
-    {% if request.get_full_path != home_url %}
+    {% if not is_homepage %}
     <h3 class="page-title">
       <div class="container">
         {% block pagetitle %}{% endblock %}
