@@ -3,23 +3,28 @@ Where awesome electron apps meet
 
 ### Prerequisites
 
- - MySQL Database: `bwedb`
+ - Postgres Database: `bwedb`
  - Python 3 (`brew install python3`)
  - Django
  - Django Rest Framework
  - React
 
 
-### Setup
+### Setup (Development)
 
-    pyvenv env
-    source env/bin/activate
-    source etc/environments/development/env
-    pip install -r requirements.txt
-    npm install
+There is a build script, that will do all the work for you. Just run:
+
+    scripts/build dev
 
 
 ### Development
 
-    npm run watch
+First run the django server and then use npm to build and watch for changes.
+
     scripts/runserver dev
+    npm start
+
+
+### Tests
+
+    scripts/runtests
