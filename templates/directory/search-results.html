@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block body_class %}search-results-page{% endblock %}
+{% block title %}Search Results - {% endblock %}
+{% block pagetitle %}Search Results for: {{ keywords}}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  <!-- {% if object.cover %}
+  <img src="{{ MEDIA_URL }}{{ object.cover }}" alt="{{ object.name }}" title="{{ object.name }}" class="img-responsive cover" />
+  {% endif %}
+
+  <h1>
+    {{ object.name }}
+    <span class="links">
+      <a href="{{ object.website_url }}" target="_blank"><i class="fa fa-link"></i></a>
+      {% if object.repo_url %}<a href="{{ object.repo_url }}" target="_blank"><i class="fa fa-github"></i></a>{% endif %}
+    </span>
+  </h1>
+
+  <div class="details">Submitted by <a href="http://www.github.com/{{ object.author.username }}" target="_blank">{{ object.author.username }}</a> on {{ object.created | date:"M d Y" }}.</div>
+
+  {% if object.tags %}
+  <div class="tags">
+  {% for tag in object.tags.all %}
+    <a class="tag" href="{% url 'directory:tag-entries' tag.name %}"># {{tag.name}}</a>
+  {% endfor %}
+  </div>
+  {% endif %}
+
+  {% if object.description %}
+  <p class="lead">{{ object.description }}</p>
+  {% else %}
+  <p class="lead">No further description available.</p>
+  {% endif %} -->
+
+</div>
+
+{% endblock %}

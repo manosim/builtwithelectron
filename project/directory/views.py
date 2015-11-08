@@ -4,6 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
 from project.accounts.helpers import get_oauth_url
 from project.directory.models import Entry, Tag
+from project.directory.forms import SearchForm
 
 
 class HomePageView(ListView):
@@ -65,3 +66,31 @@ class TagEntriesListView(ListView):
         context = super(TagEntriesListView, self).get_context_data(**kwargs)
         context['tag_name'] = self.kwargs['slug']
         return context
+
+
+class SearchResultsView(ListView):
+
+    model = Entry
+    template_name = "directory/search-results.html"
+    paginate_by = 10
+
+    def get_queryset(self):
+        print ("!!!!!!!!!")
+        print(self.kwargs)
+        print ("!!!!!!!!!")
+        results = Entry.objects.all()  # FIXME: Get only approved entries
+        # latest = Entry.objects.filter(is_approved=True, is_featured=False)
+        return results
+    #
+    # def get_context_data(self, **kwargs):
+    #     context = super(SearchResultsView, self).get_context_data(**kwargs)
+    #     return context
+
+    # def post(self, request, *args, **kwargs):
+    #     form = SearchForm(request.POST)
+    #     if form.is_valid():
+    #         print("VALID VALID VALID VALID!")
+    #         print("VALID VALID VALID VALID!")
+    #         print("VALID VALID VALID VALID!")
+    #
+    # return super(SearchResultsView, self).post(**kwargs)
