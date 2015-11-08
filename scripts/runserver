@@ -6,8 +6,10 @@ if [ "$1" == "dev" ] || [ "$1" == "staging" ] || [ "$1" == "production" ]; then
     if [ "$1" == "dev" ]; then
         env/bin/honcho --app-root etc/environments/development start
     elif [ "$1" == "staging" ]; then
+        cd /opt/builds/bwe
         env/bin/honcho --app-root etc/environments/staging start
     elif [ "$1" == "production" ]; then
+        cd /opt/builds/bwe
         env/bin/honcho --app-root etc/environments/production start
     fi
 
