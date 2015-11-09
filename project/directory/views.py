@@ -2,6 +2,7 @@ from django.core import serializers
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import FormMixin
 from project.accounts.helpers import get_oauth_url
 from project.directory.models import Entry, Tag
 from project.directory.forms import SearchForm
@@ -72,16 +73,21 @@ class SearchResultsView(ListView):
 
     model = Entry
     template_name = "directory/search-results.html"
+    form_class = SearchForm
     paginate_by = 10
 
+    # def get_success_url(self):
+    #     return reverse('author-detail', kwargs={'pk': self.object.pk})
+
     def get_queryset(self):
-        print ("!!!!!!!!!")
+        keywords = self.request.POST.get('keywords')
+        print("!!!!!!!!!")
         print(self.kwargs)
-        print ("!!!!!!!!!")
-        results = Entry.objects.all()  # FIXME: Get only approved entries
+        print("!!!!!!!!!")
+        results = Entry.objects.filter(slug=keywords)  # FIXME: Get only approved entries
         # latest = Entry.objects.filter(is_approved=True, is_featured=False)
-        return results
-    #
+        # return []
+
     # def get_context_data(self, **kwargs):
     #     context = super(SearchResultsView, self).get_context_data(**kwargs)
     #     return context
@@ -94,3 +100,19 @@ class SearchResultsView(ListView):
     #         print("VALID VALID VALID VALID!")
     #
     # return super(SearchResultsView, self).post(**kwargs)
+
+    def post(self, request, *args, **kwargs):
+        if not request.POST.get('keywords'):
+            return HttpResponseForbidden()
+
+        self.queryset = self.get_queryset()
+        # form = self.get_form()
+        # if form.is_valid():
+        # return self.form_valid(form)
+        # else:
+        #     return self.form_invalid(form)
+
+    def form_valid(self, form):
+        # Here, we would record the user's interest using the message
+        # passed in form.cleaned_data['message']
+        return super(SearchResultsView, self).form_valid(form)
