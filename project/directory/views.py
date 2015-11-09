@@ -1,5 +1,6 @@
 from django.core import serializers
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
@@ -95,8 +96,10 @@ class SearchResultsView(FormMixin, ListView):
 
     def get_queryset(self):
         keywords = self.request.POST.get('keywords')
-        results = Entry.objects.filter(slug=keywords)  # FIXME: Get only approved entries
-        results = Entry.objects.all()  # FIXME: Get only approved entries
+        results = Entry.objects.filter(
+            Q(name__icontains=keywords) | Q(short_description__icontains=keywords)
+        ).exclude(is_approved=False)  # FIXME: Get only approved entries
+        # results = Entry.objects.all()  # FIXME: Get only approved entries
         return results
 
     def get_context_data(self, **kwargs):
