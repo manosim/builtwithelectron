@@ -1,6 +1,6 @@
 from django.core import serializers
 from django.core.urlresolvers import reverse
-from django.http import HttpResponseRedirect, HttpResponse
+from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -79,39 +79,19 @@ class SearchResultsView(FormMixin, ListView):
     paginate_by = 10
 
     def get(self, request, *args, **kwargs):
-        print()
-        print()
-        print("GET")
-        print()
-        print()
-        self.object_list = self.get_queryset()
-        # allow_empty = self.get_allow_empty()
-        # if not allow_empty and len(self.object_list) == 0:
-        #     raise Http404(_(u"Empty list and '%(class_name)s.allow_empty' is False.")
-        #                   % {'class_name': self.__class__.__name__})
-        # self.object = None
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        context = self.get_context_data(object_list=self.object_list, form=form)
-        return self.render_to_response(context)
-
-    def post(self, request, *args, **kwargs):
         if not request.POST.get('keywords'):
             return HttpResponseRedirect(reverse('directory:home'))
 
-        self.queryset = self.get_queryset()
-        print()
-        # form_class = self.get_form_class()
-        # form = self.get_form(form_class)
-        return super(SearchResultsView, self).get(request, *args, **kwargs)
-        # context = self.get_context_data(object_list=self.object_list, form=form)
-        # # return self.render_to_response(context)
-        # self.object_list = self.get_queryset()
-        # return self.render_to_response(self.get_context_data(object_list=self.object_list, form=form))
+        self.object_list = self.get_queryset()
+        context = self.get_context_data(object_list=self.object_list)
+        return self.render_to_response(context)
 
-    def get_success_url(self):
-        pass
-        # return reverse('author-detail', kwargs={'pk': self.object.pk})
+    def post(self, request, *args, **kwargs):
+        if not self.request.POST.get('keywords'):
+            return HttpResponseRedirect(reverse('directory:home'))
+
+        self.queryset = self.get_queryset()
+        return super(SearchResultsView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
         keywords = self.request.POST.get('keywords')
@@ -119,11 +99,7 @@ class SearchResultsView(FormMixin, ListView):
         results = Entry.objects.all()  # FIXME: Get only approved entries
         return results
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(SearchResultsView, self).get_context_data(**kwargs)
-    #     return context
-
-    def form_valid(self, form):
-        # Here, we would record the user's interest using the message
-        # passed in form.cleaned_data['message']
-        return super(SearchResultsView, self).form_valid(form)
+    def get_context_data(self, **kwargs):
+        context = super(SearchResultsView, self).get_context_data(**kwargs)
+        context['keywords'] = self.request.POST.get('keywords')
+        return context
