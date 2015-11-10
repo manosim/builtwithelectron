@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load entry_row %}
 {% block body_class %}search-results-page{% endblock %}
 {% block title %}Search Results - {% endblock %}
 {% block pagetitle %}Search Results for: {{ keywords}}{% endblock %}
@@ -7,35 +8,15 @@
 
 <div class="container">
 
-  {{ object_list }}
-  
-  <!-- {% if object.cover %}
-  <img src="{{ MEDIA_URL }}{{ object.cover }}" alt="{{ object.name }}" title="{{ object.name }}" class="img-responsive cover" />
-  {% endif %}
-
-  <h1>
-    {{ object.name }}
-    <span class="links">
-      <a href="{{ object.website_url }}" target="_blank"><i class="fa fa-link"></i></a>
-      {% if object.repo_url %}<a href="{{ object.repo_url }}" target="_blank"><i class="fa fa-github"></i></a>{% endif %}
-    </span>
-  </h1>
-
-  <div class="details">Submitted by <a href="http://www.github.com/{{ object.author.username }}" target="_blank">{{ object.author.username }}</a> on {{ object.created | date:"M d Y" }}.</div>
-
-  {% if object.tags %}
-  <div class="tags">
-  {% for tag in object.tags.all %}
-    <a class="tag" href="{% url 'directory:tag-entries' tag.name %}"># {{tag.name}}</a>
-  {% endfor %}
+  {% if object_list %}
+  <div class="latest">
+    {% for entry in object_list %}
+      {% entry_row entry %}
+    {% endfor %}
   </div>
-  {% endif %}
-
-  {% if object.description %}
-  <p class="lead">{{ object.description }}</p>
   {% else %}
-  <p class="lead">No further description available.</p>
-  {% endif %} -->
+    <h1>Oops! We could not find anything matching your keywords.</h1>
+  {% endif %}
 
 </div>
 
