@@ -1,7 +1,5 @@
 from django.core import serializers
-from django.core.urlresolvers import reverse
 from django.db.models import Q
-from django.http import HttpResponseRedirect
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView

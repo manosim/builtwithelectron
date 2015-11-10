@@ -11,23 +11,41 @@ var SubmitForm = React.createClass({
 
   getInitialState: function () {
     return {
-      url: 'http://www.github.com/ekonstantinidis/gitify',
+      url: '',
       loading: false,
-      submitDisabled: false
+      submitDisabled: true,
+      errors: false
     };
   },
 
   handleChange: function (key, event) {
-    this.setState({
-      url: event.target.value
-    });
+    if (!event.target.value) {
+      this.setState({
+        url: event.target.value,
+        submitDisabled: true
+      });
+    } else {
+      this.setState({
+        url: event.target.value,
+        submitDisabled: false
+      });
+    }
   },
 
-  onSubmit: function () {
+  onSubmit: function (e) {
+    e.preventDefault();
+
     var self = this;
     var slug = this.state.url.split('.com/')[1];
     var regex = /^(http[s]?:\/\/)?(www\.)?github\.com\/([^\/]+)\/([^\/]+)[\/]?.*$/i;
     var result = regex.exec(this.state.url);
+
+    if (!result) {
+      this.setState({
+        errors: true
+      });
+      return;
+    }
 
     var owner = result[3];
     var repo = result[4];
@@ -35,6 +53,7 @@ var SubmitForm = React.createClass({
     this.setState({
       loading: true,
       submitDisabled: true,
+      errors: false
     });
 
     apiRequests
@@ -68,7 +87,7 @@ var SubmitForm = React.createClass({
         </Loading>
         <form className='form'>
           <div className='form-group'>
-            <input type='text' id='name' className='form-control input-lg' value={this.state.url} onChange={this.handleChange.bind(this, 'url')} />
+            <input type='text' id='name' className='form-control input-lg' value={this.state.url} placeholder='Example: http://www.github.com/atom/electron' onChange={this.handleChange.bind(this, 'url')} />
           </div>
           {this.state.errors ? (
             <div className='alert alert-danger'>Oops! Something went wrong and we could not auto-populate the form.</div>
