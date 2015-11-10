@@ -8,14 +8,16 @@
 
 <div class="container">
 
+  {% if not found %}
+    <h1>There are no applications yet. Check back soon :)</h1>
+  {% endif %}
+
   {% if object_list %}
   <div class="latest">
     {% for entry in object_list %}
       {% entry_row entry %}
     {% endfor %}
   </div>
-  {% else %}
-    <h1>Oops! We could not find anything matching your keywords.</h1>
   {% endif %}
 
 </div>

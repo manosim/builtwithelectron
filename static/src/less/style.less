@@ -364,29 +364,29 @@ body {
     max-width: @CustomWidth;
     display: block;
     margin: 10px auto;
-  }
 
-  .required {
-    color: @brand-warning;
+    .required {
+      color: @brand-warning;
+    }
+
+    .form-control {
+      border: 0;
+      border-bottom: 1px solid darken(@BodyBg, 50%);
+      background: darken(@BodyBg, 5%);;
+      .box-shadow(none);
+    }
+
+    .has-error {
+      .form-control {
+        border-color: @brand-warning;
+      }
+    }
   }
 
   .login-button {
     display: block;
     margin: 20px auto;
     max-width: 300px;
-  }
-
-  .form-control {
-    border: 0;
-    border-bottom: 1px solid darken(@BodyBg, 50%);
-    background: darken(@BodyBg, 5%);;
-    .box-shadow(none);
-  }
-
-  .has-error {
-    .form-control {
-      border-color: @brand-warning;
-    }
   }
 
   .Select {
@@ -410,6 +410,7 @@ body {
     	box-shadow: none;
     }
   }
+
   .dropzone {
     background-color: darken(@BodyBg, 5%);
     border-bottom: 1px solid darken(@BodyBg, 50%);

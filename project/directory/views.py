@@ -97,12 +97,13 @@ class SearchResultsView(FormMixin, ListView):
     def get_queryset(self):
         keywords = self.request.POST.get('keywords')
         results = Entry.objects.filter(
-            Q(name__icontains=keywords) | Q(short_description__icontains=keywords)
-        ).exclude(is_approved=False)  # FIXME: Get only approved entries
-        # results = Entry.objects.all()  # FIXME: Get only approved entries
+            Q(name__icontains=keywords) | Q(short_description__icontains=keywords) |
+            Q(author__username__icontains=keywords) | Q(description__icontains=keywords)
+        ).exclude(is_approved=False)
         return results
 
     def get_context_data(self, **kwargs):
         context = super(SearchResultsView, self).get_context_data(**kwargs)
         context['keywords'] = self.request.POST.get('keywords')
+        context['found'] = True if len(context['object_list']) else False
         return context
