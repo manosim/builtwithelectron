@@ -80,30 +80,33 @@ class SearchResultsView(FormMixin, ListView):
     paginate_by = 10
 
     def get(self, request, *args, **kwargs):
-        if not request.POST.get('keywords'):
-            return HttpResponseRedirect(reverse('directory:home'))
-
         self.object_list = self.get_queryset()
         context = self.get_context_data(object_list=self.object_list)
         return self.render_to_response(context)
 
     def post(self, request, *args, **kwargs):
-        if not self.request.POST.get('keywords'):
-            return HttpResponseRedirect(reverse('directory:home'))
-
         self.queryset = self.get_queryset()
         return super(SearchResultsView, self).get(request, *args, **kwargs)
 
     def get_queryset(self):
         keywords = self.request.POST.get('keywords')
-        results = Entry.objects.filter(
-            Q(name__icontains=keywords) | Q(short_description__icontains=keywords) |
-            Q(author__username__icontains=keywords) | Q(description__icontains=keywords)
-        ).exclude(is_approved=False)
-        return results
+        if keywords:
+            return Entry.objects.filter(
+                Q(name__icontains=keywords) | Q(short_description__icontains=keywords) |
+                Q(author__username__icontains=keywords) | Q(description__icontains=keywords)
+            ).exclude(is_approved=False)
+        return []
 
     def get_context_data(self, **kwargs):
         context = super(SearchResultsView, self).get_context_data(**kwargs)
+
+        object_list = context['object_list']
+
+        if object_list:
+            context['found'] = True
+        else:
+            context['found'] = False
+            context['object_list'] = Entry.objects.filter(is_approved=True)
+
         context['keywords'] = self.request.POST.get('keywords')
-        context['found'] = True if len(context['object_list']) else False
         return context

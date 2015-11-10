@@ -1,15 +1,15 @@
 {% extends "base.html" %}
 {% load entry_row %}
-{% block body_class %}search-results-page{% endblock %}
+{% block body_class %}search-results{% endblock %}
 {% block title %}Search Results - {% endblock %}
-{% block pagetitle %}Search Results for: {{ keywords}}{% endblock %}
+{% block pagetitle %}{% if keywords %}Search Results for: {{ keywords }}{% else %}No keywords provided.{% endif %}{% endblock %}
 
 {% block content %}
 
 <div class="container">
 
   {% if not found %}
-    <h1>There are no applications yet. Check back soon :)</h1>
+    <div class="alert alert-info">We could not find any results. Here are the latest submissions :)</div>
   {% endif %}
 
   {% if object_list %}
