@@ -110,6 +110,24 @@ body {
   border: 0;
   margin-bottom: 0;
 
+  .form-group {
+
+    .form-control {
+      background: none;
+      border: 0;
+      border-bottom: 2px solid darken(@ThemePrimary, 10%);
+      outline: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+
+      &::-webkit-input-placeholder { color: @Gray; }
+      &:-moz-placeholder { color: @Gray; opacity: 1; }
+      &::-moz-placeholder { color: @Gray; opacity:  1; }
+      &:-ms-input-placeholder { color: @Gray; }
+    }
+  }
+
   .avatar {
     .BorderRadius(9px);
     display: inline-block;
