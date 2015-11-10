@@ -19,9 +19,10 @@
       </ul>
 
       <form class="navbar-form navbar-left" action="{% url 'directory:search-results' %}" method="post">
-          {% csrf_token %}
-          {{ form }}
-          <input type="submit" value="Submit" />
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" class="form-control" id="id_keywords" maxlength="100" name="keywords" placeholder="Search...">
+        </div>
       </form>
 
       <!-- <form class="navbar-form navbar-left" role="search">
