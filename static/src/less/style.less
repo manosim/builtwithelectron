@@ -106,6 +106,10 @@ body {
 
 /* @group Navbar */
 
+.navbar-default {
+  position: relative;
+}
+
 .navbar {
   border: 0;
   margin-bottom: 0;
@@ -641,3 +645,59 @@ body {
 }
 
 /* @end Footer */
+
+
+/* @group GitHub Badge */
+
+.github-corner{
+  position: absolute;
+  top: 0;
+  right: 0;
+  display: none;
+
+  &:hover .octo-arm {
+    animation: octocat-wave 560ms ease-in-out;
+  }
+
+  @media screen and (min-width: @screen-sm-min) {
+    display: inline-block;
+  }
+}
+
+@keyframes octocat-wave {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  20% {
+    transform: rotate(-25deg);
+  }
+
+  40% {
+    transform: rotate(10deg);
+  }
+
+  60% {
+   transform: rotate(-25deg);
+  }
+
+  80% {
+    transform: rotate(10deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+@media (max-width: 500px) {
+    .github-corner:hover .octo-arm {
+        animation: none;
+    }
+
+    .github-corner .octo-arm {
+        animation: octocat-wave 560ms ease-in-out;
+    }
+}
+
+/* @end GitHub Badge */
