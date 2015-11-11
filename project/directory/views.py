@@ -75,7 +75,6 @@ class SearchResultsView(FormMixin, ListView):
     model = Entry
     template_name = "directory/search-results.html"
     form_class = SearchForm
-    paginate_by = 10
 
     def get(self, request, *args, **kwargs):
         self.object_list = self.get_queryset()
