@@ -1,5 +1,5 @@
-import os
 import uuid
+from cloudinary.models import CloudinaryField
 from django.db import models
 from django.conf import settings
 from django.utils.text import slugify
@@ -22,22 +22,11 @@ class Tag(models.Model):
         return self.name
 
 
-def upload_to(instance, filename):
-    """Return a unique path for the cover upload"""
-    random_string = uuid.uuid4().hex
-    filename = "%s-%s" % (random_string, filename)
-    return os.path.join(Entry.UPLOAD_PATH, filename)
-
-
 class Entry(models.Model):
 
     class Meta:
         ordering = ['-created']
         verbose_name_plural = "Entries"
-
-    UPLOAD_PATH = 'covers'
-    MAX_LOGO_WIDTH = 500
-    MAX_LOGO_HEIGHT = 500
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created = models.DateTimeField(auto_now_add=True, db_index=True)
@@ -49,7 +38,7 @@ class Entry(models.Model):
     author = models.ForeignKey(User, related_name="entries")
     tags = models.ManyToManyField(Tag, related_name="tags", blank=True)
 
-    cover = models.ImageField(upload_to=upload_to, null=True, blank=True)
+    cover = CloudinaryField(null=True, blank=True)
     website_url = models.URLField(null=True, blank=True)
     repo_url = models.URLField(null=True, blank=True)
     description = models.TextField(null=True, blank=True)

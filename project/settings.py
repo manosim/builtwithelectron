@@ -161,11 +161,6 @@ STATICFILES_DIRS = (
 )
 STATICFILES_STORAGE = os.environ['STATICFILES_STORAGE']
 
-# Media
-
-MEDIA_ROOT = os.environ.get('MEDIA_ROOT', PROJECT_DIR / 'media')
-MEDIA_URL = '/uploads/'
-
 
 # GitHub OAuth authentication
 
