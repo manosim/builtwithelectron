@@ -32,8 +32,8 @@
     "url": "https://github.com/ekonstantinidis/builtwithelectron/issues"
   },
   "engines": {
-    "node": "~4.2.0",
-    "npm": "~2.14.7"
+    "node": "4.2.0",
+    "npm": "2.14.x"
   },
   "homepage": "https://github.com/ekonstantinidis/builtwithelectron#readme",
   "dependencies": {
