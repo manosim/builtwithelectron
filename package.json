@@ -13,7 +13,7 @@
     "watch-js": "watchify -t babelify static/src/js/app.js -o static/dist/js/app.js -v",
     "watch": "npm run build && npm run watch-less & npm run watch-js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run watch & open -a '/Applications/Google Chrome.app' 'http://0.0.0.0:8000'",
+    "serve": "npm run watch & open -a '/Applications/Google Chrome.app' 'http://0.0.0.0:8000'",
     "postinstall": "npm run build"
   },
   "repository": {
@@ -31,10 +31,17 @@
   "bugs": {
     "url": "https://github.com/ekonstantinidis/builtwithelectron/issues"
   },
+  "engines": {
+    "node": "4.2.0",
+    "npm": "2.14.x"
+  },
   "homepage": "https://github.com/ekonstantinidis/builtwithelectron#readme",
   "dependencies": {
-    "bootstrap": "=3.3.5",
+    "babelify": "=6.3.0",
+    "browserify": "=11.2.0",
+    "bootstrap": "=3.3.6",
     "font-awesome": "=4.4.0",
+    "less": "=2.5.3",
     "malarkey": "=1.3.2",
     "react": "=0.14.0",
     "react-dom": "=0.14.0",
@@ -46,9 +53,6 @@
     "underscore.string": "=3.2.2"
   },
   "devDependencies": {
-    "babelify": "=6.3.0",
-    "browserify": "=11.2.0",
-    "less": "=2.5.3",
     "watch": "=0.16.0",
     "watchify": "=3.4.0"
   }
