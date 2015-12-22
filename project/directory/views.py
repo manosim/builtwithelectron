@@ -1,5 +1,6 @@
 from django.core import serializers
 from django.db.models import Q
+from django.shortcuts import get_object_or_404
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.views.generic.detail import DetailView
@@ -61,7 +62,8 @@ class TagEntriesListView(ListView):
 
     def get_queryset(self):
         slug = self.kwargs['slug']
-        queryset = Entry.objects.filter(tags__name=slug)
+        tag = get_object_or_404(Tag, name=slug)
+        queryset = Entry.objects.filter(tags=tag)
         return queryset
 
     def get_context_data(self, **kwargs):
