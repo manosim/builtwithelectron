@@ -11,6 +11,7 @@ from project.accounts.models import User
 class OAuthCallbackView(RedirectView):
 
     pattern_name = 'directory:home'
+    permanent = False
 
     def get_redirect_url(self, *args, **kwargs):
         code = self.request.GET.get('code', '')
