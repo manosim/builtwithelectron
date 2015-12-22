@@ -8,7 +8,7 @@
 <div class="container">
 
   {% if object.cover %}
-  <img src="{{ MEDIA_URL }}{{ object.cover }}" alt="{{ object.name }}" title="{{ object.name }}" class="img-responsive cover" />
+  <img src="{{ object.cover.url }}" alt="{{ object.name }}" title="{{ object.name }}" class="img-responsive cover" />
   {% endif %}
 
   <h1>
