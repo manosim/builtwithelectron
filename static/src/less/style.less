@@ -110,6 +110,24 @@ body {
   border: 0;
   margin-bottom: 0;
 
+  .form-group {
+
+    .form-control {
+      background: none;
+      border: 0;
+      border-bottom: 2px solid darken(@ThemePrimary, 10%);
+      outline: none;
+      box-shadow: none;
+      -webkit-box-shadow: none;
+      -moz-box-shadow: none;
+
+      &::-webkit-input-placeholder { color: @Gray; }
+      &:-moz-placeholder { color: @Gray; opacity: 1; }
+      &::-moz-placeholder { color: @Gray; opacity:  1; }
+      &:-ms-input-placeholder { color: @Gray; }
+    }
+  }
+
   .avatar {
     .BorderRadius(9px);
     display: inline-block;
@@ -364,10 +382,23 @@ body {
     max-width: @CustomWidth;
     display: block;
     margin: 10px auto;
-  }
 
-  .required {
-    color: @brand-warning;
+    .required {
+      color: @brand-warning;
+    }
+
+    .form-control {
+      border: 0;
+      border-bottom: 1px solid darken(@BodyBg, 50%);
+      background: darken(@BodyBg, 5%);;
+      .box-shadow(none);
+    }
+
+    .has-error {
+      .form-control {
+        border-color: @brand-warning;
+      }
+    }
   }
 
   .login-button {
@@ -376,22 +407,13 @@ body {
     max-width: 300px;
   }
 
-  .form-control {
-    border: 0;
-    border-bottom: 1px solid darken(@BodyBg, 50%);
-    background: darken(@BodyBg, 5%);;
-    .box-shadow(none);
-  }
-
-  .has-error {
-    .form-control {
-      border-color: @brand-warning;
-    }
-  }
-
   .Select {
     margin-bottom: 15px;
     border-bottom: 1px solid darken(@BodyBg, 50%);
+
+    .Select-item-icon {
+      border-right: 1px solid @Gray;
+    }
 
     .Select-menu-outer {
       border: 0;
@@ -410,6 +432,7 @@ body {
     	box-shadow: none;
     }
   }
+
   .dropzone {
     background-color: darken(@BodyBg, 5%);
     border-bottom: 1px solid darken(@BodyBg, 50%);
@@ -460,6 +483,21 @@ body {
 }
 
 /* @end Submit Form */
+
+
+/* @group Search Results / Page */
+
+.search-results {
+  .alert {
+    margin: 0;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+}
+
+/* @end Search Results / Page */
 
 
 /* @group Featured / Template Tag */

@@ -17,6 +17,14 @@
         {% if user.is_admin %}<li><a target="_blank" href="{% url 'admin:index' %}">Admin</a></li>{% endif %}
         <li><a href="{% url 'directory:submit' %}">Submit</a></li>
       </ul>
+
+      <form class="navbar-form navbar-left" action="{% url 'directory:search-results' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="text" class="form-control" id="id_keywords" maxlength="100" name="keywords" placeholder="Search...">
+        </div>
+      </form>
+
       <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
         <li><a href="{% url 'accounts:profile' %}"><img src="{{ user.avatar_url }}" class="avatar" /> {{ user.username }}</a></li>

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load entry_row %}
+{% block body_class %}search-results{% endblock %}
+{% block title %}Search Results - {% endblock %}
+{% block pagetitle %}{% if keywords %}Search Results for: {{ keywords }}{% else %}No keywords provided.{% endif %}{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+  {% if not found %}
+    <div class="alert alert-info">We could not find any results. Here are the latest submissions :)</div>
+  {% endif %}
+
+  {% if object_list %}
+  <div class="latest">
+    {% for entry in object_list %}
+      {% entry_row entry %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+</div>
+
+{% endblock %}
