@@ -13,7 +13,7 @@
     "watch-js": "watchify -t babelify static/src/js/app.js -o static/dist/js/app.js -v",
     "watch": "npm run build && npm run watch-less & npm run watch-js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run watch & open -a '/Applications/Google Chrome.app' 'http://0.0.0.0:8000'",
+    "serve": "npm run watch & open -a '/Applications/Google Chrome.app' 'http://0.0.0.0:8000'",
     "postinstall": "npm run build"
   },
   "repository": {
