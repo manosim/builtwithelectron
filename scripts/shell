@@ -1,19 +1,6 @@
 #!/usr/bin/env bash
 
 set -e
+export PATH=env/bin:${PATH}
 
-if [ "$1" == "dev" ] || [ "$1" == "staging" ] || [ "$1" == "production" ]; then
-    if [ "$1" == "dev" ]; then
-        env/bin/honcho --app-root etc/environments/development run env/bin/python manage.py shell
-    elif [ "$1" == "staging" ]; then
-        env/bin/honcho --app-root etc/environments/staging run env/bin/python manage.py shell
-    elif [ "$1" == "production" ]; then
-        env/bin/honcho --app-root etc/environments/production run env/bin/python man age.py shell
-    fi
-
-else
-    echo ""
-    echo -e "WARNING!\033[0;31m You did not pass an environment. \033[0m";
-    echo -e "Please try again using 'dev' or 'staging' or 'production'."
-    echo ""
-fi
+honcho --app-root etc/environments/development --env env run python manage.py shell

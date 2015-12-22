@@ -2,20 +2,6 @@
 
 set -e
 
-if [ "$1" == "dev" ] || [ "$1" == "staging" ] || [ "$1" == "production" ]; then
-    if [ "$1" == "dev" ]; then
-        env/bin/honcho --app-root etc/environments/development start
-    elif [ "$1" == "staging" ]; then
-        cd /opt/builds/bwe
-        env/bin/honcho --app-root etc/environments/staging start
-    elif [ "$1" == "production" ]; then
-        cd /opt/builds/bwe
-        env/bin/honcho --app-root etc/environments/production start
-    fi
+export PATH=env/bin:${PATH}
 
-else
-    echo ""
-    echo -e "WARNING!\033[0;31m You did not pass an environment. \033[0m";
-    echo -e "Please try again using 'dev' or 'staging' or 'production'."
-    echo ""
-fi
+honcho --app-root etc/environments/development --env env start
