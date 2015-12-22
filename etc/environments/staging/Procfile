@@ -1,1 +1,0 @@
-web: PYTHONUNBUFFERED=true env/bin/waitress-serve --port $PORT --host=127.0.0.1 project.wsgi:application
