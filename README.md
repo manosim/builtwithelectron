@@ -14,15 +14,26 @@ Where awesome electron apps meet
 
 There is a build script, that will do all the work for you. Just run:
 
-    scripts/build dev
+    scripts/build
 
 
-### Development
+### Development commands
+There are several helper methods to run the project locally:
 
-First run the django server and then use npm to build and watch for changes.
+    # Build the project
+    ./scripts/build
 
-    scripts/runserver dev
-    npm start
+    # Run migrate
+    ./scripts/migrate
+
+    # Run the server
+    ./scripts/runserver
+
+    # Bring the Django shell
+    ./scripts/shell
+
+    # Run other commands using the environment - ./scripts/run echo "Hello Oleous!"
+    ./scripts/run
 
 
 ### Tests
