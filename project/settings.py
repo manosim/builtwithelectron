@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # External Libraries
+    'opbeat.contrib.django',
     'rest_framework',
     'mail_templated',
 
