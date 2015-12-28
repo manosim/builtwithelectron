@@ -44,7 +44,6 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 
     # External Libraries
-    'opbeat.contrib.django',
     'rest_framework',
     'mail_templated',
 
@@ -172,42 +171,7 @@ GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
 GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
 
 
-# Logging
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'formatters': {
-        'verbose': {
-            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
-        },
-    },
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-            'formatter': 'verbose'
-        }
-    },
-    'root': {
-        'handlers': ['console'],
-        'level': 'INFO',
-    },
-    'loggers': {
-        'django.request': {
-            'level': 'ERROR',
-            'handlers': ['console'],
-            'propagate': True,
-        },
-        'project': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
-
-# Opbeat
+# Logging & Opbeat
 
 if os.environ.get('OPBEAT_ORG_ID', False):
     INSTALLED_APPS += ('opbeat.contrib.django',)
@@ -215,7 +179,8 @@ if os.environ.get('OPBEAT_ORG_ID', False):
     OPBEAT = {
         'ORGANIZATION_ID': os.environ.get('OPBEAT_ORG_ID', False),
         'APP_ID': os.environ.get('OPBEAT_APP_ID', False),
-        'SECRET_TOKEN': os.environ.get('OPBEAT_SECRET_TOKEN', False)
+        'SECRET_TOKEN': os.environ.get('OPBEAT_SECRET_TOKEN', False),
+        'DEBUG': True
     }
 
     LOGGING = {
