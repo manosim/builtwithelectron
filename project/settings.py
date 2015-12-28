@@ -54,6 +54,9 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    # OpBeat
+    'opbeat.contrib.django.middleware.OpbeatAPMMiddleware',
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -166,3 +169,89 @@ STATICFILES_STORAGE = os.environ['STATICFILES_STORAGE']
 
 GITHUB_CLIENT_ID = os.environ['GITHUB_CLIENT_ID']
 GITHUB_CLIENT_SECRET = os.environ['GITHUB_CLIENT_SECRET']
+
+
+# Logging
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+        },
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose'
+        }
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+    'loggers': {
+        'django.request': {
+            'level': 'ERROR',
+            'handlers': ['console'],
+            'propagate': True,
+        },
+        'project': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+            'propagate': True,
+        },
+    },
+}
+
+# Opbeat
+
+if os.environ.get('OPBEAT_ORG_ID', False):
+    INSTALLED_APPS += ('opbeat.contrib.django',)
+
+    OPBEAT = {
+        'ORGANIZATION_ID': os.environ.get('OPBEAT_ORG_ID', False),
+        'APP_ID': os.environ.get('OPBEAT_APP_ID', False),
+        'SECRET_TOKEN': os.environ.get('OPBEAT_SECRET_TOKEN', False)
+    }
+
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'formatters': {
+            'verbose': {
+                'format': '%(levelname)s %(asctime)s %(module)s %(process)d %(thread)d %(message)s'
+            },
+        },
+        'handlers': {
+            'opbeat': {
+                'level': 'WARNING',
+                'class': 'opbeat.contrib.django.handlers.OpbeatHandler',
+            },
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+                'formatter': 'verbose'
+            }
+        },
+        'loggers': {
+            'django.db.backends': {
+                'level': 'ERROR',
+                'handlers': ['console'],
+                'propagate': False,
+            },
+            'project': {
+                'level': 'WARNING',
+                'handlers': ['opbeat'],
+                'propagate': False,
+            },
+            # Log errors from the Opbeat module to the console (recommended)
+            'opbeat.errors': {
+                'level': 'ERROR',
+                'handlers': ['console'],
+                'propagate': False,
+            },
+        },
+    }

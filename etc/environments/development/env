@@ -6,3 +6,4 @@ SECRET_KEY='built-with-electron'
 GITHUB_CLIENT_ID=efa7cf95d1f3ebc5a34e
 GITHUB_CLIENT_SECRET=8b291ac896d1436002f7aae5b38afb2c18526a11
 STATICFILES_STORAGE=django.contrib.staticfiles.storage.ManifestStaticFilesStorage
+CLOUDINARY_URL=cloudinary://111977359559655:31we3-yeaABqnRxsAmf4-cw6H8c@hzwxzkjwq
