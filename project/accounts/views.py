@@ -73,7 +73,7 @@ class ProfileView(DetailView):
         return get_object_or_404(User, username=self.request.user.username)
 
     def get_context_data(self, **kwargs):
-        entries = self.request.user.entries.all()
+        entries = self.request.user.entries.filter(is_approved=True)
         context = super(ProfileView, self).get_context_data(**kwargs)
         context['entries'] = entries
         context['entries_total'] = entries.count()
