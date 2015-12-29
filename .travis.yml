@@ -6,7 +6,11 @@ python:
   - "3.5"
 
 install:
+ - npm install
  - pip install -r requirements.txt
+
+before_script:
+ - npm run release
 
 script:
  - scripts/runtests
