@@ -10,7 +10,7 @@
 
   <div class="entry-details">
     <h3>
-      <a href="{% url 'directory:detail' entry.slug %}">{{ entry.name }}</a>
+      <a class="title" href="{% url 'directory:detail' entry.slug %}">{{ entry.name }}</a>
       <span class="date">{{ entry.created | date:"M/d" }}</span>
     </h3>
 

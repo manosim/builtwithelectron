@@ -14,11 +14,10 @@ class HomePageView(ListView):
 
     model = Entry
     template_name = "home.html"
-    paginate_by = 10
+    paginate_by = 6
 
     def get_queryset(self):
-        latest = Entry.objects.all().order_by('-created')  # FIXME: Get only approved entries
-        # latest = Entry.objects.filter(is_approved=True, is_featured=False)
+        latest = Entry.objects.filter(is_approved=True, is_featured=False).order_by('-created')
         return latest
 
     def get_context_data(self, **kwargs):

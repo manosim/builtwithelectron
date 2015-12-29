@@ -1,5 +1,5 @@
 var _ = require('underscore');
-var capitalize = require("underscore.string/capitalize");
+var capitalize = require('underscore.string/capitalize');
 var React = require('react');
 var Select = require('react-select');
 var Dropzone = require('react-dropzone');
@@ -32,7 +32,7 @@ var SubmitForm = React.createClass({
   componentWillMount: function() {
     var flattenTags = [];
     var tagsJson = JSON.parse(this.props.tags);
-     _.map(tagsJson, function (tag) {
+    _.map(tagsJson, function (tag) {
       flattenTags.push({
         value: tag.pk,
         label: tag.fields.name
@@ -44,7 +44,6 @@ var SubmitForm = React.createClass({
   },
 
   handleChange: function (key, event) {
-    var state = {};
     var data = this.state.data;
     data[key] = event.target.value;
     this.setState({
@@ -73,12 +72,12 @@ var SubmitForm = React.createClass({
   },
 
   tagRenderer: function (option) {
-    return <span key={option.pk}>{option.label}</span>
+    return <span key={option.pk}>{option.label}</span>;
   },
 
   tagValue: function (option) {
-		return <strong>{option.label}</strong>;
-	},
+    return <strong>{option.label}</strong>;
+  },
 
   tagsSelected: function (val, selectedOptions) {
     var selectedTags = [];
@@ -156,23 +155,47 @@ var SubmitForm = React.createClass({
 
         <form className='form'>
           <div className={this.state.errors['name'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='name' className='control-label'>Application Name <span className='required'>*</span></label>
-            <input type='text' id='name' className='form-control input-lg' value={this.state.data.name} onChange={this.handleChange.bind(this, 'name')} />
+            <label htmlFor='name' className='control-label'>
+              Application Name <span className='required'>*</span>
+            </label>
+            <input
+              type='text'
+              id='name'
+              className='form-control input-lg'
+              value={this.state.data.name}
+              onChange={this.handleChange.bind(this, 'name')} />
             {this.renderFieldErrors('name')}
           </div>
           <div className={this.state.errors['short_description'] ? 'form-group has-error' : 'form-group'}>
-            <label htmlFor='shortDescription' className='control-label'>Short Description <span className='required'>*</span></label>
-            <input type='text' id='shortDescription' className='form-control input-lg' value={this.state.data.shortDescription} onChange={this.handleChange.bind(this, 'shortDescription')} />
+            <label htmlFor='shortDescription' className='control-label'>
+              Short Description <span className='required'>*</span>
+            </label>
+            <input
+              type='text'
+              id='shortDescription'
+              className='form-control input-lg'
+              value={this.state.data.shortDescription}
+              onChange={this.handleChange.bind(this, 'shortDescription')} />
             {this.renderFieldErrors('short_description')}
           </div>
           <div className={this.state.errors['website_url'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='websiteUrl' className='control-label'>Website Url</label>
-            <input type='text' id='websiteUrl' className='form-control input-lg' value={this.state.data.websiteUrl} onChange={this.handleChange.bind(this, 'websiteUrl')} />
+            <input
+              type='text'
+              id='websiteUrl'
+              className='form-control input-lg'
+              value={this.state.data.websiteUrl}
+              onChange={this.handleChange.bind(this, 'websiteUrl')} />
             {this.renderFieldErrors('website_url')}
           </div>
           <div className={this.state.errors['repo_url'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='repoUrl'>Repository Url</label>
-            <input type='text' id='repoUrl' className='form-control input-lg' value={this.state.data.repoUrl} onChange={this.handleChange.bind(this, 'repoUrl')} />
+            <input
+              type='text'
+              id='repoUrl'
+              className='form-control input-lg'
+              value={this.state.data.repoUrl}
+              onChange={this.handleChange.bind(this, 'repoUrl')} />
             {this.renderFieldErrors('repo_url')}
           </div>
 
@@ -188,7 +211,13 @@ var SubmitForm = React.createClass({
             placeholder='Enter your tags' />
 
           <label>Photo/Screenshot</label>
-          <Dropzone ref='dropzone' className='dropzone' onDrop={this.onDrop} disableClick={true} multiple={false} activeClassName='active'>
+          <Dropzone
+            ref='dropzone'
+            className='dropzone'
+            onDrop={this.onDrop}
+            disableClick={true}
+            multiple={false}
+            activeClassName='active'>
             {this.state.data.cover ? (
               <div>
                 <i className='fa fa-check-circle' />
@@ -208,18 +237,32 @@ var SubmitForm = React.createClass({
 
           <div className={this.state.errors['description'] ? 'form-group has-error' : 'form-group'}>
             <label htmlFor='description'>Description</label>
-            <textarea className='form-control input-lg' id='description' rows='4' value={this.state.data.description} onChange={this.handleChange.bind(this, 'description')}></textarea>
+            <textarea
+              className='form-control input-lg'
+              id='description'
+              rows='4'
+              value={this.state.data.description}
+              onChange={this.handleChange.bind(this, 'description')} />
             {this.renderFieldErrors('description')}
           </div>
 
           {this.state.success ? (
-            <div className='alert alert-success'>Submiited successfully! You will receive an email once it gets approved.</div>
-          ): null}
+            <div className='alert alert-success'>
+              Submiited successfully! You will receive an email once it gets approved.
+            </div>
+          ) : null}
 
           {_.isEmpty(this.state.errors) ? null : (
-            <div className='alert alert-danger'>Oops! Please complete all the required fields and submit your applications.</div>
+            <div className='alert alert-danger'>
+              Oops! Please complete all the required fields and submit your applications.
+            </div>
           )}
-          <button className='btn btn-primary btn-lg btn-block' disabled={this.state.submitDisabled} onClick={this.submitForm}>Submit Entry</button>
+          <button
+            className='btn btn-primary btn-lg btn-block'
+            disabled={this.state.submitDisabled}
+            onClick={this.submitForm}>
+            Submit Entry
+          </button>
         </form>
       </div>
     );

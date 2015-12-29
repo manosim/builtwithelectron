@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load staticfiles %}
 {% load featured %}
 {% load entry_row %}
 
@@ -7,7 +8,8 @@
 
   <div class="container">
     <div id="typed-text"></div>
-    <p class="lead">Bringing togeher <strong>awesome</strong> applications made with <a href="http://electron.atom.io/" target="_blank">Electron</a>. Open-Source or not, feel free to submit your apps! Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+    <p class="lead">Bringing together <strong>awesome</strong> applications made with <a href="http://electron.atom.io/" target="_blank">Electron</a>. Open-Source or not, free or paid, feel free to submit your apps!</p>
+    <a href="http://electron.atom.io/" target="_blank"><img class="img-responsive love-electron" src="{% static "images/weloveelectron.png" %}" alt="We Love Electron" /></a>
   </div>
 
   <h3 class="page-title">
