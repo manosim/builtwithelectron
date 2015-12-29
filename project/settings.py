@@ -179,8 +179,7 @@ if os.environ.get('OPBEAT_ORG_ID', False):
     OPBEAT = {
         'ORGANIZATION_ID': os.environ.get('OPBEAT_ORG_ID', False),
         'APP_ID': os.environ.get('OPBEAT_APP_ID', False),
-        'SECRET_TOKEN': os.environ.get('OPBEAT_SECRET_TOKEN', False),
-        'DEBUG': True
+        'SECRET_TOKEN': os.environ.get('OPBEAT_SECRET_TOKEN', False)
     }
 
     LOGGING = {
