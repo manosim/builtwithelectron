@@ -4,8 +4,8 @@
   "description": "Where awesome electron apps meet",
   "main": "index.js",
   "scripts": {
-    "make-dirs": "mkdir -p static/dist/ && mkdir -p static/dist/images && mkdir -p static/dist/js static/dist/css static/dist/fonts",
-    "copy-images": "cp -r static/src/images/ static/dist/images",
+    "make-dirs": "mkdir -p static/dist/ && mkdir -p static/dist/js static/dist/css static/dist/fonts static/dist/images",
+    "copy-images": "cp -r static/src/images static/dist",
     "copy-fonts": "cp -r node_modules/bootstrap/fonts static/dist && cp -r node_modules/font-awesome/fonts static/dist",
     "build-less": "lessc --clean-css static/src/less/style.less static/dist/css/style.css",
     "build-js": "webpack",
