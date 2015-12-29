@@ -117,6 +117,10 @@ body {
   border: 0;
   margin-bottom: 0;
 
+  .navbar-right {
+    margin-right: 0;
+  }
+
   .form-group {
 
     .form-control {
@@ -220,24 +224,22 @@ body {
   margin-top: 25px;
   margin-bottom: 25px;
 
-  .cover {
-    max-width: 150px;
-    max-height: 150px;
-    margin: 0 auto;
+  .entry-cover {
+    background-color: darken(@BodyBg, 5%);
+    min-height: 150px;
+    margin-bottom: 15px;
+    padding: 15px 5px;
+
+    .cover {
+      max-height: 120px;
+      margin: 0 auto;
+    }
   }
 
-  .details {
+  .entry-details {
     h3 {
       margin: 5px 0;
       position: relative;
-
-      .links {
-        padding: 0 5px;
-
-        .fa {
-          margin: 0 5px;
-        }
-      }
 
       .date {
         font-size: 0.6em;
@@ -250,36 +252,51 @@ body {
     .lead {
       font-size: 18px;
       margin: 10px 0;
+      min-height: 50px;
 
       &.description {
         font-size: 16px;
+        min-height: 90px;
       }
-    }
-
-    .tags {
-      margin: 5px 0;
-      .TagMixin(0 3px 3px 0, 2px 5px);
-      // .TagMixin(@margin, @padding)
     }
   }
 
-  .more {
-    display: block;
-    font-size: 18px;
-    margin: 20px auto 20px;
-    padding: 8px 10px;
-    text-align: center;
+  .entry-footer {
 
-    @media screen and (min-width: @screen-sm-max) {
-      .BorderRadius(50%);
-      width: 100px;
-      height: 100px;
-      line-height: 24px;
-      padding: 25px 10px;
-      margin: 20px auto 0;
+    .tags {
+      margin: 5px 0;
+      padding: 3px 0;
 
       span {
-        display: block;
+        font-weight: bold;
+      }
+
+      .tag {
+        color: @Gray;
+        padding: 0 5px;
+        border-bottom: 1px solid @ThemePrimary;
+        display: inline-block;
+        white-space: nowrap;
+      }
+    }
+
+    .links {
+      padding: 0 5px;
+
+      .fa {
+        font-size: 16px;
+        margin: 0 5px;
+      }
+    }
+
+    .more {
+      font-size: 18px;
+      margin: 20px auto 20px;
+      padding: 8px 10px;
+      text-align: center;
+
+      @media screen and (min-width: @screen-sm-max) {
+
       }
     }
   }

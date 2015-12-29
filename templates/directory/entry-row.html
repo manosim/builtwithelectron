@@ -1,42 +1,33 @@
 {% load staticfiles %}
 
-<div class="row entry">
+<div class="col-sm-6 col-md-4 entry">
 
-  {% if entry.cover %}
-  <div class="col-md-3">
+  <div class="entry-cover">
     {% if entry.cover %}
-    <img src="{{ entry.cover.url }}" alt="{{ entry.name }}" title="{{ entry.name }}" class="img-responsive cover " />
+    <a href="{% url 'directory:detail' entry.slug %}"><img class="img-responsive cover" src="{{ entry.cover.url }}" alt="{{ entry.name }}" title="{{ entry.name }}" /></a>
     {% endif %}
   </div>
-  {% endif %}
 
-  <div class="{% if entry.cover %}col-md-7{% else %}col-md-10{% endif %} details">
+  <div class="entry-details">
     <h3>
-      {{ entry.name }}
-      <span class="links">
-        <a href="{{ entry.website_url }}" target="_blank"><i class="fa fa-link" title="Website"></i></a>
-        {% if entry.repo_url %}<a href="{{ entry.repo_url }}" target="_blank"><i class="fa fa-github" title="Github"></i></a>{% endif %}
-      </span>
+      <a href="{% url 'directory:detail' entry.slug %}">{{ entry.name }}</a>
       <span class="date">{{ entry.created | date:"M/d" }}</span>
     </h3>
 
     <p class="lead">{{ entry.short_description }}</p>
     <p class="lead description">{{ entry.description|truncatechars:"125" }}</p>
-
-    {% if entry.tags %}
-    <div class="tags">
-    {% for tag in entry.tags.all|slice:":5" %}
-      <a class="tag" href="{% url 'directory:tag-entries' tag.name %}"># {{tag.name}}</a>
-    {% endfor %}
-      {% if entry.tags.all.count > 5 %}
-      <div class="tag" title="More tags...">...</div>
-      {% endif %}
-    </div>
-    {% endif %}
   </div>
 
-  <div class="col-md-2">
-    <a class="btn btn-primary more" href="{% url 'directory:detail' entry.slug %}"><span>Read</span> <span>More</span></a>
+  <div class="entry-footer">
+    <div class="tags">
+      {% if entry.tags %}<span># </span>{% endif %}
+      {% for tag in entry.tags.all|slice:":2" %}
+        <a class="tag" href="{% url 'directory:tag-entries' tag.name %}">{{tag.name}}</a>{% if not forloop.last %}, {% endif %}
+      {% endfor %}
+      {% if entry.tags.all.count > 2 %}
+      <div class="tag" title="More tags">...</div>
+      {% endif %}
+    </div>
   </div>
 
 </div>
