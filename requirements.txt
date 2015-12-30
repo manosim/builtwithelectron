@@ -2,8 +2,8 @@ Django==1.8.6
 dj-database-url==0.3.0
 psycopg2==2.6.1
 djangorestframework==3.3.1
-django-mail-templated==0.2.2
 django-flat-theme==1.1.1
+django-db-queue==0.0.2
 flake8==2.4.1
 pyflakes==0.8.1
 honcho==0.6.6

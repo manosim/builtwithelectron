@@ -45,7 +45,7 @@ INSTALLED_APPS = (
 
     # External Libraries
     'rest_framework',
-    'mail_templated',
+    'django_dbq',
 
     # Apps
     'project.accounts',
@@ -111,6 +111,7 @@ AUTH_USER_MODEL = 'accounts.User'
 EMAIL_BACKEND = os.environ['EMAIL_BACKEND']
 DEFAULT_FROM_EMAIL = "Built with Electron <hello@builtwithelectron.com>"
 
+
 # Email SMTP Settings - Used only for SMTP
 
 EMAIL_HOST = os.environ.get('EMAIL_HOST', None)
@@ -121,6 +122,15 @@ EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS', None)
 
 
 SITE_URL = os.environ['SITE_URL']
+
+
+# Django Database Queue
+
+JOBS = {
+    'send_email': {
+        'tasks': ['project.common.jobs.send_email'],
+    }
+}
 
 
 # Internationalization
