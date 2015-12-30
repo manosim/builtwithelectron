@@ -62,7 +62,7 @@ class TagEntriesListView(ListView):
     def get_queryset(self):
         slug = self.kwargs['slug']
         tag = get_object_or_404(Tag, name=slug)
-        queryset = Entry.objects.filter(tags=tag)
+        queryset = Entry.objects.filter(tags=tag, is_approved=True)
         return queryset
 
     def get_context_data(self, **kwargs):

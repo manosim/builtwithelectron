@@ -20,7 +20,7 @@
 
   <div class="entry-footer">
     <div class="tags">
-      {% if entry.tags %}<span># </span>{% endif %}
+      {% if entry.tags.count %}<span># </span>{% endif %}
       {% for tag in entry.tags.all|slice:":2" %}
         <a class="tag" href="{% url 'directory:tag-entries' tag.name %}">{{tag.name}}</a>{% if not forloop.last %}, {% endif %}
       {% endfor %}

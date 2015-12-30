@@ -1,10 +1,11 @@
 var _ = require('underscore');
-var capitalize = require('underscore.string/capitalize');
 var React = require('react');
+var capitalize = require('underscore.string/capitalize');
 var Select = require('react-select');
 var Dropzone = require('react-dropzone');
-var apiRequests = require('../utils/api-requests');
+var Loading = require('reloading');
 
+var ApiRequests = require('../utils/api-requests');
 var Autogenerator = require('./autogenerator');
 
 var SubmitForm = React.createClass({
@@ -105,7 +106,7 @@ var SubmitForm = React.createClass({
       submitDisabled: true
     });
 
-    apiRequests
+    ApiRequests
       .post('/api/directory/submit/', this.state.data, this.props.csrfToken)
       .end(function (err, response) {
         if (response && response.ok) {
@@ -248,7 +249,7 @@ var SubmitForm = React.createClass({
 
           {this.state.success ? (
             <div className='alert alert-success'>
-              Submiited successfully! You will receive an email once it gets approved.
+              Submitted successfully! You will receive an email once your entry gets approved.
             </div>
           ) : null}
 
@@ -261,7 +262,9 @@ var SubmitForm = React.createClass({
             className='btn btn-primary btn-lg btn-block'
             disabled={this.state.submitDisabled}
             onClick={this.submitForm}>
-            Submit Entry
+            {this.state.loading ? (
+              <Loading shouldShow={this.state.loading} faIcon='fa fa-refresh fa-spin' />
+            ) : <span>Submit Entry</span> }
           </button>
         </form>
       </div>
