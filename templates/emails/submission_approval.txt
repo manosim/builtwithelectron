@@ -1,0 +1,9 @@
+Dear {{ username }},
+
+Your submission {{ entry_name }} got approved and now shows up at Built with Electron!
+
+Visit Built with Electron at {{ site_url }}{% url 'directory:detail' entry_slug %} to view your submission.
+
+Best regards,
+
+Built with Electron.

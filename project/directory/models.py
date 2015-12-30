@@ -1,9 +1,8 @@
 import uuid
 from cloudinary.models import CloudinaryField
 from django.db import models
-from django.conf import settings
 from django.utils.text import slugify
-from mail_templated import send_mail
+from django_dbq.models import Job
 from project.accounts.models import User
 
 
@@ -62,14 +61,19 @@ class Entry(models.Model):
 
     def send_user_approval_email(self):
         """ Notify the user that the submission got approved """
-        send_mail(
-            'emails/submission_approval.tpl',
-            {
-                'user': self.author,
-                'entry': self,
-                'site_url': settings.SITE_URL
-            }, settings.DEFAULT_FROM_EMAIL, [self.author.email]
-        )
+        workspace = {
+            "subject": "Your submission to Built with Electron got approved.",
+            "recipient_list": [self.author.email],
+            "mail_params": {
+                'username': self.author.username,
+                'entry_name': self.name,
+                'entry_slug': self.slug
+            },
+            "plain_template": "emails/submission_approval.txt",
+            "html_template": "emails/submission_approval.html"
+        }
+
+        Job.objects.create(name='send_email', workspace=workspace)
 
     def save(self, *args, **kwargs):
         """ If `is_approved` changed and is True, email the user """
