@@ -1,5 +1,5 @@
 # Built With Electron [![Build Status](https://magnum.travis-ci.com/ekonstantinidis/builtwithelectron.svg?token=9QR4ewbqbkEmHps6q5sq&branch=hello-npm)](https://magnum.travis-ci.com/ekonstantinidis/builtwithelectron)
-Where awesome electron apps meet
+Where awesome - made with electron - apps meet.
 
 ### Prerequisites
 
