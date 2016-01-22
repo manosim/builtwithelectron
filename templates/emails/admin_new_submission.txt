@@ -1,0 +1,9 @@
+Dear administrator,
+
+There is a new submission {{ entry_name }} that is awaiting for approval at Built with Electron!
+
+Please check the admin panel to approve this new submission.
+
+Best regards,
+
+Built with Electron.

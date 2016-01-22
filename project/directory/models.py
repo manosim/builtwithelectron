@@ -75,6 +75,23 @@ class Entry(models.Model):
 
         Job.objects.create(name='send_email', workspace=workspace)
 
+    def send_admins_new_entry_email(self):
+        """ Notify admins that a new submission awaits approval """
+        admins = User.objects.filter(is_active=True, is_admin=True)
+        admins_emails = [user.email for user in admins]
+
+        workspace = {
+            "subject": "There is a new submission at Built with Electron.",
+            "recipient_list": admins_emails,
+            "mail_params": {
+                'entry_name': self.name
+            },
+            "plain_template": "emails/admin_new_submission.txt",
+            "html_template": "emails/admin_new_submission.html"
+        }
+
+        Job.objects.create(name='send_email', workspace=workspace)
+
     def save(self, *args, **kwargs):
         """ If `is_approved` changed and is True, email the user """
         try:

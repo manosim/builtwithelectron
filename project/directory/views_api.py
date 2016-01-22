@@ -10,4 +10,5 @@ class SubmitEntryView(generics.CreateAPIView):
 
     def perform_create(self, serializer):
         tags = self.request.data['tags'].split(",") if self.request.data['tags'] else []
-        serializer.save(author=self.request.user, tags=tags)
+        entry = serializer.save(author=self.request.user, tags=tags)
+        entry.send_admins_new_entry_email()
