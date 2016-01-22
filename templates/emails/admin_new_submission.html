@@ -1,0 +1,14 @@
+{% extends "base-emails.html" %}
+
+{% block title %}
+New submission awaits approval
+{% endblock %}
+
+{% block content %}
+Hey administrator, There is a new submission {{ entry_name }} that is awaiting for approval at Built with Electron!
+Please check the admin panel to approve this new submission.
+{% endblock %}
+
+{% block button %}
+<a href="{{ site_url }}{% url 'admin:index' %}" style="font-size: 16px; font-family: Helvetica, Arial, sans-serif; font-weight: normal; color: #ffffff; text-decoration: none; background-color: #5D9CEC; border-top: 15px solid #5D9CEC; border-bottom: 15px solid #5D9CEC; border-left: 25px solid #5D9CEC; border-right: 25px solid #5D9CEC; border-radius: 3px; -webkit-border-radius: 3px; -moz-border-radius: 3px; display: inline-block;" class="mobile-button">Admin Panel &rarr;</a>
+{% endblock %}
