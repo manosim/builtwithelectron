@@ -20,7 +20,7 @@
         </h1>
 
         <p class="lead">{{ featured.short_description }}</p>
-        <p class="lead description">{{ featured.description }}</p>
+        <p class="lead description">{{ featured.description|truncatechars:"250" }}</p>
 
         {% if featured.tags %}
         <div class="tags">
