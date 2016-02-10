@@ -30,7 +30,7 @@
   {% endif %}
 
   {% if object.description %}
-  <p class="lead">{{ object.description }}</p>
+  <p class="lead">{{ object.description|linebreaksbr }}</p>
   {% else %}
   <p class="lead">No further description available.</p>
   {% endif %}
