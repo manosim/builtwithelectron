@@ -86,6 +86,15 @@
   }
 }
 
+.BgGradientVertical(@startColor: #eee, @endColor: white) {
+	background-color: @startColor;
+	background: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor));
+	background: -webkit-linear-gradient(top, @startColor, @endColor);
+	background: -moz-linear-gradient(top, @startColor, @endColor);
+	background: -ms-linear-gradient(top, @startColor, @endColor);
+	background: -o-linear-gradient(top, @startColor, @endColor);
+}
+
 /* @end Mixins */
 
 
@@ -547,7 +556,8 @@ body {
 /* @group Featured / Template Tag */
 
 .featured {
-  background-color: darken(@ThemePrimary, 10%);
+  .BgGradientVertical(@ThemePrimary, darken(@ThemePrimary, 8%));
+
   color: @White;
   padding: 50px 0 0;
   margin-top: -20px;
