@@ -6,7 +6,7 @@
 
 @CustomWidth: 560px;
 
-@ThemePrimary: #24adfa;
+@ThemePrimary: #47848f;
 
 @BodyBg: #f7f7fa;
 
@@ -17,6 +17,8 @@
 
 
 /* @group Bootstrap Overrides */
+
+@link-color: @ThemePrimary;
 
 @brand-success: #7dd05b;
 @brand-warning: #ad3636;
@@ -117,8 +119,12 @@ body {
   border: 0;
   margin-bottom: 0;
 
-  .navbar-brand > img {
-    max-width: 145px;
+  .navbar-brand {
+    padding: 5px 15px;
+
+    > img {
+      max-width: 40px;
+    }
   }
 
   .navbar-right {
@@ -671,6 +677,10 @@ body {
   margin-top: 0;
   background-color: @ThemePrimary;
   color: @White;
+
+  a {
+    color: @White;
+  }
 
   div[class^="col-md-"] {
     padding-left: 0;
