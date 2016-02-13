@@ -10,6 +10,8 @@
 
 @BodyBg: #f7f7fa;
 
+@TwitterColor: #0084b4;
+
 @White: #FFF;
 @Gray: #555;
 
@@ -79,8 +81,7 @@
     white-space: nowrap;
 
     &:hover {
-      background-color: darken(@BodyBg, 20%);
-      color: @Gray;
+      background-color: darken(@ThemePrimary, 10%);
       text-decoration: none;
     }
   }
@@ -106,6 +107,25 @@ body {
 
 .btn {
   border: 0;
+
+  &.btn-theme {
+    background-color: @ThemePrimary;
+
+    &:hover {
+      background-color: darken(@ThemePrimary, 5%);
+    }
+  }
+
+  &.btn-twitter {
+    .BorderRadius(5px);
+    background-color: @TwitterColor;
+    padding: 6px 10px 1px;
+    margin-bottom: 5px;
+
+    &:hover {
+      background-color: darken(@TwitterColor, 5%);
+    }
+  }
 }
 
 .alert {
@@ -446,7 +466,7 @@ body {
 
     .form-control {
       border: 0;
-      border-bottom: 1px solid darken(@BodyBg, 50%);
+      border-bottom: 1px solid @ThemePrimary;
       background: darken(@BodyBg, 5%);;
       .box-shadow(none);
     }
@@ -466,21 +486,26 @@ body {
 
   .Select {
     margin-bottom: 15px;
-    border-bottom: 1px solid darken(@BodyBg, 50%);
+    border-bottom: 1px solid @ThemePrimary;
+
+    .Select-item {
+      background-color: @ThemePrimary;
+      color: @White;
+    }
 
     .Select-item-icon {
-      border-right: 1px solid @Gray;
+      border-right: 1px solid @White;
     }
 
     .Select-menu-outer {
       border: 0;
-      border-bottom: 1px solid darken(@BodyBg, 50%);
+      border-bottom: 1px solid @ThemePrimary;
       box-shadow: 0;
 
       .Select-option {
 
       	&.is-focused {
-      		background-color: darken(@BodyBg, 20%);
+          border-bottom: 1px solid lighten(@ThemePrimary, 10%);
       	}
       }
     }
@@ -492,7 +517,7 @@ body {
 
   .dropzone {
     background-color: darken(@BodyBg, 5%);
-    border-bottom: 1px solid darken(@BodyBg, 50%);
+    border-bottom: 1px solid @ThemePrimary;
     padding: 15px 20px;
     margin-bottom: 15px;
     text-align: center;
@@ -560,19 +585,16 @@ body {
 /* @group Featured / Template Tag */
 
 .featured {
-  .BgGradientVertical(@ThemePrimary, darken(@ThemePrimary, 8%));
+  background-color: @ThemePrimary;
+  background-image: url("/static/images/featured-stamp.png");
+  background-size: 80px;
+  background-repeat: no-repeat;
+  background-position: right 20px bottom 20px;
 
   color: @White;
-  padding: 50px 0 0;
+  padding: 50px 0;
   margin-top: -20px;
   margin-bottom: 20px;
-
-  .section-title {
-    margin-top: 10px;
-    color: lighten(@ThemePrimary, 10%);
-    text-align: right;
-    font-style: italic;
-  }
 
   .cover {
     max-height: 250px;
@@ -607,6 +629,10 @@ body {
     .tags {
       margin: 15px 0;
       .TagMixin(0 5px 10px 0, 5px 8px);
+
+      .tag {
+        background-color: darken(@ThemePrimary, 2%);
+      }
     }
   }
 }

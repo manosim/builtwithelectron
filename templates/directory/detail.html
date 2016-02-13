@@ -16,10 +16,17 @@
     <span class="links">
       <a href="{{ object.website_url }}" target="_blank"><i class="fa fa-link"></i></a>
       {% if object.repo_url %}<a href="{{ object.repo_url }}" target="_blank"><i class="fa fa-github"></i></a>{% endif %}
+      <a class="btn btn-info btn-twitter" href="https://twitter.com/intent/tweet?url={{ SITE_URL }}{% url 'directory:detail' object.slug %}&text={{ object.name }}: {{ object.short_description }}&via=bwelectron" target="_blank"><i class="fa fa-twitter"></i> tweet</a>
     </span>
   </h1>
 
   <div class="details">Submitted by <a href="http://www.github.com/{{ object.author.username }}" target="_blank">{{ object.author.username }}</a> on {{ object.created | date:"M d Y" }}.</div>
+
+  {% if object.description %}
+  <p class="lead">{{ object.description|linebreaksbr }}</p>
+  {% else %}
+  <p class="lead">No further description available.</p>
+  {% endif %}
 
   {% if object.tags %}
   <div class="tags">
@@ -27,12 +34,6 @@
     <a class="tag" href="{% url 'directory:tag-entries' tag.name %}"># {{tag.name}}</a>
   {% endfor %}
   </div>
-  {% endif %}
-
-  {% if object.description %}
-  <p class="lead">{{ object.description|linebreaksbr }}</p>
-  {% else %}
-  <p class="lead">No further description available.</p>
   {% endif %}
 
 </div>

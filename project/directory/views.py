@@ -1,4 +1,5 @@
 from django.core import serializers
+from django.conf import settings
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.views.generic.base import TemplateView
@@ -49,7 +50,7 @@ class EntryDetailView(FormMixin, DetailView):
 
     def get_context_data(self, **kwargs):
         context = super(EntryDetailView, self).get_context_data(**kwargs)
-        # context['now'] = timezone.now()
+        context['SITE_URL'] = settings.SITE_URL
         return context
 
 
