@@ -227,7 +227,7 @@ var SubmitForm = React.createClass({
               </div>) : (
               <div>
                 <h4 className='text-center'>drop your awesome image here</h4>
-                <a className='btn btn-primary' onClick={this.onOpenClick}>Upload your image</a>
+                <a className='btn btn-primary btn-theme' onClick={this.onOpenClick}>Upload your image</a>
               </div>
             )}
           </Dropzone>
@@ -259,7 +259,7 @@ var SubmitForm = React.createClass({
             </div>
           )}
           <button
-            className='btn btn-primary btn-lg btn-block'
+            className='btn btn-primary btn-lg btn-block btn-theme'
             disabled={this.state.submitDisabled}
             onClick={this.submitForm}>
             {this.state.loading ? (

@@ -109,6 +109,14 @@ body {
 .btn {
   border: 0;
 
+  &.btn-theme {
+    background-color: @ThemePrimary;
+
+    &:hover {
+      background-color: darken(@ThemePrimary, 5%);
+    }
+  }
+
   &.btn-twitter {
     .BorderRadius(5px);
     background-color: @TwitterColor;
@@ -459,7 +467,7 @@ body {
 
     .form-control {
       border: 0;
-      border-bottom: 1px solid darken(@BodyBg, 50%);
+      border-bottom: 1px solid @ThemePrimary;
       background: darken(@BodyBg, 5%);;
       .box-shadow(none);
     }
@@ -479,21 +487,26 @@ body {
 
   .Select {
     margin-bottom: 15px;
-    border-bottom: 1px solid darken(@BodyBg, 50%);
+    border-bottom: 1px solid @ThemePrimary;
+
+    .Select-item {
+      background-color: @ThemePrimary;
+      color: @White;
+    }
 
     .Select-item-icon {
-      border-right: 1px solid @Gray;
+      border-right: 1px solid @White;
     }
 
     .Select-menu-outer {
       border: 0;
-      border-bottom: 1px solid darken(@BodyBg, 50%);
+      border-bottom: 1px solid @ThemePrimary;
       box-shadow: 0;
 
       .Select-option {
 
       	&.is-focused {
-      		background-color: darken(@BodyBg, 20%);
+          border-bottom: 1px solid lighten(@ThemePrimary, 10%);
       	}
       }
     }
@@ -505,7 +518,7 @@ body {
 
   .dropzone {
     background-color: darken(@BodyBg, 5%);
-    border-bottom: 1px solid darken(@BodyBg, 50%);
+    border-bottom: 1px solid @ThemePrimary;
     padding: 15px 20px;
     margin-bottom: 15px;
     text-align: center;
