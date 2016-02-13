@@ -27,8 +27,8 @@
 @navbar-default-link-color: @White;
 @navbar-border-radius: 0;
 
-@navbar-default-link-hover-bg: darken(@navbar-default-bg, 6.5%);
-@navbar-default-link-active-bg: darken(@navbar-default-bg, 6.5%);
+@navbar-default-link-hover-bg: @ThemePrimary;
+@navbar-default-link-active-bg: @ThemePrimary;
 @navbar-default-link-active-color: @Gray;
 
 @navbar-default-toggle-icon-bar-bg: @White;
@@ -130,6 +130,10 @@ body {
 
   .navbar-brand {
     padding: 5px 15px;
+
+    &:hover {
+      background-color: @ThemePrimary;
+    }
 
     > img {
       max-width: 40px;
