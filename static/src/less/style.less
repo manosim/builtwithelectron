@@ -10,6 +10,8 @@
 
 @BodyBg: #f7f7fa;
 
+@TwitterColor: #0084b4;
+
 @White: #FFF;
 @Gray: #555;
 
@@ -106,6 +108,15 @@ body {
 
 .btn {
   border: 0;
+
+  &.btn-twitter {
+    .BorderRadius(5px);
+    background-color: @TwitterColor;
+
+    &:hover {
+      background-color: darken(@TwitterColor, 5%);
+    }
+  }
 }
 
 .alert {
