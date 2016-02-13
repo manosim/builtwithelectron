@@ -81,8 +81,7 @@
     white-space: nowrap;
 
     &:hover {
-      background-color: darken(@BodyBg, 20%);
-      color: @Gray;
+      background-color: darken(@ThemePrimary, 10%);
       text-decoration: none;
     }
   }
@@ -586,19 +585,16 @@ body {
 /* @group Featured / Template Tag */
 
 .featured {
-  .BgGradientVertical(@ThemePrimary, darken(@ThemePrimary, 8%));
+  background-color: @ThemePrimary;
+  background-image: url("/static/images/featured-stamp.png");
+  background-size: 80px;
+  background-repeat: no-repeat;
+  background-position: right 20px bottom 20px;
 
   color: @White;
-  padding: 50px 0 0;
+  padding: 50px 0;
   margin-top: -20px;
   margin-bottom: 20px;
-
-  .section-title {
-    margin-top: 10px;
-    color: lighten(@ThemePrimary, 10%);
-    text-align: right;
-    font-style: italic;
-  }
 
   .cover {
     max-height: 250px;
@@ -633,6 +629,10 @@ body {
     .tags {
       margin: 15px 0;
       .TagMixin(0 5px 10px 0, 5px 8px);
+
+      .tag {
+        background-color: darken(@ThemePrimary, 2%);
+      }
     }
   }
 }
