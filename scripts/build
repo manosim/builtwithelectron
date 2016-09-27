@@ -7,3 +7,12 @@ export PATH=env/bin:${PATH}
 
 pip install -r requirements.txt
 honcho --app-root etc/environments/development --env env run env/bin/python manage.py collectstatic --noinput
+
+if [ -z "$NVM_DIR" ]
+then
+    NVM_DIR="~/.nvm"
+fi
+
+. $NVM_DIR/nvm.sh
+nvm use
+npm install --ignore-scripts
