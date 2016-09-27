@@ -13,6 +13,7 @@ then
 fi
 
 . $NVM_DIR/nvm.sh
+nvm install
 nvm use
 npm install --ignore-scripts
 npm run release
