@@ -1,4 +1,4 @@
-# Built With Electron [![Build Status](https://travis-ci.org/ekonstantinidis/trevor.svg?branch=master)](https://travis-ci.org/ekonstantinidis/trevor)
+# Built With Electron [![Build Status](https://travis-ci.org/manosim/builtwithelectron.svg?branch=master)](https://travis-ci.org/manosim/builtwithelectron)
 [www.builtwithelectron.com](http://www.builtwithelectron.com/): Where awesome - made with electron - apps meet.
 
 ### Prerequisites
