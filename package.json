@@ -21,7 +21,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ekonstantinidis/builtwithelectron.git"
+    "url": "git+https://github.com/manosim/builtwithelectron.git"
   },
   "keywords": [
     "electron",
@@ -32,13 +32,13 @@
   "author": "Emmanouil Konstantinidis",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ekonstantinidis/builtwithelectron/issues"
+    "url": "https://github.com/manosim/builtwithelectron/issues"
   },
   "engines": {
     "node": "4.2.0",
     "npm": "2.14.x"
   },
-  "homepage": "https://github.com/ekonstantinidis/builtwithelectron#readme",
+  "homepage": "https://github.com/manosim/builtwithelectron#readme",
   "dependencies": {
     "babel-core": "=6.3.26",
     "babel-eslint": "=4.1.8",

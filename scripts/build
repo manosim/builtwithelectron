@@ -6,4 +6,16 @@ pyvenv env
 export PATH=env/bin:${PATH}
 
 pip install -r requirements.txt
+
+if [ -z "$NVM_DIR" ]
+then
+    NVM_DIR="~/.nvm"
+fi
+
+. $NVM_DIR/nvm.sh
+nvm install
+nvm use
+npm install --ignore-scripts
+npm run release
+
 honcho --app-root etc/environments/development --env env run env/bin/python manage.py collectstatic --noinput
