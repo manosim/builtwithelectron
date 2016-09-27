@@ -16,3 +16,4 @@ fi
 . $NVM_DIR/nvm.sh
 nvm use
 npm install --ignore-scripts
+npm run release
