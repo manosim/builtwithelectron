@@ -6,7 +6,6 @@ pyvenv env
 export PATH=env/bin:${PATH}
 
 pip install -r requirements.txt
-honcho --app-root etc/environments/development --env env run env/bin/python manage.py collectstatic --noinput
 
 if [ -z "$NVM_DIR" ]
 then
@@ -17,3 +16,5 @@ fi
 nvm use
 npm install --ignore-scripts
 npm run release
+
+honcho --app-root etc/environments/development --env env run env/bin/python manage.py collectstatic --noinput
